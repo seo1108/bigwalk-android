@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="VM"
+            type="kr.co.bigwalk.app.community.funding.create.CreateFundingViewModel" />
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="1597dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/aos_bg_crew_add_bg"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
+                    android:layout_marginTop="34dp">
+
+                    <ImageView
+                        android:id="@+id/exit_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="22dp"
+                        android:src="@drawable/aos_icon_20_arrow"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/toolbar_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nanum_barunpen_b"
+                        android:letterSpacing="-0.01"
+                        android:text="@string/create_campaign"
+                        android:textColor="@color/black"
+                        android:textSize="22sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/explain"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/yspotlightot_regular"
+                        android:lines="2"
+                        android:text="아래에서 관심 카테고리를 선택하고\n필요 항목을 모두 작성해주세요."
+                        android:textAlignment="center"
+                        android:textColor="@color/main_black"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <include
+                        android:id="@+id/category_container"
+                        layout="@layout/view_campaign_category"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="28dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/explain" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="17dp"
+                    android:layout_marginTop="-50dp"
+                    android:src="@drawable/aos_illust_crew_makeitfunny" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/join_set_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="25dp"
+                    android:layout_marginTop="290dp">
+
+                    <TextView
+                        android:id="@+id/main_title2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nanum_barunpen_b"
+                        android:text="@string/funding_required_label_recruitment_settings"
+                        android:textColor="@color/sub"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <RadioGroup
+                        android:id="@+id/label_join_set"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:checkedButton="@{VM.checkedJoinType}"
+                        android:orientation="horizontal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/main_title2">
+
+                        <RadioButton
+                            android:id="@+id/not_approve_ratio"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:button="@drawable/selector_checkbox"
+                            android:fontFamily="@font/yspotlightot_regular"
+                            android:paddingStart="6dp"
+                            android:paddingEnd="16dp"
+                            android:text="@string/sign_up_now"
+                            android:textColor="@color/selector_checkbox_color"
+                            android:textSize="16sp" />
+
+                        <RadioButton
+                            android:id="@+id/approve_ratio"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:button="@drawable/selector_checkbox"
+                            android:fontFamily="@font/yspotlightot_regular"
+                            android:paddingStart="6dp"
+                            android:paddingEnd="16dp"
+                            android:text="@string/participation_approval"
+                            android:textColor="@color/selector_checkbox_color"
+                            android:textSize="16sp" />
+
+                        <RadioButton
+                            android:id="@+id/private_ratio"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:button="@drawable/selector_checkbox"
+                            android:fontFamily="@font/yspotlightot_regular"
+                            android:paddingStart="6dp"
+                            android:paddingEnd="16dp"
+                            android:text="@string/private_text"
+                            android:textColor="@color/selector_checkbox_color"
+                            android:textSize="16sp" />
+
+                    </RadioGroup>
+
+                    <TextView
+                        android:id="@+id/title2_caption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/im_hyemin_regular"
+                        android:text="@{VM.title2CaptionText}"
+                        android:textColor="@color/main_black"
+                        android:textSize="12sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/label_join_set" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/question_container"
+                    visibleIf="@{VM.questionContainerIsVisible}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:visibility="gone">
+
+                    <RadioGroup
+                        android:id="@+id/question_enable"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="25dp"
+                        android:checkedButton="@{VM.beforeData.question.length() > 0 ? @id/use_question_button : @id/use_not_question_button }"
+                        android:orientation="vertical"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <RadioButton
+                            android:id="@+id/use_not_question_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:button="@drawable/selector_ratio"
+                            android:checked="true"
+                            android:fontFamily="@font/yspotlightot_regular"
+                            android:paddingStart="6dp"
+                            android:paddingEnd="12dp"
+                            android:text="@string/use_not_questions"
+                            android:textColor="@color/selector_checkbox_color"
+                            android:textSize="16sp" />
+
+                        <RadioButton
+                            android:id="@+id/use_question_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:button="@drawable/selector_ratio"
+                            android:fontFamily="@font/yspotlightot_regular"
+                            android:paddingStart="6dp"
+                            android:paddingEnd="12dp"
+                            android:text="@string/use_question"
+                            android:textColor="@color/selector_checkbox_color"
+                            android:textSize="16sp" />
+                    </RadioGroup>
+
+                    <include
+                        android:id="@+id/question_input_view"
+                        layout="@layout/view_input_text"
+                        visibleIf="@{VM.questionIsVisible}"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:visibility="gone"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/question_enable"
+                        bind:content="@{VM.beforeData.question}"
+                        bind:hint="@{@string/funding_enter_question}"
+                        bind:maxLength="@{100}"
+                        bind:minLength="@{10}"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/info_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="25dp"
+                    android:layout_marginTop="30dp">
+
+                    <TextView
+                        android:id="@+id/main_title3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nanum_barunpen_b"
+                        android:text="@string/funding_required_campaign_information"
+                        android:textColor="@color/sub"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/crew_image"
+                        clipToOutline="@{true}"
+                        loadCampaignCreateImage="@{VM.beforeData.campaignImagePath}"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="14dp"
+                        android:background="@drawable/radius_25_placeholder"
+                        android:tag="@{VM.beforeData.campaignImagePath}"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/main_title3" />
+
+                    <ImageView
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="@drawable/white_oval_view"
+                        android:padding="8dp"
+                        android:src="@drawable/ic_group_image_up"
+                        app:layout_constraintBottom_toBottomOf="@+id/crew_image"
+                        app:layout_constraintEnd_toEndOf="@+id/crew_image" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <include
+                    android:id="@+id/title"
+                    layout="@layout/view_input_text_single_line"
+                    bind:content="@{VM.beforeData.title}"
+                    bind:hint="@{@string/funding_campaign_name_hint}"
+                    bind:maxLength="@{13}"
+                    bind:minLength="@{5}"/>
+
+                <include
+                    android:id="@+id/sub_title"
+                    layout="@layout/view_input_text_single_line"
+                    bind:content="@{VM.beforeData.subTitle}"
+                    bind:hint="@{@string/funding_campaign_sub_title_hint}"
+                    bind:maxLength="@{20}"
+                    bind:minLength="@{10}"/>
+
+                <include
+                    android:id="@+id/description"
+                    layout="@layout/view_input_text"
+                    bind:content="@{VM.beforeData.description}"
+                    bind:hint="@{@string/funding_campaign_introduce_hint}"
+                    bind:maxLength="@{200}"
+                    bind:minLength="@{100}"/>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="25dp"
+                    android:layout_marginTop="50dp">
+
+                    <TextView
+                        android:id="@+id/main_title4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nanum_barunpen_b"
+                        android:text="@string/funding_campaign_detail"
+                        android:textColor="@color/sub"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <include
+                    android:id="@+id/detail_1_container"
+                    layout="@layout/view_drawer_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    bind:content="@{@string/funding_campaign_detail_1}"
+                    bind:contentDescription="@{VM.beforeData.campaignContentResponses[0].contentDescription}"
+                    bind:contentImagePath="@{VM.beforeData.campaignContentResponses[0].contentImagePath}"
+                    bind:contentTitle="@{VM.beforeData.campaignContentResponses[0].contentTitle}"
+                    bind:hint1="@{@string/funding_campaign_detail_1_title}"
+                    bind:hint2="@{@string/funding_campaign_detail_1_introduce}"
+                    bind:isDrawerOpen="@{VM.detail1IsVisible}" />
+
+                <include
+                    android:id="@+id/detail_2_container"
+                    layout="@layout/view_drawer_content"
+                    bind:content="@{@string/funding_campaign_detail_2}"
+                    bind:contentDescription="@{VM.beforeData.campaignContentResponses[1].contentDescription}"
+                    bind:contentImagePath="@{VM.beforeData.campaignContentResponses[1].contentImagePath}"
+                    bind:contentTitle="@{VM.beforeData.campaignContentResponses[1].contentTitle}"
+                    bind:hint1="@{@string/funding_campaign_detail_2_title}"
+                    bind:hint2="@{@string/funding_campaign_detail_2_introduce}"
+                    bind:isDrawerOpen="@{VM.detail2IsVisible}" />
+
+                <include
+                    android:id="@+id/detail_3_container"
+                    layout="@layout/view_drawer_content"
+                    bind:content="@{@string/funding_campaign_detail_3}"
+                    bind:contentDescription="@{VM.beforeData.campaignContentResponses[2].contentDescription}"
+                    bind:contentImagePath="@{VM.beforeData.campaignContentResponses[2].contentImagePath}"
+                    bind:contentTitle="@{VM.beforeData.campaignContentResponses[2].contentTitle}"
+                    bind:hint1="@{@string/funding_campaign_detail_3_title}"
+                    bind:hint2="@{@string/funding_campaign_detail_3_introduce}"
+                    bind:isDrawerOpen="@{VM.detail3IsVisible}" />
+
+                <TextView
+                    android:id="@+id/next_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginHorizontal="61dp"
+                    android:layout_marginTop="106dp"
+                    android:layout_marginBottom="50dp"
+                    android:background="@drawable/radius_25"
+                    android:backgroundTint="#174dfe"
+                    android:fontFamily="@font/nanum_barunpen_b"
+                    android:gravity="center"
+                    android:letterSpacing="-0.01"
+                    android:text="@string/next_page"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+</layout>

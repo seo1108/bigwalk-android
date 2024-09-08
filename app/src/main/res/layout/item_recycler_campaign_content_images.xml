@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="content"
+            type="kr.co.bigwalk.app.data.campaign.dto.CampaignContentResponse" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingBottom="24dp">
+
+        <com.synnapps.carouselview.CarouselView
+            android:id="@+id/item_campaign_carousel_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:contentDescription="@string/campaign_thumbnail_image"
+            app:layout_constraintDimensionRatio="1:1"
+            android:padding="24dp"
+            app:animateOnBoundary="false"
+            app:fillColor="@color/blue"
+            app:indicatorGravity="bottom"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:pageColor="@color/white"
+            app:radius="5dp"
+            app:slideInterval="4000"
+            app:indicatorMarginVertical="8dp"
+            app:indicatorMarginHorizontal="8dp"
+            app:loadContentsImages="@{content.contentImages}"/>
+
+        <TextView
+            android:id="@+id/item_campaign_content_title"
+            style="@style/NanumSquareB14MainFont"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{content.title}"
+            app:layout_constraintTop_toBottomOf="@+id/item_campaign_carousel_view"
+            android:layout_marginTop="16dp"
+            tools:text="캠페인의 소제목"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"/>
+
+        <TextView
+            android:id="@+id/item_campaign_content_content"
+            style="@style/NanumSquareL14MainFont"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@{content.description}"
+            android:lineSpacingMultiplier="1.5"
+            app:layout_constraintTop_toBottomOf="@+id/item_campaign_content_title"
+            tools:text="본 캠페인은 ‘소중한 사람을 지키고,’, ‘그리운 사람을 기억하고,’, ‘나 자신을 응원하자’는 의미를 갖고 5km, 10km, 34km를 걷는다. 34km 코스는 하루 34명씩 자살로 소중한 생명을 잃고 있는 현실을 반영한 것으로 캄캄한 어둠을 헤치고 희망으로 나아가듯이 해질녘부터 동틀 때까지 무박 2일간 걷게 된다."
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

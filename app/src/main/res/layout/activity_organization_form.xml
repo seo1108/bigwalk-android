@@ -1,0 +1,754 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="kr.co.bigwalk.app.sign_in.organization.OrganizationViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/corporate_form_back_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="12dp"
+            android:contentDescription="@string/back_image"
+            android:onClick="@{() -> viewModel.finishActivity()}"
+            android:src="@drawable/back"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            style="@style/TitleBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/input_organization_member_info"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:scrollbars="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/corporate_form_back_image"
+            app:layout_constraintBottom_toTopOf="@+id/organization_form_footer">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/organization_title_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/organization_requirements"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:ignore="MissingConstraints">
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/organization_form_organization"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="50dp"
+                        android:onClick="@{() -> viewModel.showOrganizations()}">
+
+                        <TextView
+                            android:id="@+id/organization"
+                            style="@style/SubTitleBlackRegular"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/please_select_corporate"
+                            android:padding="16dp"
+                            android:text="@{viewModel.organization.name}"
+                            android:textColorHint="@color/black"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/very_light_pink"
+                            app:layout_constraintTop_toBottomOf="@+id/organization" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/organization_form_department"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:onClick="@{() -> viewModel.showSubDepartments1()}"
+                        android:visibility="@{viewModel.canChooseDepth1Department ? View.VISIBLE : View.GONE}"
+                        app:layout_constraintTop_toBottomOf="@+id/organization_form_organization">
+
+                        <TextView
+                            android:id="@+id/department"
+                            style="@style/SubTitleBlackRegular"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@{viewModel.depth1type}"
+                            android:padding="16dp"
+                            android:text="@{viewModel.subDepartment1.name}"
+                            android:textColorHint="@color/black"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/very_light_pink"
+                            app:layout_constraintTop_toBottomOf="@+id/department" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/organization_form_department_sub1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:onClick="@{() -> viewModel.showSubDepartments2()}"
+                        android:visibility="@{viewModel.canChooseDepth2Department ? View.VISIBLE : View.GONE}"
+                        app:layout_constraintTop_toBottomOf="@+id/organization_form_department">
+
+                        <TextView
+                            android:id="@+id/department_sub1"
+                            style="@style/SubTitleBlackRegular"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@{viewModel.depth2type}"
+                            android:padding="16dp"
+                            android:text="@{viewModel.subDepartment2.name}"
+                            android:textColorHint="@color/black"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/very_light_pink"
+                            app:layout_constraintTop_toBottomOf="@+id/department_sub1" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/organization_form_department_sub2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:onClick="@{() -> viewModel.showSubDepartments3()}"
+                        android:visibility="@{viewModel.canChooseDepth3Department ? View.VISIBLE : View.GONE}"
+                        app:layout_constraintTop_toBottomOf="@+id/organization_form_department_sub1">
+
+                        <TextView
+                            android:id="@+id/department_sub2"
+                            style="@style/SubTitleBlackRegular"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@{viewModel.depth3type}"
+                            android:padding="16dp"
+                            android:text="@{viewModel.subDepartment3.name}"
+                            android:textColorHint="@color/black"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/very_light_pink"
+                            app:layout_constraintTop_toBottomOf="@+id/department_sub2" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/organization_form_department_sub3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:onClick="@{() -> viewModel.showSubDepartments4()}"
+                        android:visibility="@{viewModel.canChooseDepth4Department ? View.VISIBLE : View.GONE}"
+                        app:layout_constraintTop_toBottomOf="@+id/organization_form_department_sub2">
+
+                        <TextView
+                            android:id="@+id/department_sub3"
+                            style="@style/SubTitleBlackRegular"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@{viewModel.depth4type}"
+                            android:padding="16dp"
+                            android:text="@{viewModel.subDepartment4.name}"
+                            android:textColorHint="@color/black"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/very_light_pink"
+                            app:layout_constraintTop_toBottomOf="@+id/department_sub3" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/organization_form_search_value"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:visibility="@{viewModel.organizationRequirement.isSearchContent ? View.VISIBLE : View.GONE}"
+                        app:layout_constraintTop_toBottomOf="@+id/organization_form_department_sub3">
+
+                        <TextView
+                            android:id="@+id/search_value"
+                            style="@style/SubTitleBlackRegular"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:onClick="@{() -> viewModel.showKeyword()}"
+                            android:hint="@string/please_input_search_value"
+                            android:padding="16dp"
+                            android:text="@={viewModel.searchValue}"
+                            android:textColorHint="@color/black"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:ignore="Autofill" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/very_light_pink"
+                            app:layout_constraintTop_toBottomOf="@+id/search_value" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/organization_form_visit_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:visibility="@{viewModel.organizationRequirement.isVisitDay ? View.VISIBLE : View.GONE}"
+                        app:layout_constraintTop_toBottomOf="@+id/organization_form_search_value">
+
+                        <TextView
+                            android:id="@+id/visit_date"
+                            style="@style/SubTitleBlackRegular"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:onClick="@{() -> viewModel.showDatePicker()}"
+                            android:hint="@string/please_input_visit_date"
+                            android:padding="16dp"
+                            android:text="@{viewModel.visitdate}"
+                            android:textColorHint="@color/black"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:ignore="Autofill" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/very_light_pink"
+                            app:layout_constraintTop_toBottomOf="@+id/visit_date" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/organization_form_family"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:visibility="@{viewModel.organizationRequirement.isFamilyRelations ? View.VISIBLE : View.GONE}"
+                        app:layout_constraintTop_toBottomOf="@+id/organization_form_visit_date">
+
+                        <EditText
+                            android:id="@+id/family"
+                            style="@style/SubTitleBlackRegular"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:hint="@string/please_input_family"
+                            android:inputType="text"
+                            android:padding="16dp"
+                            android:text="@={viewModel.familyRelation}"
+                            android:textColorHint="@color/black"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:ignore="Autofill,TextFields" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/very_light_pink"
+                            app:layout_constraintTop_toBottomOf="@+id/family" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/organization_form_age"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:visibility="@{viewModel.organizationRequirement.isAge ? View.VISIBLE : View.GONE}"
+                        app:layout_constraintTop_toBottomOf="@+id/organization_form_family">
+
+                        <EditText
+                            android:id="@+id/age"
+                            style="@style/SubTitleBlackRegular"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:hint="@string/please_input_age"
+                            android:inputType="number"
+                            android:padding="16dp"
+                            android:text="@={viewModel.age}"
+                            android:textColorHint="@color/black"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:ignore="Autofill,TextFields" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/very_light_pink"
+                            app:layout_constraintTop_toBottomOf="@+id/age" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/organization_form_employee_nickname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:visibility="@{viewModel.organizationRequirement.isNickname ? View.VISIBLE : View.GONE}"
+                        app:layout_constraintTop_toBottomOf="@+id/organization_form_age">
+
+                        <EditText
+                            android:id="@+id/employee_nickname"
+                            style="@style/SubTitleBlackRegular"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:hint="@string/please_input_employee_nickname"
+                            android:inputType="text"
+                            android:padding="16dp"
+                            android:text="@={viewModel.nickname}"
+                            android:textColorHint="@color/black"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:ignore="Autofill,TextFields" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/very_light_pink"
+                            app:layout_constraintTop_toBottomOf="@+id/employee_nickname" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/organization_form_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:visibility="@{viewModel.organizationRequirement.isNumber ? View.VISIBLE : View.GONE}"
+                        app:layout_constraintTop_toBottomOf="@+id/organization_form_employee_nickname">
+
+                        <EditText
+                            android:id="@+id/number"
+                            style="@style/SubTitleBlackRegular"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:inputType="number"
+                            android:hint="@string/please_input_number"
+                            android:padding="16dp"
+                            android:text="@={viewModel.number}"
+                            android:textColorHint="@color/black"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:ignore="Autofill" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/very_light_pink"
+                            app:layout_constraintTop_toBottomOf="@+id/number" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/organization_form_employee_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:visibility="@{viewModel.organizationRequirement.isOrganizationEmployeeNumber ? View.VISIBLE : View.GONE}"
+                        app:layout_constraintTop_toBottomOf="@+id/organization_form_number">
+
+                        <EditText
+                            android:id="@+id/employee_number"
+                            style="@style/SubTitleBlackRegular"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:hint="@string/please_input_employee_number"
+                            android:inputType="text"
+                            android:padding="16dp"
+                            android:text="@={viewModel.organizationEmployeeNumber}"
+                            android:textColorHint="@color/black"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:ignore="Autofill,TextFields" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/very_light_pink"
+                            app:layout_constraintTop_toBottomOf="@+id/employee_number" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/organization_form_employee_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:visibility="@{viewModel.organizationRequirement.isIdentification ? View.VISIBLE : View.GONE}"
+                        app:layout_constraintTop_toBottomOf="@+id/organization_form_employee_number">
+
+                        <EditText
+                            android:id="@+id/employee_id"
+                            style="@style/SubTitleBlackRegular"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:hint="@string/please_input_employee_id"
+                            android:inputType="text"
+                            android:padding="16dp"
+                            android:text="@={viewModel.id}"
+                            android:textColorHint="@color/black"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:ignore="Autofill,TextFields" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/very_light_pink"
+                            app:layout_constraintTop_toBottomOf="@+id/employee_id" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/organization_form_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:visibility="@{viewModel.organizationRequirement.isName ? View.VISIBLE : View.GONE}"
+                        app:layout_constraintTop_toBottomOf="@+id/organization_form_employee_id">
+
+                        <EditText
+                            android:id="@+id/name"
+                            style="@style/SubTitleBlackRegular"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:hint="@string/please_input_name"
+                            android:inputType="text"
+                            android:padding="16dp"
+                            android:text="@={viewModel.name}"
+                            android:textColorHint="@color/black"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:ignore="Autofill,TextFields" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/very_light_pink"
+                            app:layout_constraintTop_toBottomOf="@+id/name" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/organization_form_employee_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:visibility="@{viewModel.organizationRequirement.isOrganizationEmail ? View.VISIBLE : View.GONE}"
+                        app:layout_constraintTop_toBottomOf="@+id/organization_form_name">
+
+                        <EditText
+                            android:id="@+id/employee_email"
+                            style="@style/SubTitleBlackRegular"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:hint="@string/please_input_employee_email"
+                            android:padding="16dp"
+                            android:text="@={viewModel.organizationEmail}"
+                            android:textColorHint="@color/black"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:ignore="Autofill" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/very_light_pink"
+                            app:layout_constraintTop_toBottomOf="@+id/employee_email" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/organization_form_insta_account"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:visibility="@{viewModel.organizationRequirement.isInstagramAccount ? View.VISIBLE : View.GONE}"
+                        app:layout_constraintTop_toBottomOf="@+id/organization_form_employee_email">
+
+                        <EditText
+                            android:id="@+id/insta_account"
+                            style="@style/SubTitleBlackRegular"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:hint="@string/please_input_insta_account"
+                            android:inputType="text"
+                            android:padding="16dp"
+                            android:text="@={viewModel.instaAccount}"
+                            android:textColorHint="@color/black"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:ignore="Autofill,TextFields" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/very_light_pink"
+                            app:layout_constraintTop_toBottomOf="@+id/insta_account" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/organization_form_input_value"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:visibility="@{viewModel.organizationRequirement.isInput ? View.VISIBLE : View.GONE}"
+                        app:layout_constraintTop_toBottomOf="@+id/organization_form_insta_account">
+
+                        <EditText
+                            android:id="@+id/input_value"
+                            style="@style/SubTitleBlackRegular"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:inputType="text"
+                            android:hint="@string/please_input_input_value"
+                            android:padding="16dp"
+                            android:text="@={viewModel.inputValue}"
+                            android:textColorHint="@color/black"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:ignore="Autofill" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/very_light_pink"
+                            app:layout_constraintTop_toBottomOf="@+id/input_value" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/organization_form_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:visibility="@{viewModel.organizationRequirement.isAddress ? View.VISIBLE : View.GONE}"
+                        app:layout_constraintTop_toBottomOf="@+id/organization_form_input_value">
+
+                        <EditText
+                            android:id="@+id/address"
+                            style="@style/SubTitleBlackRegular"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:hint="@string/please_input_address"
+                            android:inputType="text"
+                            android:padding="16dp"
+                            android:text="@={viewModel.address}"
+                            android:textColorHint="@color/black"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:ignore="Autofill,TextFields" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/very_light_pink"
+                            app:layout_constraintTop_toBottomOf="@+id/address" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/organization_form_join_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:visibility="@{viewModel.organizationRequirement.isAttendanceNo ? View.VISIBLE : View.GONE}"
+                        app:layout_constraintTop_toBottomOf="@+id/organization_form_address">
+
+                        <EditText
+                            android:id="@+id/join_number"
+                            style="@style/SubTitleBlackRegular"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:hint="@string/please_input_join_number"
+                            android:inputType="number"
+                            android:padding="16dp"
+                            android:text="@={viewModel.joinNumber}"
+                            android:textColorHint="@color/black"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:ignore="Autofill,TextFields" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/very_light_pink"
+                            app:layout_constraintTop_toBottomOf="@+id/join_number" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/organization_form_student_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:visibility="@{viewModel.organizationRequirement.isStudentId ? View.VISIBLE : View.GONE}"
+                        app:layout_constraintTop_toBottomOf="@+id/organization_form_join_number">
+
+                        <EditText
+                            android:id="@+id/student_id"
+                            style="@style/SubTitleBlackRegular"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:hint="@string/please_input_student_id"
+                            android:inputType="text"
+                            android:padding="16dp"
+                            android:text="@={viewModel.studentId}"
+                            android:textColorHint="@color/black"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:ignore="Autofill,TextFields" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/very_light_pink"
+                            app:layout_constraintTop_toBottomOf="@+id/student_id" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/organization_form_employee_auth_num"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:visibility="@{viewModel.organizationRequirement.isCertNo &amp;&amp; !viewModel.isModify? View.VISIBLE : View.GONE}"
+                        app:layout_constraintTop_toBottomOf="@+id/organization_form_student_id">
+
+                        <EditText
+                            android:id="@+id/employee_auth_num"
+                            style="@style/SubTitleBlackRegular"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:inputType="text"
+                            android:hint="@string/please_input_employee_auth_num"
+                            android:padding="16dp"
+                            android:text="@={viewModel.authNum}"
+                            android:textColorHint="@color/black"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:ignore="Autofill" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/very_light_pink"
+                            app:layout_constraintTop_toBottomOf="@+id/employee_auth_num" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <LinearLayout
+            android:id="@+id/organization_form_footer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="64dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="20dp"
+                android:layout_marginStart="24dp"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="5dp"
+                    android:orientation="horizontal"
+                    android:visibility="@{!viewModel.hasOrganization ? View.VISIBLE : View.INVISIBLE }">
+                    <TextView
+                        android:id="@+id/agreement_service"
+                        style="@style/NanumSquareRoundRBlack14sp20height"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="3dp"
+                        android:gravity="center_vertical"
+                        android:onClick="@{() -> viewModel.agreeWithService()}"
+                        android:text="@string/terms_of_enterprise_privacy"/>
+
+                    <ImageView
+                        android:id="@+id/agreement_service_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:contentDescription="@string/agreement_service_image"
+                        android:onClick="@{() -> viewModel.agreeWithService()}"
+                        android:src="@{viewModel.hasAgreeWithEnterprisePrivacy ? @drawable/ui_checkbox_on : @drawable/ui_checkbox_off}" />
+                </LinearLayout>
+                <ImageView
+                    android:id="@+id/agreement_service_docs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="34dp"
+                    android:contentDescription="@string/agreement_service_image"
+                    android:onClick="@{() -> viewModel.showAgreementWithEnterprisePrivacy()}"
+                    android:src="@drawable/ico_24_arrow_right"
+                    android:visibility="@{!viewModel.hasOrganization ? View.VISIBLE : View.INVISIBLE }"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/organization_form_confirm_button"
+                style="@style/NanumSquareB20White"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:background="@color/blue"
+                android:gravity="center"
+                android:onClick="@{() -> viewModel.organizationSignUp()}"
+                android:orientation="horizontal"
+                >
+
+                <TextView
+                    android:id="@+id/donation_donate_label"
+                    style="@style/NanumSquareB20White"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/confirm" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

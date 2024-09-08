@@ -1,0 +1,25 @@
+package kr.co.bigwalk.app.data.organization.dto
+
+data class OrganizationRequest(
+    val organizationId: String,
+    val depth1: Long? = 0,
+    val depth2: Long? = 0,
+    val depth3: Long? = 0,
+    val depth4: Long? = 0,
+    val searchContent: String? = "",
+    val visitDay: String? = "",
+    val organizationEmail: String? = "",
+    val certNo: String? = "",
+    val familyRelations: String? = "",
+    val age: String? = "",
+    val nickname: String? = "",
+    val identification: String? = "",
+    val instagramAccount: String? = "",
+    val address: String? = "",
+    val attendanceNo: String? = "",
+    val studentId: String? = "",
+    val number: String? = "",
+    val input: String? = "",
+    val organizationEmployeeNumber: String? = "",
+    val organizationEmployeeName: String? = "",
+)

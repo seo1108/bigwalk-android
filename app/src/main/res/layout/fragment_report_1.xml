@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="kr.co.bigwalk.app.R" />
+        <variable
+            name="context"
+            type="androidx.fragment.app.FragmentActivity" />
+        <variable
+            name="viewModel"
+            type="kr.co.bigwalk.app.community.CommunityInfoViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/donated_report_view"
+            layout="@layout/view_group_report"
+            android:layout_width="0dp"
+            android:layout_height="116dp"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="22dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            bind:content="@{viewModel.communityInfo.report.totalDonatedSteps + context.getString(R.string.walk)}"
+            bind:icon="@{R.drawable.aos_illust_ranking_report_1}"
+            bind:title="@{@string/total_donated_steps}" />
+
+        <include
+            android:id="@+id/carbon_report_view"
+            layout="@layout/view_group_report"
+            android:layout_width="0dp"
+            android:layout_height="116dp"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/donated_report_view"
+            bind:content="@{viewModel.communityInfo.report.reducedCarbonAmount  + context.getString(R.string.unit_kg)}"
+            bind:icon="@{R.drawable.aos_illust_ranking_report_2}"
+            bind:title="@{@string/group_carbon_reduction}" />
+
+        <include
+            android:id="@+id/tree_report_view"
+            layout="@layout/view_group_report"
+            android:layout_width="0dp"
+            android:layout_height="116dp"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/carbon_report_view"
+            bind:content="@{viewModel.communityInfo.report.plantingAmount + context.getString(R.string.unit_tree)}"
+            bind:icon="@{R.drawable.aos_illust_ranking_report_3}"
+            bind:title="@{@string/group_planting}" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

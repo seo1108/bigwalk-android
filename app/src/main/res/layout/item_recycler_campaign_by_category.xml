@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="campaign"
+            type="kr.co.bigwalk.app.data.campaign.dto.ResponseCampaign" />
+        <import type="android.view.View"/>
+        <import type="org.apache.commons.lang3.StringUtils"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/item_by_category_thumbnail"
+            android:layout_width="88dp"
+            android:layout_height="88dp"
+            android:src="@drawable/img_default_88"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginStart="16dp"
+            android:contentDescription="@string/campaign_thumbnail_image"
+            android:background="@drawable/rounded_corner_background"
+            android:clipToPadding="false"
+            loadFullImage="@{campaign.smallListThumbnailImagePath}"/>
+
+        <TextView
+            android:id="@+id/item_by_category_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@+id/item_by_category_thumbnail"
+            app:layout_constraintStart_toEndOf="@+id/item_by_category_thumbnail"
+            android:layout_marginStart="16dp"
+            android:text="@{campaign.name}"
+            style="@style/NanumSquareR16MainFont"
+            tools:text="빅워크 캠페인"/>
+
+        <TextView
+            android:id="@+id/item_by_category_promoter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/item_by_category_title"
+            app:layout_constraintStart_toEndOf="@+id/item_by_category_thumbnail"
+            android:layout_marginStart="16dp"
+            android:text="@{campaign.promoterName}"
+            style="@style/NanumSquareLBlack12"
+            tools:text="빅워크"/>
+
+        <TextView
+            android:id="@+id/item_by_category_campaign_type"
+            style="@style/NanumSquareB8spWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="17dp"
+            android:layout_marginBottom="2dp"
+            android:background="@{campaign.organizationType ? @drawable/radius_10_background_yellow : @drawable/radius_10_background_green}"
+            android:gravity="center_vertical"
+            android:paddingStart="7dp"
+            android:paddingEnd="7dp"
+            android:text="@{campaign.campaignType}"
+            app:layout_constraintBottom_toTopOf="@+id/item_by_category_achievement_rate"
+            app:layout_constraintStart_toStartOf="@+id/item_by_category_achievement_rate"
+            tools:text="공개형" />
+
+        <TextView
+            android:id="@+id/campaign_additional_service_by_category"
+            style="@style/NanumSquareB8spWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="17dp"
+            android:layout_marginStart="4dp"
+            android:background="@drawable/radius_10_background_pacific_blue"
+            android:gravity="center_vertical"
+            android:paddingStart="7dp"
+            android:paddingEnd="7dp"
+            android:text="@{campaign.getAdditionalServiceTypeName()}"
+            android:visibility="@{campaign.service == null ? View.GONE : View.VISIBLE}"
+            app:layout_constraintStart_toEndOf="@+id/item_by_category_campaign_type"
+            app:layout_constraintTop_toTopOf="@+id/item_by_category_campaign_type" />
+
+        <TextView
+            android:id="@+id/campaign_event_by_category"
+            style="@style/NanumSquareB8spWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="17dp"
+            android:layout_marginStart="4dp"
+            android:background="@drawable/radius_10_background_red"
+            android:gravity="center_vertical"
+            android:paddingStart="7dp"
+            android:paddingEnd="7dp"
+            android:text="@{campaign.getEventTypeName()}"
+            android:visibility="@{campaign.event == null ? View.GONE : View.VISIBLE}"
+            app:layout_constraintStart_toEndOf="@+id/campaign_additional_service_by_category"
+            app:layout_constraintTop_toTopOf="@+id/item_by_category_campaign_type" />
+
+        <TextView
+            android:id="@+id/campaign_due_date_by_category"
+            style="@style/NanumSquareB8spWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="17dp"
+            android:layout_marginStart="4dp"
+            android:background="@drawable/radius_10_background_deep_lavendar"
+            android:gravity="center_vertical"
+            android:paddingStart="7dp"
+            android:paddingEnd="7dp"
+            android:text="@{campaign.dueDateString}"
+            android:visibility="@{StringUtils.isBlank(campaign.dueDateString) ? View.GONE : View.VISIBLE}"
+            app:layout_constraintStart_toEndOf="@id/campaign_event_by_category"
+            app:layout_constraintTop_toTopOf="@+id/item_by_category_campaign_type" />
+
+        <TextView
+            android:id="@+id/item_by_category_achievement_rate"
+            style="@style/NanumSquareB12spDarkSkyBlue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{campaign.stepAchievementRate}"
+            app:layout_constraintBottom_toTopOf="@+id/item_by_category_progressbar"
+            app:layout_constraintStart_toStartOf="@+id/item_by_category_progressbar"
+            android:layout_marginBottom="2dp"
+            tools:text = "112%"/>
+
+        <ProgressBar
+            android:id="@+id/item_by_category_progressbar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:progressDrawable="@drawable/campaign_progressbar_blue"
+            android:layout_width="0dp"
+            android:layout_height="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="4dp"
+            app:layout_constraintStart_toEndOf="@+id/item_by_category_thumbnail"
+            app:layout_constraintBottom_toBottomOf="@+id/item_by_category_thumbnail"
+            app:layout_constraintEnd_toStartOf="@+id/item_by_category_donate_button"
+            app:layout_goneMarginEnd="80dp"
+            android:layerType="none"
+            android:progress="@{campaign.stepAchievmentProgress}"
+            android:max="100"/>
+
+        <ImageView
+            android:id="@+id/item_by_category_donate_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/item_recent_campaign_donate_button"
+            android:padding="16dp"
+            android:src="@drawable/btn_donation_med_n"
+            android:visibility="@{campaign.endedCampaign ? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_status"
+            style="@style/NanumSquareB8spDarkSkyBlue"
+            android:layout_width="36dp"
+            android:layout_height="13dp"
+            android:gravity="right|center_vertical"
+            android:text="@{campaign.statusText}"
+            android:textColor="@{campaign.statusColor}"
+            app:layout_constraintBottom_toBottomOf="@+id/item_by_category_achievement_rate"
+            app:layout_constraintEnd_toEndOf="@+id/item_by_category_progressbar"
+            tools:text="진행중" />
+
+        <View
+            android:id="@+id/notify_ended_view"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:alpha="0.7"
+            android:background="@color/white"
+            android:visibility="@{campaign.endedCampaign ? View.VISIBLE : View.GONE}"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/item_resultpost_icon"
+            android:layout_width="101dp"
+            android:layout_height="79dp"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:clipToPadding="false"
+            android:scaleType="centerCrop"
+            android:src="@drawable/icon_donation_completed"
+            android:visibility="@{campaign.resultPost ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.6" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

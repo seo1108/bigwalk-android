@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="kr.co.bigwalk.app.story.StoryViewModel" />
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/story_my_reservation_const"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:onClick="@{()->viewModel.moveToMyReservedStories()}">
+
+            <View
+                android:id="@+id/story_my_top_divider"
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                app:layout_constraintTop_toTopOf="parent"
+                android:background="@color/divider_white_gray"/>
+
+            <ImageView
+                android:id="@+id/story_my_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ico_24_story"
+                app:layout_constraintTop_toBottomOf="@+id/story_my_top_divider"
+                app:layout_constraintStart_toStartOf="parent"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:paddingStart="24dp"
+                android:paddingEnd="8dp"
+                android:contentDescription="@string/my_reserved_story" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@+id/story_my_icon"
+                app:layout_constraintTop_toTopOf="@+id/story_my_icon"
+                app:layout_constraintBottom_toBottomOf="@+id/story_my_icon"
+                android:text="@string/my_reserved_story"
+                style="@style/NanumSquareR16MainFont"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toStartOf="@+id/story_my_arrow_icon"
+                app:layout_constraintTop_toTopOf="@+id/story_my_icon"
+                app:layout_constraintBottom_toBottomOf="@+id/story_my_icon"
+                style="@style/NanumsquareB16Blue"
+                android:text="@{String.valueOf(viewModel.reservedStoriesCount.reservationCount)}"/>
+
+            <ImageView
+                android:id="@+id/story_my_arrow_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ico_24_arrow_right"
+                app:layout_constraintTop_toTopOf="@+id/story_my_icon"
+                app:layout_constraintBottom_toBottomOf="@+id/story_my_icon"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="24dp"
+                android:contentDescription="@string/arrow_right" />
+
+            <View
+                android:id="@+id/story_my_middle_divider"
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/story_my_icon"
+                android:background="@color/divider_white_gray"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/campaign_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/story_my_reservation_const"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:listitem="@layout/item_recycler_story_images"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:clipToPadding="false"
+            android:paddingBottom="56dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

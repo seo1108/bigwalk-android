@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="kr.co.bigwalk.app.report.walk.WalkReportViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/walk_report_top_divider"
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:background="@color/divider_white_gray"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="360dp"
+            android:padding="24dp"
+            app:layout_constraintTop_toBottomOf="@+id/walk_report_top_divider">
+
+            <TextView
+                android:id="@+id/walk_report_this_week_step_label"
+                style="@style/NanumSquareB12spBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/recently_week_steps"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                style="@style/NanumSquareR8Sub2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.weeklyAnalysis.dateOfWeek}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/walk_report_this_week_average_step"
+                style="@style/NanumSquareL20spMainFont"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:bufferType="spannable"
+                android:text="@{viewModel.weeklyAnalysis.averageStepsString}"
+                app:layout_constraintTop_toBottomOf="@+id/walk_report_this_week_step_label" />
+
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/walk_report_chart"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="29.5dp"
+                app:average="@{viewModel.weeklyAverageSteps}"
+                app:axisValue="@{viewModel.yxis}"
+                app:barData="@{viewModel.barData}"
+                app:layout_constraintBottom_toTopOf="@+id/walk_report_most_walk_day_label"
+                app:layout_constraintTop_toBottomOf="@+id/walk_report_this_week_average_step" />
+
+            <FrameLayout
+                android:id="@+id/walk_report_frame"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="29.5dp"
+                app:layout_constraintBottom_toTopOf="@+id/walk_report_most_walk_day_label"
+                app:layout_constraintTop_toBottomOf="@+id/walk_report_this_week_average_step" />
+
+            <TextView
+                android:id="@+id/walk_report_most_walk_day_label"
+                style="@style/NanumSquareR12Sub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="@string/most_walk_day"
+                app:layout_constraintBottom_toTopOf="@+id/walk_report_least_walk_day_label"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/walk_report_most_walk_day_figure_label"
+                style="@style/NanumSquareL12Blue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="@string/step"
+                app:layout_constraintBottom_toTopOf="@+id/walk_report_least_walk_day_label"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/walk_report_most_walk_day_step"
+                style="@style/NanumSquareEb12spBlue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="4dp"
+                android:text="@{String.valueOf(viewModel.weeklyAnalysis.max.dailySteps)}"
+                app:layout_constraintBottom_toTopOf="@+id/walk_report_least_walk_day_label"
+                app:layout_constraintEnd_toStartOf="@+id/walk_report_most_walk_day_figure_label" />
+
+            <TextView
+                android:id="@+id/walk_report_most_walk_day_of_week"
+                style="@style/NanumSquareR12MainFont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="4dp"
+                android:text="@{viewModel.weeklyAnalysis.theMostDayString}"
+                app:layout_constraintBottom_toTopOf="@+id/walk_report_least_walk_day_label"
+                app:layout_constraintEnd_toStartOf="@+id/walk_report_most_walk_day_step" />
+
+            <TextView
+                android:id="@+id/walk_report_least_walk_day_label"
+                style="@style/NanumSquareR12Sub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/least_walk_day"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/walk_report_least_walk_day_figure_label"
+                style="@style/NanumSquareLSub12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/step"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/walk_report_least_walk_day_step"
+                style="@style/NanumSquareEb12Sub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:text="@{String.valueOf(viewModel.weeklyAnalysis.min.dailySteps)}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/walk_report_least_walk_day_figure_label" />
+
+            <TextView
+                android:id="@+id/walk_report_least_walk_day_of_week"
+                style="@style/NanumSquareR12MainFont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.weeklyAnalysis.theLeastDayString}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/walk_report_most_walk_day_of_week" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

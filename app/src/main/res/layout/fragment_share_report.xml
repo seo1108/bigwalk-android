@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="kr.co.bigwalk.app.R" />
+
+        <variable
+            name="VM"
+            type="kr.co.bigwalk.app.community.share.GroupShareViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/image_container"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/background_grey"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:src="@color/background_grey"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="20dp"
+                android:background="@drawable/radius18_background_white"
+                android:elevation="1dp"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/report_total_donated_step"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="27dp"
+                    android:layout_marginTop="23dp"
+                    app:layout_constraintBottom_toTopOf="@+id/report_carbon_reduction"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/my_profile_img"
+                        loadImage="@{VM.shareContents.mainImagePath}"
+                        android:layout_width="86dp"
+                        android:layout_height="86dp"
+                        android:layout_marginStart="14dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="11dp"
+                        android:src="@drawable/img_default_88"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/my_profile_name"
+                        style="@style/NanumSquareB20MainFont"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="20dp"
+                        android:ellipsize="end"
+                        android:lines="1"
+                        android:text="@{VM.shareContents.maxName}"
+                        android:textAlignment="center"
+                        android:textSize="20dp"
+                        app:layout_constraintBottom_toTopOf="@id/my_report_divider"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/my_profile_img"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_chainStyle="packed"
+                        tools:text="우리집공주" />
+
+                    <View
+                        android:id="@+id/my_report_divider"
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/background_grey"
+                        app:layout_constraintBottom_toTopOf="@id/my_ranking_title"
+                        app:layout_constraintEnd_toEndOf="@+id/my_profile_name"
+                        app:layout_constraintStart_toStartOf="@+id/my_profile_name"
+                        app:layout_constraintTop_toBottomOf="@id/my_profile_name" />
+
+                    <View
+                        android:id="@+id/content_divider"
+                        android:layout_width="1dp"
+                        android:layout_height="1dp"
+                        app:layout_constraintEnd_toEndOf="@+id/my_report_divider"
+                        app:layout_constraintStart_toStartOf="@+id/my_report_divider"
+                        app:layout_constraintTop_toBottomOf="@+id/my_report_divider" />
+
+                    <TextView
+                        android:id="@+id/my_ranking_title"
+                        style="@style/NanumSquareL10spBlack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/group_donated_step"
+                        android:textSize="10dp"
+                        app:layout_constraintBottom_toTopOf="@id/my_grade_title"
+                        app:layout_constraintEnd_toStartOf="@id/content_divider"
+                        app:layout_constraintTop_toBottomOf="@id/my_report_divider" />
+
+                    <TextView
+                        android:id="@+id/my_ranking_value"
+                        style="@style/NanumSquareB10spBlue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="3dp"
+                        android:text="@{VM.shareContents.report.donatedSteps}"
+                        android:textSize="10dp"
+                        app:layout_constraintBottom_toBottomOf="@id/my_ranking_title"
+                        app:layout_constraintStart_toEndOf="@id/my_ranking_title"
+                        app:layout_constraintTop_toTopOf="@id/my_ranking_title"
+                        tools:text="1,214,919,021" />
+
+                    <TextView
+                        android:id="@+id/my_grade_title"
+                        style="@style/NanumSquareL10spBlack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/my_donated_step"
+                        android:textSize="10dp"
+                        app:layout_constraintBottom_toBottomOf="@id/my_profile_img"
+                        app:layout_constraintEnd_toEndOf="@+id/my_ranking_title"
+                        app:layout_constraintTop_toBottomOf="@id/my_ranking_title" />
+
+                    <TextView
+                        android:id="@+id/my_grade_value"
+                        style="@style/NanumSquareB10spBlue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{VM.shareContents.myDonatedStep}"
+                        android:textSize="10dp"
+                        app:layout_constraintBottom_toBottomOf="@id/my_grade_title"
+                        app:layout_constraintStart_toStartOf="@id/my_ranking_value"
+                        app:layout_constraintTop_toTopOf="@id/my_grade_title"
+                        tools:text="1,000" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/report_carbon_reduction"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/radius18_background_white_border_f2"
+                    app:layout_constraintBottom_toTopOf="@+id/report_planting"
+                    app:layout_constraintEnd_toEndOf="@+id/report_total_donated_step"
+                    app:layout_constraintStart_toStartOf="@+id/report_total_donated_step"
+                    app:layout_constraintTop_toBottomOf="@id/report_total_donated_step">
+
+                    <ImageView
+                        android:id="@+id/carbon_reduction_icon"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginVertical="7dp"
+                        android:layout_marginStart="17dp"
+                        android:src="@drawable/aos_illust_ranking_report_2"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/carbon_reduction_title"
+                        style="@style/NanumSquareR14MainFont"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginEnd="30dp"
+                        android:text="@string/group_carbon_reduction"
+                        android:textAlignment="center"
+                        android:textSize="14dp"
+                        app:layout_constraintBottom_toTopOf="@id/carbon_reduction_value"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/carbon_reduction_icon"
+                        app:layout_constraintTop_toTopOf="@id/carbon_reduction_icon"
+                        app:layout_constraintVertical_chainStyle="packed" />
+
+                    <TextView
+                        android:id="@+id/carbon_reduction_value"
+                        style="@style/NanumSquareRoundB14spBlue"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="@{VM.shareContents.report.reducedCarbonAmount + context.getString(R.string.unit_kg)}"
+                        android:textAlignment="center"
+                        android:textSize="14dp"
+                        app:layout_constraintBottom_toBottomOf="@id/carbon_reduction_icon"
+                        app:layout_constraintEnd_toEndOf="@+id/carbon_reduction_title"
+                        app:layout_constraintStart_toStartOf="@+id/carbon_reduction_title"
+                        app:layout_constraintTop_toBottomOf="@id/carbon_reduction_title"
+                        tools:text="1234,810,000kg" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/report_planting"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/radius18_background_white_border_f2"
+                    app:layout_constraintBottom_toTopOf="@+id/logo_image"
+                    app:layout_constraintEnd_toEndOf="@id/report_carbon_reduction"
+                    app:layout_constraintStart_toStartOf="@id/report_carbon_reduction"
+                    app:layout_constraintTop_toBottomOf="@id/report_carbon_reduction">
+
+                    <ImageView
+                        android:id="@+id/planting_icon"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginStart="17dp"
+                        android:layout_marginTop="7dp"
+                        android:layout_marginBottom="7dp"
+                        android:src="@drawable/aos_illust_ranking_report_3"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/planting_title"
+                        style="@style/NanumSquareR14MainFont"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginEnd="30dp"
+                        android:text="@string/group_planting"
+                        android:textAlignment="center"
+                        android:textSize="14dp"
+                        app:layout_constraintBottom_toTopOf="@id/planting_value"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/planting_icon"
+                        app:layout_constraintTop_toTopOf="@id/planting_icon"
+                        app:layout_constraintVertical_chainStyle="packed" />
+
+                    <TextView
+                        android:id="@+id/planting_value"
+                        style="@style/NanumSquareRoundB14spBlue"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="@{VM.shareContents.report.plantingAmount + context.getString(R.string.unit_tree)}"
+                        android:textAlignment="center"
+                        android:textSize="14dp"
+                        app:layout_constraintBottom_toBottomOf="@id/planting_icon"
+                        app:layout_constraintEnd_toEndOf="@+id/planting_title"
+                        app:layout_constraintStart_toStartOf="@id/planting_title"
+                        app:layout_constraintTop_toBottomOf="@id/planting_title"
+                        tools:text="2,329,126그루" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <ImageView
+                    android:id="@+id/logo_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="27dp"
+                    android:layout_marginBottom="15dp"
+                    android:contentDescription="@string/logo"
+                    android:src="@drawable/bigwalk_logo_ballad_mint"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/report_planting" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/next_page"
+            style="@style/NanumSquareB18spWhite"
+            android:layout_width="282dp"
+            android:layout_height="54dp"
+            android:layout_marginTop="140dp"
+            android:layout_marginBottom="57dp"
+            android:background="@drawable/radius48_blue"
+            android:gravity="center"
+            android:text="@string/next_page"
+            android:textSize="18dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/image_container"
+            app:layout_constraintVertical_bias="1" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

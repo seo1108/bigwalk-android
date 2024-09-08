@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="kr.co.bigwalk.app">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
+
+    <uses-feature android:name="android.hardware.camera.any" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <application
+        android:name=".BigwalkApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/bw_launcher"
+        android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_config"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@mipmap/bw_launcher"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
+        tools:ignore="UnusedAttribute">
+
+        <activity
+            android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:host="oauth"
+                    android:scheme="kakao9fb100514ad7b1d7b7f626d1b7bbeb5d" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".report.Report2Activity"
+            android:screenOrientation="portrait"  />
+        <activity
+            android:name=".profile.detail.SelectAreaActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".profile.detail.SelectInterestActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".sign_in.SelfCertificationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".sign_up.SignUpActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".feed.modify.ModifyFeedActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".feed_mypage.UserBlockListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".blame.BlameActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".community.create.CreateCommunityActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/supportersCampaignFullScreen"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".crowd_funding.guide.GuideActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/supportersCampaignFullScreen" />
+        <activity
+            android:name=".crowd_funding.guide.StepFundingGuideActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/supportersCampaignFullScreen" />
+        <activity
+            android:name=".crowd_funding.guide.ContestApplyGuideActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/supportersCampaignFullScreen" />
+        <activity
+            android:name=".crowd_funding.guide.CrowdFundingGuideActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/supportersCampaignFullScreen" />
+        <activity
+            android:name=".crowd_funding.detail.funding.StepFundingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".crowd_funding.detail.crew.CrewFundingRankingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".crowd_funding.detail.crew.CrewJoinFromActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".crowd_funding.detail.CrewCampaignDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/supportersCampaignFullScreen" />
+        <activity
+            android:name=".crowd_funding.TotalMyFundingActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/supportersCampaignFullScreen" />
+        <activity
+            android:name=".crowd_funding.detail.StepFundingCommentsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".crowd_funding.StepFundingListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/supportersCampaignFullScreen" />
+        <activity
+            android:name=".community.funding.CrewCampaignGuideActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/supportersCampaignFullScreen" />
+        <activity
+            android:name=".community.funding.SupportersCampaignPreviewActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/supportersCampaignFullScreen" />
+        <activity
+            android:name=".community.funding.ContestActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/supportersCampaignFullScreen" />
+        <activity
+            android:name=".community.funding.SupportersCampaignsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/supportersCampaignFullScreen" />
+        <activity
+            android:name=".community.funding.create.CreateFundingActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/supportersCampaignFullScreen"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".community.info.ModifyCrewIntroActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".community.share.ShareEditStickerActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".community.share.GroupShareActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".community.MyCommunityListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".community.CommunityInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".community.CommunityGuideActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".community.CommunityActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".space.SpaceGroupMemberFormActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".campaign.ranking.info.RankingInformationActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".campaign.ranking.info.RankingGradeInfoActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".campaign.ranking.RankingPlusActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".event.EventActivity"
+            android:colorMode="wideColorGamut"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".splash.SplashActivity"
+            android:colorMode="wideColorGamut"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            tools:targetApi="o">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="bigwalk.co.kr"
+                    android:scheme="http" />
+                <data
+                    android:host="bigwalk.co.kr"
+                    android:scheme="https" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".sign_in.SignInActivity"
+            android:colorMode="wideColorGamut"
+            android:screenOrientation="portrait"
+            tools:targetApi="o" />
+        <activity
+            android:name=".sign_in.edit_profile.EditProfileActivity"
+            android:colorMode="wideColorGamut"
+            android:screenOrientation="portrait"
+            tools:targetApi="o" />
+        <activity
+            android:name=".sign_in.agreement.AgreementActivity"
+            android:colorMode="wideColorGamut"
+            android:screenOrientation="portrait"
+            tools:targetApi="o" />
+        <activity
+            android:name=".my_page.LogoutActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AllTransparent" />
+
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="@string/kakao_app_key" />
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/default_notification_channel_id" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@mipmap/bw_launcher" />
+
+
+
+        <activity
+            android:name="com.nhn.android.naverlogin.ui.OAuthCustomTabActivity"
+            android:configChanges="orientation|screenSize"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            tools:node="merge">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Intent URL 에서 로그인 액티비티를 실행하기 위해 설정 -->
+                <data
+                    android:host="authorize"
+                    android:path="/"
+                    android:scheme="naver3rdpartylogin" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.facebook.CustomTabActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="@string/fb_login_protocol_scheme" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".sign_in.organization.OrganizationFormActivity"
+            android:colorMode="wideColorGamut"
+            android:screenOrientation="portrait"
+            tools:targetApi="o" />
+        <activity
+            android:name=".sign_in.organization.SelectListActivity"
+            android:colorMode="wideColorGamut"
+            android:screenOrientation="portrait"
+            tools:targetApi="o" />
+        <activity
+            android:name=".sign_in.organization.SelectDepartmentListActivity"
+            android:colorMode="wideColorGamut"
+            android:screenOrientation="portrait"
+            tools:targetApi="o" />
+
+        <activity
+            android:name=".sign_in.organization.SelectSearchKeywordActivity"
+            android:colorMode="wideColorGamut"
+            android:screenOrientation="portrait"
+            tools:targetApi="o" />
+        <activity
+            android:name=".walk.WalkActivity"
+            android:colorMode="wideColorGamut"
+            android:screenOrientation="portrait"
+            tools:targetApi="o" />
+        <activity
+            android:name=".campaign.detail.CampaignDetailActivity"
+            android:colorMode="wideColorGamut"
+            android:hardwareAccelerated="true"
+            android:screenOrientation="portrait"
+            tools:targetApi="o" />
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:colorMode="wideColorGamut"
+            android:screenOrientation="portrait"
+            android:theme="@style/Base.Theme.AppCompat"
+            tools:targetApi="o" />
+        <activity
+            android:name=".share.ShareActivity"
+            android:colorMode="wideColorGamut"
+            android:screenOrientation="portrait"
+            tools:targetApi="o" />
+        <activity
+            android:name=".campaign.recent.RecentCampaignActivity"
+            android:colorMode="wideColorGamut"
+            android:screenOrientation="portrait"
+            tools:targetApi="o" />
+        <activity
+            android:name=".campaign.ranking.RankingActivity"
+            android:colorMode="wideColorGamut"
+            android:screenOrientation="portrait"
+            tools:targetApi="o" />
+        <activity
+            android:name=".campaign.donation.report.DonationReportActivity"
+            android:colorMode="wideColorGamut"
+            android:screenOrientation="portrait"
+            tools:targetApi="o" />
+        <activity
+            android:name=".campaign.CampaignActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".my_page.MyPageActivity"
+            android:colorMode="wideColorGamut"
+            android:screenOrientation="portrait"
+            tools:targetApi="o" />
+        <activity
+            android:name=".my_page.MyPageModifyActivity"
+            android:colorMode="wideColorGamut"
+            android:screenOrientation="portrait"
+            tools:targetApi="o" />
+        <activity
+            android:name=".my_page.SelectOrganizationListActivity"
+            android:colorMode="wideColorGamut"
+            android:screenOrientation="portrait"
+            tools:targetApi="o" />
+        <activity
+            android:name=".my_page.SelectOrganizationDepartmentListActivity"
+            android:colorMode="wideColorGamut"
+            android:screenOrientation="portrait"
+            tools:targetApi="o" />
+        <activity
+            android:name=".campaign.ranking.SeasonRankingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".my_page.OrganizationMemberFormActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".my_page.withdraw.WithdrawActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".my_page.withdraw.WithdrawCompleteActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".setting.AppSettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".report.ReportActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".all.AllActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".welcome.WelcomeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Transparent.NoTitle.FullScreen" />
+        <activity
+            android:name=".notification.ReceivedNotificationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".sign_in.character.SelectCharacterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".story.reserved.MyReservedStoryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".share.ShareCampaignActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".customer_center.CustomerCenterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".sign_in.agreement.AgreementWithEnterprisePrivacyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".campaign.donation.additional_service.MissionCertificationActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".feed.like.FeedLikeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".feed.FeedDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".feed.ChallengeFeedListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".feed.ChallengeDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".feed_home.ChallengeActiveListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".feed_home.ChallengeTypeListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".feed_home.ChallengeYearListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".feed_guide.FeedGuideActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".feed_mypage.FeedMyPageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".feed_comment.FeedCommentActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".feed_notification.FeedNotificationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".campaign.consumption.ConsumptionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".community.funding.request.CrewRequestListActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ext.multiImagePicker.GalleryActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ext.multiImagePicker.StartImagePickerActivity"
+            android:theme="@style/DialogThemeAppCompat"
+            android:screenOrientation="portrait" />
+
+        <service
+            android:name=".walk.sensor.WalkService"
+            android:process=":WalkService" />
+
+
+
+        <receiver
+            android:name=".walk.alarm.RebootReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".walk.alarm.PackageReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+        </receiver>
+        <!--<receiver
+            android:name=".walk.alarm.AlarmBroadcastReceiver"
+            android:exported="false"/>-->
+        <receiver
+            android:name=".walk.alarm.AlarmBroadcastReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.app.action.SCHEDULE_EXACT_ALARM_PERMISSION_STATE_CHANGED" />
+            </intent-filter>
+        </receiver>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true"
+            tools:replace="android:authorities">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"
+                tools:replace="android:resource" />
+        </provider>
+
+        <service
+            android:name=".notification.BigwalkFcmService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+    </application>
+
+</manifest>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="kr.co.bigwalk.app.community.GroupMemberListViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".community.GroupMemberListFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/my_info_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/blue_sky"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="0dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ranking_my_profile"
+                loadImage="@{viewModel.myInfoToGroup.profilePath}"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/transparent_oval"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/ranking_my_rank"
+                style="@style/NanumSquareL10spWhite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:gravity="center"
+                android:text="@{viewModel.myInfoToGroup.roleName}"
+                app:layout_constraintBottom_toTopOf="@id/ranking_my_profile_name"
+                app:layout_constraintStart_toEndOf="@+id/ranking_my_profile"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="24위" />
+
+            <TextView
+                android:id="@+id/ranking_my_profile_name"
+                style="@style/NanumSquareB20White"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:gravity="center"
+                android:text="@{viewModel.myInfoToGroup.name}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/ranking_my_rank"
+                app:layout_constraintTop_toBottomOf="@id/ranking_my_rank"
+                tools:text="유저명" />
+
+            <TextView
+                android:id="@+id/ranking_my_profile_donated_steps_title"
+                style="@style/NanumSquareL10spWhite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="18dp"
+                android:text="@string/donated_step2"
+                app:layout_constraintBottom_toTopOf="@id/ranking_my_profile_donated_steps"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <TextView
+                android:id="@+id/ranking_my_profile_donated_steps"
+                style="@style/NanumSquareB10spWhite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:text="@{viewModel.myInfoToGroup.totalDonatedSteps}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/ranking_my_profile_donated_steps_title"
+                app:layout_constraintTop_toBottomOf="@id/ranking_my_profile_donated_steps_title"
+                tools:text="3,142" />
+
+            <ImageView
+                android:id="@+id/manager_badge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:visibility="@{viewModel.myInfoToGroup.isOwner ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="@+id/ranking_my_rank"
+                app:layout_constraintStart_toEndOf="@+id/ranking_my_rank"
+                app:layout_constraintTop_toTopOf="@+id/ranking_my_rank"
+                app:srcCompat="@drawable/aos_icon_group_managerbadge" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/member_list_container"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/my_info_container"
+            tools:listitem="@layout/item_recycler_group_member_list" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="data"
+            type="kr.co.bigwalk.app.data.funding.dto.CrewCampaignRankingResponse" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/member_image"
+            loadImage="@{data.profilePath}"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:civ_border_color="@color/profile_border"
+            app:civ_border_overlay="true"
+            app:civ_border_width="0.5dp"
+            app:layout_constraintBottom_toTopOf="@+id/item_divider"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/rank_badge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@+id/member_image"
+            app:layout_constraintStart_toEndOf="@id/member_image"
+            app:layout_constraintTop_toTopOf="@+id/member_image" />
+
+        <TextView
+            android:id="@+id/member_position"
+            style="@style/NanumSquareL10spBlack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:gravity="center"
+            android:text="@{data.roleName}"
+            app:layout_constraintBottom_toTopOf="@id/member_name"
+            app:layout_constraintStart_toEndOf="@id/member_image"
+            app:layout_constraintTop_toTopOf="@id/member_image"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="멤버" />
+
+        <TextView
+            android:id="@+id/member_name"
+            style="@style/NanumSquareB15spBlack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:gravity="center"
+            android:text="@{data.name}"
+            app:layout_constraintBottom_toBottomOf="@id/member_image"
+            app:layout_constraintStart_toStartOf="@+id/member_position"
+            app:layout_constraintTop_toBottomOf="@id/member_position"
+            tools:text="유저명" />
+
+        <TextView
+            android:id="@+id/donated_steps_title"
+            style="@style/NanumSquareL10spBlack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="18dp"
+            android:text="@string/funding_step"
+            app:layout_constraintBottom_toTopOf="@+id/donated_steps_number"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/donated_steps_number"
+            style="@style/NanumSquareB10spBlack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:gravity="center"
+            android:text="@{data.fundedStepsToUnit}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/donated_steps_title"
+            app:layout_constraintTop_toBottomOf="@id/donated_steps_title"
+            tools:text="3,142" />
+
+        <View
+            android:id="@+id/item_divider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/gray_border"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/member_image" />
+
+        <ImageView
+            android:id="@+id/manager_badge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:visibility="@{data.isOwner ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@+id/member_position"
+            app:layout_constraintStart_toEndOf="@+id/member_position"
+            app:layout_constraintTop_toTopOf="@+id/member_position"
+            app:srcCompat="@drawable/aos_icon_group_managerbadge" />
+
+        <ImageView
+            android:id="@+id/early_bird_badge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:visibility="@{data.earlyBird ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@+id/member_position"
+            app:layout_constraintStart_toEndOf="@+id/manager_badge"
+            app:layout_constraintTop_toTopOf="@+id/member_position"
+            app:srcCompat="@drawable/aos_icon_fundignrank_early_bird" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

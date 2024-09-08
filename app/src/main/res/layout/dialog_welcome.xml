@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="viewModel"
+            type="kr.co.bigwalk.app.dialog.WelcomeViewModel" />
+    </data>
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.github.mmin18.widget.RealtimeBlurView
+            android:id="@+id/welcome_background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:realtimeBlurRadius="20dp"
+            app:realtimeOverlayColor="#8000" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/welcome_profile_image"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="174dp"
+                android:src="@drawable/img_default_48"
+                app:civ_border_color="@color/profile_border"
+                app:civ_border_width="0.5dp"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:layout_constraintBottom_toTopOf="@id/welcome_user_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:loadImage="@{viewModel.profileImage}" />
+
+            <TextView
+                android:id="@+id/welcome_user_name"
+                style="@style/NanumSquareB23spWhite"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="4dp"
+                android:gravity="center"
+                android:text="@{viewModel.name}"
+                app:layout_constraintBottom_toTopOf="@id/welcome_main_comment"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/welcome_profile_image"
+                tools:text="닉네임님"/>
+
+            <TextView
+                android:id="@+id/welcome_main_comment"
+                style="@style/NanumSquareB23spWhite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:lineSpacingExtra="5dp"
+                android:text="@string/welcome_to_bigwalk"
+                app:layout_constraintBottom_toTopOf="@id/welcome_sub_comment"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/welcome_user_name" />
+
+            <TextView
+                android:id="@+id/welcome_sub_comment"
+                style="@style/NanumSquareRoundBWhite16sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:lineSpacingExtra="5dp"
+                android:text="@string/welcome_sub_comment"
+                android:textColor="@color/gray_border"
+                app:layout_constraintBottom_toTopOf="@id/welcome_start"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/welcome_main_comment" />
+
+            <Button
+                android:id="@+id/welcome_start"
+                style="@style/NanumsquareB16White"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="65dp"
+                android:layout_marginTop="87dp"
+                android:layout_marginEnd="65dp"
+                android:layout_marginBottom="182dp"
+                android:background="@drawable/radius24_blue"
+                android:onClick="@{() -> viewModel.dismiss()}"
+                android:padding="16dp"
+                android:text="@{viewModel.startButtonText}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/welcome_sub_comment"
+                tools:text="@string/start" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+</layout>

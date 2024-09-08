@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="kr.co.bigwalk.app.community.funding.contest.ContestDetailViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/outside"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/dialog_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/radius18_white_dialog"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/textView22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:fontFamily="@font/im_hyemin_regular"
+                android:text="@{vm.contestDetail.getScheduledOpenDate()}"
+                android:textColor="@color/main_black"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="캠페인 오픈 예정 22.06.01~06.30}" />
+
+            <ImageView
+                android:id="@+id/imageView21"
+                loadFullImageUrl="@{vm.contestDetail.logoImagePath}"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="68dp"
+                android:layout_marginEnd="84dp"
+                android:scaleType="fitStart"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintBottom_toTopOf="@+id/textView23"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@drawable/aos_lottie_crew_top_camera" />
+
+            <TextView
+                android:id="@+id/textView23"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="36dp"
+                android:fontFamily="@font/nanum_barunpen_b"
+                android:letterSpacing="-0.01"
+                android:lineSpacingExtra="6sp"
+                android:text="@{vm.contestDetail.title}"
+                android:textColor="@color/main_black"
+                android:textSize="26sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView21"
+                tools:text="타이틀타이틀타이틀타이틀타이틀타이틀타이틀" />
+
+            <TextView
+                android:id="@+id/textView24"
+                style="@style/Body_Regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/public_offering_period"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView23" />
+
+            <TextView
+                android:id="@+id/textView29"
+                style="@style/BodyBold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@{vm.contestDetail.getRecruitmentPeriod()}"
+                app:layout_constraintBottom_toBottomOf="@+id/textView24"
+                app:layout_constraintStart_toEndOf="@+id/textView24"
+                app:layout_constraintTop_toTopOf="@+id/textView24"
+                tools:text="22.02.01~05.31" />
+
+            <TextView
+                android:id="@+id/textView30"
+                style="@style/BodyLight"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="36dp"
+                android:text="@{vm.contestDetail.description}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView24"
+                tools:text="유의사항 및 참여방법등 공모전 내용을 알리는 상세설명 영역 띄어쓰기 포함 100자 내로 할까? 유의사항 및 참여방법등 공모전 내용을 알리는 상세설명 영역 띄어쓰기 포함 조선100자" />
+
+            <TextView
+                android:id="@+id/apply_btn"
+                setBackgroundColor="@{vm.contestDetail.mainColor}"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="42dp"
+                android:layout_marginBottom="46dp"
+                android:background="@drawable/radius_25"
+                android:fontFamily="@font/nanum_barunpen_b"
+                android:gravity="center"
+                android:text="@string/apply_contest"
+                android:textColor="@{vm.contestDetail.fontColor}"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/textView30"
+                app:layout_constraintStart_toStartOf="@+id/textView30"
+                app:layout_constraintTop_toBottomOf="@+id/textView30"
+                tools:backgroundTint="@color/colorPrimary" />
+
+            <ImageView
+                android:id="@+id/imageView23"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginBottom="40dp"
+                app:layout_constraintBottom_toBottomOf="@+id/apply_btn"
+                app:layout_constraintStart_toStartOf="@+id/apply_btn"
+                app:srcCompat="@drawable/aos_illust_crew_contest_sticker_1" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/imageView19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/dialog_container"
+            app:layout_constraintStart_toStartOf="@+id/dialog_container"
+            app:layout_constraintTop_toTopOf="@+id/dialog_container"
+            app:srcCompat="@drawable/aos_illust_crew_contest_sticker_2" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

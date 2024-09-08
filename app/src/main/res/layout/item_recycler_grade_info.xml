@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    
+    <data>
+        <variable
+            name="rankGuide"
+            type="kr.co.bigwalk.app.data.campaign.dto.RankGuide" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/radius18_background_white">
+
+        <ImageView
+            android:id="@+id/grade_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/aos_illust_ranking_bg"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="22dp" />
+
+        <ImageView
+            android:id="@+id/grade_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            app:layout_constraintStart_toStartOf="@id/grade_bg"
+            app:layout_constraintEnd_toEndOf="@id/grade_bg"
+            app:layout_constraintBottom_toBottomOf="@id/grade_bg"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="28dp"
+            android:src="@drawable/aos_icon_ranking_today_lv_1"
+            loadGradeIcon=""/>
+
+        <TextView
+            android:id="@+id/grade_level"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Lv.10"
+            style="@style/NanumSquareB12dpWhite"
+            android:background="@drawable/radius_13_background_blue"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="6dp"
+            android:paddingTop="7dp"
+            android:layout_marginStart="20dp"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/grade_bg"
+            app:layout_constraintBottom_toTopOf="@id/grade_name"/>
+
+        <TextView
+            android:id="@+id/grade_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            tools:text="한라산 백록담까지"
+            style="@style/NanumSquareRoundBBlack16sp"
+            app:layout_constraintStart_toStartOf="@id/grade_level"
+            app:layout_constraintTop_toBottomOf="@id/grade_level"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/grade_description"
+            android:layout_marginTop="9dp"
+            android:layout_marginEnd="14dp"/>
+
+        <TextView
+            android:id="@+id/grade_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            tools:text="500 걸음 이하"
+            style="@style/NanumSquareRoundRBlack14sp"
+            android:textStyle="bold"
+            android:textColor="@color/sub"
+            app:layout_constraintStart_toStartOf="@id/grade_name"
+            app:layout_constraintTop_toBottomOf="@id/grade_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="14dp"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

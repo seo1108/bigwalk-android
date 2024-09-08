@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="kr.co.bigwalk.app.walk.WalkViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/walk_pager_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/event_layout"
+            visibleIf="@{viewModel.showEvent}"
+            android:layout_width="match_parent"
+            android:layout_height="81dp"
+            android:layout_marginTop="34dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible">
+
+            <TextView
+                android:id="@+id/walk_mission_label"
+                style="@style/NanumSquareB16spWhite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="37dp"
+                android:layout_marginTop="27dp"
+                android:background="@drawable/bg_mission_status"
+                android:gravity="center"
+                android:minWidth="118dp"
+                android:minHeight="34dp"
+                android:onClick="@{() -> viewModel.moveToEvent()}"
+                android:text="@{viewModel.missionStatusText}"
+                android:visibility="@{viewModel.hasMissions ? View.VISIBLE : View.GONE}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="미션 진행 중" />
+
+            <View
+                android:id="@+id/walk_mission_label_noti"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:background="@drawable/bg_red_dot"
+                android:visibility="@{viewModel.isMissionCompleted ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="@+id/walk_mission_label"
+                app:layout_constraintTop_toTopOf="@id/walk_mission_label" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/funded"
+                visibleIf="@{viewModel.hasRewardContestId > 0}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="32dp"
+                android:tag="@{viewModel.hasRewardContestId}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/aos_myfunding_icon"/>
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/funding"
+                visibleIf="@{viewModel.hasContestId > 0}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="32dp"
+                android:tag="@{viewModel.hasContestId}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/aos_funding_icon"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/walk_random_text"
+            style="@style/NanumSquareLWhite32sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:gravity="start"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/event_layout"
+            app:layout_goneMarginTop="91dp" />
+
+        <ImageView
+            android:id="@+id/walk_moving_character"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="133dp"
+            android:contentDescription="@string/walk_moving_character" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/walk_todays_step_const"
+            android:layout_width="96dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/walk_todays_kcal_const"
+            app:layout_constraintTop_toBottomOf="@+id/walk_random_text"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="4dp">
+
+            <TextView
+                android:id="@+id/walk_todays_step_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:gravity="center"
+                android:text="@string/todays_step"
+                style="@style/NanumSquareRWhite12sp"/>
+
+            <ImageView
+                android:id="@+id/walk_todays_step_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ico_40_walk_white"
+                app:layout_constraintTop_toBottomOf="@+id/walk_todays_step_label"
+                android:layout_marginTop="6dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:contentDescription="@string/today_step" />
+
+            <TextView
+                android:id="@+id/walk_todays_step"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.todayStep}"
+                app:layout_constraintTop_toBottomOf="@+id/walk_todays_step_icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/walk_todays_step_figure"
+                android:layout_marginTop="6dp"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                style="@style/NanumSquareRoundEb20spWhite"/>
+
+            <TextView
+                android:id="@+id/walk_todays_step_figure"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/step"
+                app:layout_constraintBottom_toBottomOf="@+id/walk_todays_step"
+                app:layout_constraintStart_toEndOf="@+id/walk_todays_step"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginBottom="4dp"
+                style="@style/NanumSquareRoundRWhite12sp"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/walk_todays_kcal_const"
+            android:layout_width="96dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/walk_todays_step_const"
+            app:layout_constraintTop_toBottomOf="@+id/walk_random_text"
+            app:layout_constraintEnd_toStartOf="@+id/walk_donable_step_const"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="4dp">
+
+            <TextView
+                android:id="@+id/walk_todays_kcal_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:gravity="center"
+                android:text="@string/consumed_kcal"
+                style="@style/NanumSquareRWhite12sp"/>
+
+            <ImageView
+                android:id="@+id/walk_todays_kcal_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ico_40_kcal_white"
+                app:layout_constraintTop_toBottomOf="@+id/walk_todays_kcal_label"
+                android:layout_marginTop="6dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:contentDescription="@string/consumed_kcal" />
+
+            <TextView
+                android:id="@+id/walk_todays_kcal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.kcalText}"
+                app:layout_constraintTop_toBottomOf="@+id/walk_todays_kcal_icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/walk_todays_kcal_figure"
+                android:layout_marginTop="6dp"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                style="@style/NanumSquareRoundEb20spWhite"/>
+
+            <TextView
+                android:id="@+id/walk_todays_kcal_figure"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/kcal"
+                android:layout_marginBottom="4dp"
+                app:layout_constraintBottom_toBottomOf="@+id/walk_todays_kcal"
+                app:layout_constraintStart_toEndOf="@+id/walk_todays_kcal"
+                app:layout_constraintEnd_toEndOf="parent"
+                style="@style/NanumSquareRoundRWhite12sp"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/walk_donable_step_const"
+            android:layout_width="96dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/walk_todays_kcal_const"
+            app:layout_constraintTop_toBottomOf="@+id/walk_random_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="4dp">
+
+            <TextView
+                android:id="@+id/walk_donable_step_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:gravity="center"
+                android:text="@string/donable_steps"
+                style="@style/NanumSquareRWhite12sp"/>
+
+            <ImageView
+                android:id="@+id/walk_donable_step_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ico_40_donation_white"
+                app:layout_constraintTop_toBottomOf="@+id/walk_donable_step_label"
+                android:layout_marginTop="6dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:contentDescription="@string/donable_steps" />
+
+            <TextView
+                android:id="@+id/walk_donabe_step"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.donableStep}"
+                app:layout_constraintTop_toBottomOf="@+id/walk_donable_step_icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/walk_donable_step_figure"
+                android:layout_marginTop="6dp"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                style="@style/NanumSquareRoundEb20spWhite"/>
+
+            <TextView
+                android:id="@+id/walk_donable_step_figure"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/step"
+                app:layout_constraintBottom_toBottomOf="@+id/walk_donabe_step"
+                app:layout_constraintStart_toEndOf="@+id/walk_donabe_step"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginBottom="4dp"
+                style="@style/NanumSquareRoundRWhite12sp"/>
+
+            <TextView
+                android:id="@+id/maxStepNoti"
+                style="@style/NanumSquareRoundRWhite12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/max_step"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/walk_donable_step_figure" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/walk_todays_step_const_focus"
+            android:layout_width="0.01dp"
+            android:layout_height="0.01dp"
+            app:layout_constraintStart_toStartOf="@id/walk_todays_step_const"
+            app:layout_constraintEnd_toEndOf="@+id/walk_todays_step_const"
+            app:layout_constraintTop_toTopOf="@+id/walk_todays_step_const"
+            app:layout_constraintBottom_toBottomOf="@id/walk_todays_step_const"/>
+
+        <View
+            android:id="@+id/walk_todays_kcal_const_focus"
+            android:layout_width="0.01dp"
+            android:layout_height="0.01dp"
+            app:layout_constraintStart_toStartOf="@id/walk_todays_kcal_const"
+            app:layout_constraintEnd_toEndOf="@+id/walk_todays_kcal_const"
+            app:layout_constraintTop_toTopOf="@+id/walk_todays_kcal_const"
+            app:layout_constraintBottom_toBottomOf="@id/walk_todays_kcal_const"/>
+
+        <View
+            android:id="@+id/walk_donable_step_const_focus"
+            android:layout_width="0.01dp"
+            android:layout_height="0.01dp"
+            app:layout_constraintStart_toStartOf="@id/walk_donable_step_const"
+            app:layout_constraintEnd_toEndOf="@+id/walk_donable_step_const"
+            app:layout_constraintTop_toTopOf="@+id/walk_donable_step_const"
+            app:layout_constraintBottom_toBottomOf="@id/walk_donable_step_const"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/home_report_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/home_report_label"
+            app:layout_constraintStart_toStartOf="@+id/home_report_label"
+            app:layout_constraintEnd_toEndOf="@+id/home_report_label"
+            android:src="@drawable/btn_home_report"
+            android:layout_marginBottom="10dp"
+            android:onClick="@{()->viewModel.moveToReport()}"/>
+
+        <TextView
+            style="@style/NanumSquareR16MainFont"
+            android:id="@+id/home_report_label"
+            android:layout_width="64dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/home_ranking_label"
+            android:gravity="center"
+            android:text="@string/report"
+            android:layout_marginStart="12dp"
+            android:layout_marginBottom="36dp"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/home_ranking_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/home_ranking_label"
+            app:layout_constraintStart_toStartOf="@+id/home_ranking_label"
+            app:layout_constraintEnd_toEndOf="@+id/home_ranking_label"
+            android:src="@drawable/btn_home_ranking"
+            android:layout_marginBottom="10dp"
+            android:onClick="@{()->viewModel.moveToRank()}"/>
+
+        <TextView
+            style="@style/NanumSquareR16MainFont"
+            android:id="@+id/home_ranking_label"
+            android:layout_width="64dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/home_report_label"
+            app:layout_constraintEnd_toStartOf="@+id/home_campaign_label"
+            android:gravity="center"
+            android:text="@string/ranking"
+            android:layout_marginStart="4dp"
+            android:layout_marginBottom="54dp"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/home_campaign_label"
+            app:layout_constraintStart_toStartOf="@+id/home_campaign_label"
+            app:layout_constraintEnd_toEndOf="@+id/home_campaign_label"
+            android:src="@drawable/btn_home_campaign"
+            android:layout_marginBottom="10dp"
+            android:onClick="@{()->viewModel.moveToCampaign()}"/>
+
+        <TextView
+            style="@style/NanumSquareR16MainFont"
+            android:id="@+id/home_campaign_label"
+            android:layout_width="64dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/home_ranking_label"
+            app:layout_constraintEnd_toStartOf="@+id/home_group_label"
+            android:gravity="center"
+            android:text="@string/donate"
+            android:layout_marginStart="4dp"
+            android:layout_marginBottom="62dp"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/home_group_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/home_group_label"
+            app:layout_constraintStart_toStartOf="@+id/home_group_label"
+            app:layout_constraintEnd_toEndOf="@+id/home_group_label"
+            android:src="@drawable/aos_icon_home_group"
+            android:layout_marginBottom="10dp"
+            android:onClick="@{()->viewModel.moveToGroup()}"/>
+
+        <TextView
+            style="@style/NanumSquareR16MainFont"
+            android:id="@+id/home_group_label"
+            android:layout_width="64dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/home_campaign_label"
+            app:layout_constraintEnd_toStartOf="@+id/home_all_label"
+            android:gravity="center"
+            android:text="@string/crew"
+            android:layout_marginStart="4dp"
+            android:layout_marginBottom="54dp"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/circleImageView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:onClick="@{()->viewModel.moveToAll()}"
+            android:src="@drawable/btn_home_all"
+            app:layout_constraintBottom_toTopOf="@+id/home_all_label"
+            app:layout_constraintEnd_toEndOf="@+id/home_all_label"
+            app:layout_constraintStart_toStartOf="@+id/home_all_label" />
+
+        <View
+            android:id="@+id/circle_notification"
+            android:layout_width="13dp"
+            android:layout_height="13dp"
+            android:background="@drawable/circle_notification"
+            android:visibility="@{viewModel.isNotification ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="@+id/circleImageView4"
+            app:layout_constraintTop_toTopOf="@+id/circleImageView4" />
+
+        <TextView
+            style="@style/NanumSquareR16MainFont"
+            android:id="@+id/home_all_label"
+            android:layout_width="64dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/home_group_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:gravity="center"
+            android:text="@string/all"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="36dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

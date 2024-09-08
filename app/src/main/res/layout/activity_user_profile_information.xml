@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="kr.co.bigwalk.app.my_page.MyPageViewModel" />
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusableInTouchMode="true"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="#f7f8f9"
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/default_information_constraint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/agreement_back_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp"
+                android:contentDescription="@string/agreement_back_image"
+                android:onClick="@{() -> viewModel.finishActivity()}"
+                android:src="@drawable/ico_24_back"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/rounded_background"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:onClick="@{() -> viewModel.finishActivity()}"
+                android:contentDescription="@string/back_image" />
+
+            <TextView
+                android:id="@+id/edit_profile_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/privacy"
+                style="@style/NanumSquareRoundRBlackBold16sp24height"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent" />
+
+            <ImageView
+                android:id="@+id/modify_profile_information"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:contentDescription="@string/agreement_back_image"
+                android:onClick="@{() -> viewModel.moveModifyUserInformationPage()}"
+                android:src="@drawable/ico_24_modify"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/edit_profile_image"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                app:loadImage="@{viewModel.profilePath}"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edit_profile_title"
+                android:layout_marginTop="16dp"
+                android:contentDescription="@string/edit_profile_image" />
+
+            <TextView
+                android:id="@+id/user_default_inforation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp"
+                android:text="@string/default_information"
+                style="@style/NanumSquareRoundRB12sp"
+                app:layout_constraintTop_toBottomOf="@+id/edit_profile_image"
+                app:layout_constraintLeft_toLeftOf="parent"/>
+
+            <TextView
+                android:id="@+id/user_nickname_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="16dp"
+                android:text="@string/nickname"
+                style="@style/NanumSquareL14MainFont"
+                app:layout_constraintTop_toBottomOf="@+id/user_default_inforation"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <TextView
+                android:id="@+id/user_nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="@{viewModel.name}"
+                style="@style/NanumSquareRoundRBlack14sp"
+                app:layout_constraintTop_toTopOf="@+id/user_nickname_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="제롬"
+                />
+
+
+            <TextView
+                android:id="@+id/user_is_companion_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:text="@string/are_you_a_corporate_member"
+                android:visibility="@{viewModel.isCorporateUser ? View.GONE : View.VISIBLE}"
+                style="@style/NanumSquareRoundRGray12sp"
+                android:onClick="@{() -> viewModel.moveToOrganizationList()}"
+                app:layout_constraintTop_toBottomOf="@+id/user_nickname_title"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <TextView
+                android:id="@+id/user_logout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:text="@string/logout_under_line"
+                style="@style/NanumSquareRoundRGray12sp"
+                android:onClick="@{()->viewModel.logout()}"
+                app:layout_constraintTop_toBottomOf="@+id/user_nickname_title"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                android:id="@+id/user_withdraw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:text="@string/withdraw_under_line"
+                style="@style/NanumSquareRoundRGray12sp"
+                android:onClick="@{()->viewModel.withdraw()}"
+                app:layout_constraintTop_toBottomOf="@+id/user_logout"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/default_corporate_constraint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/white"
+            android:paddingBottom="40dp"
+            android:visibility="@{viewModel.isCorporateUser ? View.VISIBLE : View.GONE}"
+            app:layout_constraintTop_toBottomOf="@+id/default_information_constraint"
+            tools:layout_editor_absoluteX="0dp">
+
+            <TextView
+                android:id="@+id/user_information"
+                style="@style/NanumSquareB12spBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:text="@string/corporate_information"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/user_company_title"
+                style="@style/NanumSquareL14MainFont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="30dp"
+                android:text="@string/corporate_name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/user_information" />
+
+            <TextView
+                android:id="@+id/user_company"
+                style="@style/NanumSquareRoundRBlack14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="@{viewModel.organizationName}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/user_company_title"
+                tools:text="빅워크" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/user_department_section"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="@{viewModel.hasDepartment ? View.VISIBLE : View.GONE}"
+                app:layout_constraintTop_toBottomOf="@+id/user_company_title">
+
+                <TextView
+                    android:id="@+id/user_department_title"
+                    style="@style/NanumSquareL14MainFont"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/department_name"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/user_department"
+                    style="@style/NanumSquareRoundRBlack14sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@{viewModel.departmentName}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="개발팀" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/user_employee_number_section"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="@{viewModel.hasEmployeeNumber ? View.VISIBLE : View.GONE}"
+                app:layout_constraintTop_toBottomOf="@+id/user_department_section">
+
+                <TextView
+                    android:id="@+id/user_employee_number_title"
+                    style="@style/NanumSquareL14MainFont"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/employee_number"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/user_employee_number"
+                    style="@style/NanumSquareRoundRBlack14sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:text="@{viewModel.organizationEmployeeNumber}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/user_employee_number_title"
+                    tools:text="12348909" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/user_corporate_email_section"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="@{viewModel.hasOrganizationEmail ? View.VISIBLE : View.GONE}"
+                app:layout_constraintTop_toBottomOf="@+id/user_employee_number_section">
+
+                <TextView
+                    android:id="@+id/user_corporate_email_title"
+                    style="@style/NanumSquareL14MainFont"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/corporate_email"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/user_corporate_email"
+                    style="@style/NanumSquareRoundRBlack14sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:text="@{viewModel.organizationEmail}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/user_corporate_email_title"
+                    tools:text="jerome@bigwalk.co.kr" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="@{viewModel.isSpaceType ? View.VISIBLE : View.GONE}"
+                app:layout_constraintTop_toBottomOf="@+id/user_corporate_email_section">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/user_content1_section"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="@{viewModel.group.value1 != null ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/user_content1_title"
+                        style="@style/NanumSquareL14MainFont"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@{viewModel.spaceOrganization.options[0].content}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/user_content1"
+                        style="@style/NanumSquareRoundRBlack14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:text="@{viewModel.group.value1}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/user_content1_title"
+                        tools:text="1" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/user_content2_section"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="@{viewModel.group.value2 != null ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintTop_toBottomOf="@+id/user_content1_section">
+
+                    <TextView
+                        android:id="@+id/user_content2_title"
+                        style="@style/NanumSquareL14MainFont"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@{viewModel.spaceOrganization.options[1].content}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/user_content2"
+                        style="@style/NanumSquareRoundRBlack14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:text="@{viewModel.group.value2}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/user_content2_title"
+                        tools:text="2" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/user_content3_section"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="@{viewModel.group.value3 != null ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintTop_toBottomOf="@+id/user_content2_section">
+
+                    <TextView
+                        android:id="@+id/user_content3_title"
+                        style="@style/NanumSquareL14MainFont"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@{viewModel.spaceOrganization.options[2].content}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/user_content3"
+                        style="@style/NanumSquareRoundRBlack14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:text="@{viewModel.group.value3}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/user_content3_title"
+                        tools:text="3" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/user_content4_section"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="@{viewModel.group.value4 != null ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintTop_toBottomOf="@+id/user_content3_section">
+
+                    <TextView
+                        android:id="@+id/user_content4_title"
+                        style="@style/NanumSquareL14MainFont"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@{viewModel.spaceOrganization.options[3].content}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/user_content4"
+                        style="@style/NanumSquareRoundRBlack14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:text="@{viewModel.group.value4}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/user_content4_title"
+                        tools:text="4" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/user_content5_section"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="@{viewModel.group.value5 != null ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintTop_toBottomOf="@+id/user_content4_section">
+
+                    <TextView
+                        android:id="@+id/user_content5_title"
+                        style="@style/NanumSquareL14MainFont"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@{viewModel.spaceOrganization.options[4].content}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/user_content5"
+                        style="@style/NanumSquareRoundRBlack14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:text="@{viewModel.group.value5}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/user_content5_title"
+                        tools:text="5" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

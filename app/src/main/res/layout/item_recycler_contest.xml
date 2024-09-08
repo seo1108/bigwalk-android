@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="response"
+            type="kr.co.bigwalk.app.data.funding.dto.ContestResponse" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cardView"
+            invisibleIf="@{response.id &lt; 0}"
+            setBackgroundColor="@{response.mainColor}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="26dp"
+            android:background="@drawable/radius15"
+            android:backgroundTintMode="multiply"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:backgroundTint="@color/colorPrimary">
+
+            <ImageView
+                android:id="@+id/textView25"
+                loadFullImageUrl="@{response.logoImagePath}"
+                android:layout_width="108dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="13dp"
+                android:layout_marginTop="26dp"
+                android:scaleType="fitStart"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/logo" />
+
+            <TextView
+                android:id="@+id/textView26"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="13dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="13dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/nanum_barunpen_b"
+                android:letterSpacing="-0.01"
+                android:lines="1"
+                android:text="@{response.title}"
+                android:textColor="@{response.getFontColor()}"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView25"
+                tools:text="타이틀타이틀타이틀타이틀" />
+
+            <TextView
+                android:id="@+id/textView27"
+                style="@style/NanumSquareRoundRB12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/recruitment_period"
+                android:textColor="@{response.getFontColor()}"
+                app:layout_constraintStart_toStartOf="@+id/textView26"
+                app:layout_constraintTop_toBottomOf="@+id/textView26" />
+
+            <TextView
+                android:id="@+id/textView28"
+                style="@style/NanumSquareRoundBWhite12sp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="13dp"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="@{response.getRecruitmentPeriod()}"
+                android:textColor="@{response.getFontColor()}"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView27"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/textView27"
+                app:layout_constraintTop_toTopOf="@+id/textView27" />
+
+            <ImageView
+                android:id="@+id/imageView18"
+                loadFullImageUrl="@{response.mainImagePath}"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginHorizontal="13dp"
+                android:layout_marginVertical="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView27"
+                app:layout_constraintWidth_percent=".852272"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <androidx.constraintlayout.widget.Group
+                invisibleIf="@{response.id &lt; 0}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="textView25, textView26, textView27, textView28, imageView18" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            clipToOutline="@{true}"
+            setBackgroundColor="@{response.mainColor}"
+            visibleIf="@{response.id &lt; 0}"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/radius_15"
+            android:backgroundTintMode="multiply"
+            android:scaleType="fitXY"
+            android:src="@drawable/aos_icon_crew_emptycontest"
+            app:layout_constraintBottom_toBottomOf="@+id/cardView"
+            app:layout_constraintEnd_toEndOf="@+id/cardView"
+            app:layout_constraintStart_toStartOf="@+id/cardView"
+            app:layout_constraintTop_toTopOf="@+id/cardView" />
+
+        <ImageView
+            android:id="@+id/imageView14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/cardView"
+            app:layout_constraintEnd_toEndOf="@+id/cardView"
+            app:layout_constraintStart_toStartOf="@+id/cardView"
+            app:layout_constraintTop_toTopOf="@+id/cardView"
+            app:srcCompat="@drawable/aos_icon_crew_contest_tape" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

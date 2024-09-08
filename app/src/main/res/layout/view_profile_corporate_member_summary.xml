@@ -1,0 +1,1450 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="employName"
+            type="String" />
+
+        <variable
+            name="department"
+            type="String" />
+
+        <variable
+            name="employNumber"
+            type="String" />
+
+        <variable
+            name="employEmail"
+            type="String" />
+
+        <variable
+            name="depth1"
+            type="String" />
+
+        <variable
+            name="depth2"
+            type="String" />
+
+        <variable
+            name="depth3"
+            type="String" />
+
+        <variable
+            name="depth4"
+            type="String" />
+
+        <variable
+            name="depth1Title"
+            type="String" />
+
+        <variable
+            name="depth2Title"
+            type="String" />
+
+        <variable
+            name="depth3Title"
+            type="String" />
+
+        <variable
+            name="depth4Title"
+            type="String" />
+
+        <variable
+            name="depth1Hint"
+            type="String" />
+
+        <variable
+            name="depth2Hint"
+            type="String" />
+
+        <variable
+            name="depth3Hint"
+            type="String" />
+
+        <variable
+            name="depth4Hint"
+            type="String" />
+
+        <variable
+            name="searchContent"
+            type="String" />
+
+        <variable
+            name="visitDay"
+            type="String" />
+
+        <variable
+            name="certNo"
+            type="String" />
+
+        <variable
+            name="familyRelations"
+            type="String" />
+
+        <variable
+            name="age"
+            type="String" />
+
+        <variable
+            name="nickname"
+            type="String" />
+
+        <variable
+            name="identification"
+            type="String" />
+
+        <variable
+            name="address"
+            type="String" />
+
+        <variable
+            name="attendanceNo"
+            type="String" />
+
+        <variable
+            name="studentId"
+            type="String" />
+
+        <variable
+            name="number"
+            type="String" />
+
+        <variable
+            name="input"
+            type="String" />
+
+        <variable
+            name="organizationEmployeeName"
+            type="String" />
+
+        <variable
+            name="instagramAccount"
+            type="String" />
+
+        <variable
+            name="readOnly"
+            type="Boolean" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/employee_name_container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/employee_name"
+                style="@style/IMHyeminRegular12Black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="29dp"
+                android:layout_marginTop="14dp"
+                android:text="@string/corporate_name"
+                android:textColor="@color/sub2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/input_employee_name"
+                style="@style/NanumSquareRoundBBlack16sp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="2dp"
+                android:hint="@string/please_select_corporate"
+                android:lines="1"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="7dp"
+                android:text="@{employName}"
+                android:textColorHint="@color/sub2"
+                app:layout_constraintEnd_toStartOf="@+id/btn_employee_name_clear"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/employee_name" />
+
+            <ImageView
+                android:id="@+id/btn_employee_name_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="25dp"
+                invisibleIf="@{readOnly ?? false}"
+                android:src="@drawable/ico_24_arrow_right"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="11dp"
+                android:background="@color/gray_border"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/input_employee_name" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/department_name_container"
+            visibleIf="@{department.length() > 0}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/employee_name_container">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/department_name"
+                style="@style/IMHyeminRegular12Black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="29dp"
+                android:layout_marginTop="14dp"
+                android:text="@{depth1Title}"
+                android:textColor="@color/sub2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/input_department_name"
+                style="@style/NanumSquareRoundBBlack16sp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="2dp"
+                android:background="@null"
+                android:hint="@string/please_select_department"
+                android:lines="1"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="7dp"
+                android:text="@{depth1}"
+                android:textColorHint="@color/sub2"
+                app:layout_constraintEnd_toStartOf="@+id/btn_department_name_clear"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/department_name" />
+
+            <ImageView
+                android:id="@+id/btn_department_name_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="25dp"
+                invisibleIf="@{readOnly ?? false}"
+                android:src="@drawable/ico_24_arrow_right"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="11dp"
+                android:background="@color/gray_border"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/input_department_name" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/department2_name_container"
+            visibleIf="@{depth2.length() > 0}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/department_name_container">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/department2_name"
+                style="@style/IMHyeminRegular12Black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="29dp"
+                android:layout_marginTop="14dp"
+                android:text="@{depth2Title}"
+                android:textColor="@color/sub2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/input_department2_name"
+                style="@style/NanumSquareRoundBBlack16sp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="2dp"
+                android:background="@null"
+                android:hint="@string/please_select_department"
+                android:lines="1"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="7dp"
+                android:text="@{depth2}"
+                android:textColorHint="@color/sub2"
+                app:layout_constraintEnd_toStartOf="@+id/btn_department2_name_clear"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/department2_name" />
+
+            <ImageView
+                android:id="@+id/btn_department2_name_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="25dp"
+                invisibleIf="@{readOnly ?? false}"
+                android:src="@drawable/ico_24_arrow_right"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="11dp"
+                android:background="@color/gray_border"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/input_department2_name" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/department3_name_container"
+            visibleIf="@{depth3.length() > 0}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/department2_name_container">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/department3_name"
+                style="@style/IMHyeminRegular12Black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="29dp"
+                android:layout_marginTop="14dp"
+                android:text="@{depth3Title}"
+                android:textColor="@color/sub2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/input_department3_name"
+                style="@style/NanumSquareRoundBBlack16sp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="2dp"
+                android:background="@null"
+                android:hint="@string/please_select_department"
+                android:lines="1"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="7dp"
+                android:text="@{depth3}"
+                android:textColorHint="@color/sub2"
+                app:layout_constraintEnd_toStartOf="@+id/btn_department3_name_clear"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/department3_name" />
+
+            <ImageView
+                android:id="@+id/btn_department3_name_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="25dp"
+                invisibleIf="@{readOnly ?? false}"
+                android:src="@drawable/ico_24_arrow_right"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="11dp"
+                android:background="@color/gray_border"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/input_department3_name" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/department4_name_container"
+            visibleIf="@{depth4.length() > 0}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/department3_name_container">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/department4_name"
+                style="@style/IMHyeminRegular12Black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="29dp"
+                android:layout_marginTop="14dp"
+                android:text="@{depth4Title}"
+                android:textColor="@color/sub2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/input_department4_name"
+                style="@style/NanumSquareRoundBBlack16sp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="2dp"
+                android:background="@null"
+                android:hint="@string/please_select_department"
+                android:lines="1"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="7dp"
+                android:text="@{depth4}"
+                android:textColorHint="@color/sub2"
+                app:layout_constraintEnd_toStartOf="@+id/btn_department4_name_clear"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/department4_name" />
+
+            <ImageView
+                android:id="@+id/btn_department4_name_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="25dp"
+                invisibleIf="@{readOnly ?? false}"
+                android:src="@drawable/ico_24_arrow_right"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="11dp"
+                android:background="@color/gray_border"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/input_department4_name" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/search_container"
+            visibleIf="@{searchContent.length() > 0}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/department4_name_container">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/search_name"
+                style="@style/IMHyeminRegular12Black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="29dp"
+                android:layout_marginTop="14dp"
+                android:text="검색"
+                android:textColor="@color/sub2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/input_search_name"
+                style="@style/NanumSquareRoundBBlack16sp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="2dp"
+                android:background="@null"
+                android:hint="@string/please_input_search_value"
+                android:lines="1"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="7dp"
+                android:text="@{searchContent}"
+                android:textColorHint="@color/sub2"
+                app:layout_constraintEnd_toStartOf="@+id/btn_search_clear"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/search_name" />
+
+            <ImageView
+                android:id="@+id/btn_search_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="25dp"
+                invisibleIf="@{readOnly ?? true}"
+                android:src="@drawable/ico_24_arrow_right"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="11dp"
+                android:background="@color/gray_border"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/input_search_name" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/visit_container"
+            visibleIf="@{visitDay.length() > 0}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/search_container">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/visit_name"
+                style="@style/IMHyeminRegular12Black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="29dp"
+                android:layout_marginTop="14dp"
+                android:text="방문일자"
+                android:textColor="@color/sub2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/input_visit_name"
+                style="@style/NanumSquareRoundBBlack16sp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="2dp"
+                android:background="@null"
+                android:hint="@string/please_input_visit_date"
+                android:lines="1"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="7dp"
+                android:text="@{visitDay}"
+                android:textColorHint="@color/sub2"
+                app:layout_constraintEnd_toStartOf="@+id/btn_visit_clear"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/visit_name" />
+
+            <ImageView
+                android:id="@+id/btn_visit_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="25dp"
+                invisibleIf="@{readOnly ?? true}"
+                android:src="@drawable/ico_24_arrow_right"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="11dp"
+                android:background="@color/gray_border"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/input_visit_name" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/family_container"
+            visibleIf="@{familyRelations.length() > 0}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/visit_container">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/family_name"
+                style="@style/IMHyeminRegular12Black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="29dp"
+                android:layout_marginTop="14dp"
+                android:text="가족관계"
+                android:textColor="@color/sub2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/input_family_name"
+                style="@style/NanumSquareRoundBBlack16sp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="2dp"
+                android:background="@null"
+                android:hint="@string/please_input_family"
+                android:lines="1"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="7dp"
+                android:text="@{familyRelations}"
+                android:textColorHint="@color/sub2"
+                app:layout_constraintEnd_toStartOf="@+id/btn_family_clear"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/family_name" />
+
+            <ImageView
+                android:id="@+id/btn_family_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="25dp"
+                invisibleIf="@{readOnly ?? true}"
+                android:src="@drawable/ico_24_arrow_right"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="11dp"
+                android:background="@color/gray_border"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/input_family_name" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/age_container"
+            visibleIf="@{age.length() > 0}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/family_container">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/age_name"
+                style="@style/IMHyeminRegular12Black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="29dp"
+                android:layout_marginTop="14dp"
+                android:text="나이"
+                android:textColor="@color/sub2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/input_age_name"
+                style="@style/NanumSquareRoundBBlack16sp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="2dp"
+                android:background="@null"
+                android:hint="@string/please_input_age"
+                android:lines="1"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="7dp"
+                android:text="@{age}"
+                android:textColorHint="@color/sub2"
+                app:layout_constraintEnd_toStartOf="@+id/btn_age_clear"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/age_name" />
+
+            <ImageView
+                android:id="@+id/btn_age_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="25dp"
+                invisibleIf="@{readOnly ?? true}"
+                android:src="@drawable/ico_24_arrow_right"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="11dp"
+                android:background="@color/gray_border"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/input_age_name" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/nickname_container"
+            visibleIf="@{nickname.length() > 0}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/age_container">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/nickname_name"
+                style="@style/IMHyeminRegular12Black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="29dp"
+                android:layout_marginTop="14dp"
+                android:text="닉네임"
+                android:textColor="@color/sub2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/input_nickname_name"
+                style="@style/NanumSquareRoundBBlack16sp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="2dp"
+                android:background="@null"
+                android:hint="@string/please_input_nickname"
+                android:lines="1"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="7dp"
+                android:text="@{nickname}"
+                android:textColorHint="@color/sub2"
+                app:layout_constraintEnd_toStartOf="@+id/btn_nickname_clear"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nickname_name" />
+
+            <ImageView
+                android:id="@+id/btn_nickname_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="25dp"
+                invisibleIf="@{readOnly ?? true}"
+                android:src="@drawable/ico_24_arrow_right"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="11dp"
+                android:background="@color/gray_border"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/input_nickname_name" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/number_container"
+            visibleIf="@{number.length() > 0}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nickname_container">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/number_name"
+                style="@style/IMHyeminRegular12Black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="29dp"
+                android:layout_marginTop="14dp"
+                android:text="번호"
+                android:textColor="@color/sub2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/input_number_name"
+                style="@style/NanumSquareRoundBBlack16sp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="2dp"
+                android:background="@null"
+                android:hint="@string/please_input_number"
+                android:lines="1"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="7dp"
+                android:text="@{number}"
+                android:textColorHint="@color/sub2"
+                app:layout_constraintEnd_toStartOf="@+id/btn_number_clear"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/number_name" />
+
+            <ImageView
+                android:id="@+id/btn_number_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="25dp"
+                invisibleIf="@{readOnly ?? true}"
+                android:src="@drawable/ico_24_arrow_right"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="11dp"
+                android:background="@color/gray_border"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/input_number_name" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/employee_number_container"
+            visibleIf="@{employNumber.length() > 0}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/number_container">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/employee_number"
+                style="@style/IMHyeminRegular12Black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="29dp"
+                android:layout_marginTop="14dp"
+                android:text="@string/employee_number"
+                android:textColor="@color/sub2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/input_employee_number"
+                style="@style/NanumSquareRoundBBlack16sp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="2dp"
+                android:background="@null"
+                android:hint="@string/please_input_number"
+                android:lines="1"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="7dp"
+                android:text="@{employNumber}"
+                android:textColorHint="@color/sub2"
+                app:layout_constraintEnd_toStartOf="@+id/btn_employee_number_clear"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/employee_number" />
+
+            <ImageView
+                android:id="@+id/btn_employee_number_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="29dp"
+                android:src="@drawable/ic_15_input_field_delete"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="visible" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="11dp"
+                android:background="@color/gray_border"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/input_employee_number" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/employee_id_container"
+            visibleIf="@{identification.length() > 0}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/employee_number_container">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/employee_id"
+                style="@style/IMHyeminRegular12Black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="29dp"
+                android:layout_marginTop="14dp"
+                android:text="아이디"
+                android:textColor="@color/sub2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/input_employee_id"
+                style="@style/NanumSquareRoundBBlack16sp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="2dp"
+                android:background="@null"
+                android:hint="@string/please_input_employee_id"
+                android:lines="1"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="7dp"
+                android:text="@{identification}"
+                android:textColorHint="@color/sub2"
+                app:layout_constraintEnd_toStartOf="@+id/btn_employee_id_clear"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/employee_id" />
+
+            <ImageView
+                android:id="@+id/btn_employee_id_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="29dp"
+                android:src="@drawable/ic_15_input_field_delete"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="visible" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="11dp"
+                android:background="@color/gray_border"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/input_employee_id" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/name_container"
+            visibleIf="@{organizationEmployeeName.length() > 0}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/employee_id_container">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/name"
+                style="@style/IMHyeminRegular12Black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="29dp"
+                android:layout_marginTop="14dp"
+                android:text="이름"
+                android:textColor="@color/sub2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/input_name"
+                style="@style/NanumSquareRoundBBlack16sp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="2dp"
+                android:background="@null"
+                android:hint="@string/please_input_name"
+                android:lines="1"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="7dp"
+                android:text="@{organizationEmployeeName}"
+                android:textColorHint="@color/sub2"
+                app:layout_constraintEnd_toStartOf="@+id/btn_name_clear"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/name" />
+
+            <ImageView
+                android:id="@+id/btn_name_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="29dp"
+                android:src="@drawable/ic_15_input_field_delete"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="visible" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="11dp"
+                android:background="@color/gray_border"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/input_name" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/employee_email_container"
+            visibleIf="@{employEmail.length() > 0}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/name_container">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/employee_email"
+                style="@style/IMHyeminRegular12Black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="29dp"
+                android:layout_marginTop="14dp"
+                android:text="@string/corporate_email"
+                android:textColor="@color/sub2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/input_employee_email"
+                style="@style/NanumSquareRoundBBlack16sp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="2dp"
+                android:background="@null"
+                android:hint="@string/please_input_employee_email"
+                android:lines="1"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="7dp"
+                android:text="@{employEmail}"
+                android:textColorHint="@color/sub2"
+                app:layout_constraintEnd_toStartOf="@+id/btn_employee_email_clear"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/employee_email" />
+
+            <ImageView
+                android:id="@+id/btn_employee_email_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="29dp"
+                android:src="@drawable/ic_15_input_field_delete"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="visible" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="11dp"
+                android:background="@color/gray_border"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/input_employee_email" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/insta_container"
+            visibleIf="@{instagramAccount.length() > 0}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/employee_email_container">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/insta"
+                style="@style/IMHyeminRegular12Black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="29dp"
+                android:layout_marginTop="14dp"
+                android:text="@string/corporate_email"
+                android:textColor="@color/sub2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/input_insta"
+                style="@style/NanumSquareRoundBBlack16sp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="2dp"
+                android:background="@null"
+                android:hint="@string/please_input_insta_account"
+                android:lines="1"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="7dp"
+                android:text="@{instagramAccount}"
+                android:textColorHint="@color/sub2"
+                app:layout_constraintEnd_toStartOf="@+id/btn_insta_clear"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/insta" />
+
+            <ImageView
+                android:id="@+id/btn_insta_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="29dp"
+                android:src="@drawable/ic_15_input_field_delete"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="visible" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="11dp"
+                android:background="@color/gray_border"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/input_insta" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/input_container"
+            visibleIf="@{input.length() > 0}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/insta_container">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/input"
+                style="@style/IMHyeminRegular12Black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="29dp"
+                android:layout_marginTop="14dp"
+                android:text="입력값"
+                android:textColor="@color/sub2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/input_input"
+                style="@style/NanumSquareRoundBBlack16sp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="2dp"
+                android:background="@null"
+                android:hint="@string/please_input_input_value"
+                android:lines="1"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="7dp"
+                android:text="@{input}"
+                android:textColorHint="@color/sub2"
+                app:layout_constraintEnd_toStartOf="@+id/btn_input_clear"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/input" />
+
+            <ImageView
+                android:id="@+id/btn_input_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="29dp"
+                android:src="@drawable/ic_15_input_field_delete"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="visible" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="11dp"
+                android:background="@color/gray_border"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/input_input" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/address_container"
+            visibleIf="@{address.length() > 0}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/input_container">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/address"
+                style="@style/IMHyeminRegular12Black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="29dp"
+                android:layout_marginTop="14dp"
+                android:text="주소"
+                android:textColor="@color/sub2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/input_address"
+                style="@style/NanumSquareRoundBBlack16sp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="2dp"
+                android:background="@null"
+                android:hint="@string/please_input_address"
+                android:lines="1"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="7dp"
+                android:text="@{address}"
+                android:textColorHint="@color/sub2"
+                app:layout_constraintEnd_toStartOf="@+id/btn_address_clear"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/address" />
+
+            <ImageView
+                android:id="@+id/btn_address_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="29dp"
+                android:src="@drawable/ic_15_input_field_delete"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="visible" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="11dp"
+                android:background="@color/gray_border"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/input_address" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/join_container"
+            visibleIf="@{attendanceNo.length() > 0}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/address_container">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/join"
+                style="@style/IMHyeminRegular12Black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="29dp"
+                android:layout_marginTop="14dp"
+                android:text="참여번호"
+                android:textColor="@color/sub2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/input_join"
+                style="@style/NanumSquareRoundBBlack16sp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="2dp"
+                android:background="@null"
+                android:hint="@string/please_input_join_number"
+                android:lines="1"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="7dp"
+                android:text="@{attendanceNo}"
+                android:textColorHint="@color/sub2"
+                app:layout_constraintEnd_toStartOf="@+id/btn_join_clear"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/join" />
+
+            <ImageView
+                android:id="@+id/btn_join_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="29dp"
+                android:src="@drawable/ic_15_input_field_delete"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="visible" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="11dp"
+                android:background="@color/gray_border"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/input_join" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/student_id_container"
+            visibleIf="@{studentId.length() > 0}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/join_container">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/student_id"
+                style="@style/IMHyeminRegular12Black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="29dp"
+                android:layout_marginTop="14dp"
+                android:text="학번"
+                android:textColor="@color/sub2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/input_student_id"
+                style="@style/NanumSquareRoundBBlack16sp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="2dp"
+                android:background="@null"
+                android:hint="@string/please_input_student_id"
+                android:lines="1"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="7dp"
+                android:text="@{studentId}"
+                android:textColorHint="@color/sub2"
+                app:layout_constraintEnd_toStartOf="@+id/btn_student_id_clear"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/student_id" />
+
+            <ImageView
+                android:id="@+id/btn_student_id_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="29dp"
+                android:src="@drawable/ic_15_input_field_delete"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="visible" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="11dp"
+                android:background="@color/gray_border"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/input_student_id" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/auth_num_container"
+            visibleIf="@{certNo.length() > 0}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/student_id_container">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/auth_num"
+                style="@style/IMHyeminRegular12Black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="29dp"
+                android:layout_marginTop="14dp"
+                android:text="인증번호"
+                android:textColor="@color/sub2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/input_auth_num"
+                style="@style/NanumSquareRoundBBlack16sp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="2dp"
+                android:background="@null"
+                android:hint="@string/please_input_employee_auth_num"
+                android:lines="1"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="7dp"
+                android:text="@{certNo}"
+                android:textColorHint="@color/sub2"
+                app:layout_constraintEnd_toStartOf="@+id/btn_auth_num_clear"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/auth_num" />
+
+            <ImageView
+                android:id="@+id/btn_auth_num_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="29dp"
+                android:src="@drawable/ic_15_input_field_delete"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="visible" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="11dp"
+                android:background="@color/gray_border"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/input_auth_num" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

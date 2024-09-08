@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="kr.co.bigwalk.app.community.CommunityInfoViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/group_goal_set_container"
+            visibleIf="@{viewModel.ownerVisible}"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/goal_explain"
+                style="@style/Large_Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="28dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/group_set_goal_explain1"
+                app:layout_constraintBottom_toTopOf="@+id/goal_guide_container"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/goal_guide_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="14dp"
+                app:layout_constraintBottom_toTopOf="@+id/step_count"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/goal_explain">
+
+                <TextView
+                    android:id="@+id/goal_guide_text"
+                    style="@style/NanumSquareR14Sub2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/goal_set_guide"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:src="@drawable/aos_icon_ranking_rank_guide"
+                    app:layout_constraintBottom_toBottomOf="@+id/goal_guide_text"
+                    app:layout_constraintStart_toEndOf="@+id/goal_guide_text"
+                    app:layout_constraintTop_toTopOf="@+id/goal_guide_text" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/step_count"
+                style="@style/NanumSquareRoundEb56spBlue"
+                android:layout_width="wrap_content"
+                android:layout_height="69dp"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="30dp"
+                android:autoSizeMaxTextSize="62sp"
+                android:autoSizeMinTextSize="24sp"
+                android:autoSizeTextType="uniform"
+                android:gravity="center"
+                android:lines="1"
+                android:text="@{viewModel.goalSteps}"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintEnd_toStartOf="@+id/step"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/goal_guide_container"
+                tools:text="7,23433333" />
+
+            <TextView
+                android:id="@+id/step"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="28dp"
+                android:layout_marginBottom="14dp"
+                android:text="@string/step10000"
+                app:layout_constraintBottom_toBottomOf="@+id/step_count"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/step_count" />
+
+            <TextView
+                android:id="@+id/goal_min_label"
+                style="@style/NanumSquareLSub12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="44dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/_0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/step_count" />
+
+            <TextView
+                android:id="@+id/goal_max_label"
+                style="@style/NanumSquareLSub12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="44dp"
+                android:text="@{viewModel.communityInfo.target.maxPointToCommaString}"
+                app:layout_constraintBottom_toBottomOf="@id/goal_min_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/goal_min_label"
+                tools:text="10000" />
+
+
+            <SeekBar
+                android:id="@+id/goal_seek_bar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:max="@{viewModel.communityInfo.target.maxPoint}"
+                android:paddingStart="40dp"
+                android:paddingEnd="40dp"
+                android:progressDrawable="@drawable/seek_bar_progress"
+                android:thumb="@drawable/seek_bar_thumb"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/goal_min_label"
+                tools:progress="20" />
+
+            <ImageView
+                android:id="@+id/goal_reaction_image"
+                loadDrawable="@{viewModel.goalReactionRes}"
+                invisibleIf="@{viewModel.isBarTracking()}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/img_group_goal_25"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/goal_seek_bar" />
+
+            <ProgressBar
+                android:id="@+id/reaction_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                visibleIf="@{viewModel.isBarTracking()}"
+                app:layout_constraintBottom_toBottomOf="@+id/goal_reaction_image"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/goal_reaction_image" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/group_goal_progress_container"
+            visibleIf="@{viewModel.memberVisible}"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/wave_animation"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_loop="false"
+                app:lottie_rawRes="@raw/wave_data" />
+
+            <TextView
+                android:id="@+id/group_goal"
+                style="@style/NanumSquareB17spBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/bg_group_goal_step_gradient"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="10dp"
+                android:text="@{viewModel.isSetGoals ? @string/group_set_goal_step(viewModel.communityInfo.target.goalPointToCommaString, viewModel.communityInfo.target.ratio, @string/percent) : @string/group_not_set_goal_step}"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toTopOf="@+id/group"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/group"
+                style="@style/NanumSquareL14MainFont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@{viewModel.isSetGoals ? @string/group_set_goal_explain2 : @string/group_not_set_goal_explain}"
+                app:layout_constraintBottom_toTopOf="@+id/animation_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/group_goal"
+                tools:text="그룹 목표 : 3만 걸음" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/animation_view"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintDimensionRatio="1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/group"
+                app:layout_constraintWidth_percent="0.65"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

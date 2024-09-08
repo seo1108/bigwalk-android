@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <item
+        android:id="@+id/retry"
+        android:icon="@drawable/aos_icon_challenge_camera_return"
+        android:title="@null"
+        android:visible="false"
+        app:showAsAction="ifRoom"
+        tools:visible="true" />
+
+    <item
+        android:id="@+id/share"
+        android:icon="@drawable/aos_icon_challenge_share"
+        android:title="@null"
+        android:visible="false"
+        app:showAsAction="ifRoom"
+        tools:visible="true">
+
+        <menu>
+            <item
+                android:id="@+id/export"
+                android:icon="@drawable/ic_22_export"
+                android:title="@string/export"
+                app:showAsAction="withText" />
+
+            <item
+                android:id="@+id/save_image"
+                android:icon="@drawable/ic_22_download"
+                android:title="@string/save_image"
+                app:showAsAction="withText" />
+
+        </menu>
+    </item>
+
+</menu>

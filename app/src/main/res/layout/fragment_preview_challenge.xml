@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="kr.co.bigwalk.app.community.funding.preview.PreviewChallengeViewModel" />
+
+        <import type="kr.co.bigwalk.app.data.community.GroupMemberRole" />
+
+    </data>
+
+
+<!--    <androidx.coordinatorlayout.widget.CoordinatorLayout-->
+<!--        android:id="@+id/info_bottom_sheet"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/top_tab">-->
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/bottom_sheet_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                tools:context=".community.funding.preview.PreviewCampaignFragment">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="25dp"
+                    android:layout_marginBottom="50dp">
+
+                    <ImageView
+                        android:id="@+id/main_image"
+                        clipToOutline="@{true}"
+                        loadFullImageUrl="@{vm.challengeOfCrewCampaign.mainImagePath}"
+                        android:layout_width="80dp"
+                        android:layout_height="120dp"
+                        android:scaleType="centerCrop"
+                        android:background="@drawable/radius_25"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:src="@drawable/aos_group_logoplaceholder_1" />
+
+                    <TextView
+                        android:id="@+id/campaign_category"
+                        style="@style/NanumSquareR14White"
+                        android:layout_width="wrap_content"
+                        android:layout_height="28dp"
+                        android:layout_marginStart="15dp"
+                        android:background="@drawable/radius_25"
+                        android:backgroundTint="@color/blue"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="15dp"
+                        android:text="@{vm.challengeOfCrewCampaign.categoryName}"
+                        app:layout_constraintStart_toEndOf="@+id/main_image"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/campaign_type"
+                        style="@style/NanumSquareR14White"
+                        android:layout_width="wrap_content"
+                        android:layout_height="28dp"
+                        android:layout_marginStart="4dp"
+                        android:background="@drawable/radius_25"
+                        android:backgroundTint="@color/emerald_green"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="8dp"
+                        android:text="@string/challenge"
+                        app:layout_constraintStart_toEndOf="@+id/campaign_category"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/title"
+                        style="@style/Title2_Bold"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="@{vm.challengeOfCrewCampaign.title}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/campaign_category"
+                        app:layout_constraintTop_toBottomOf="@+id/campaign_category"
+                        tools:text="캠페인명은최대13자이다요" />
+
+                    <TextView
+                        android:id="@+id/content"
+                        style="@style/BodyLight"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="@{vm.challengeOfCrewCampaign.content}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/campaign_category"
+                        app:layout_constraintTop_toBottomOf="@+id/title"
+                        tools:text="6월 19일 저녁 7시, 덴마크 시계 브랜드 스코브 안데르센과 북유럽 최대 음악 축제인 로스킬데 페스티벌의 스페셜 콜라보 에디션이 출시됩니다. 세계적인 뮤지션 롤링 스톤즈가 선물한 실제 무대 ‘오렌지 스테이지’가 삽입되어 특별함을 더하는 ‘1971 스테이지 다이버’는, 판매 수익금의 25%를 비영리 인권 운동 단체인 로스킬데 재단에 기부합니다. 200자 완" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/background_grey">
+
+
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="27dp"
+                        android:layout_marginTop="42dp"
+                        android:src="@drawable/aos_icon_dowalk_guide_do"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="27dp"
+                        android:layout_marginTop="47dp"
+                        android:src="@drawable/aos_icon_dowalk_guide_donot"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/how_to_view" />
+
+                    <TextView
+                        android:id="@+id/mission_yes"
+                        style="@style/Title2_Bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:text="이렇게 인증해주세요!"
+                        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+                        app:layout_constraintStart_toEndOf="@+id/imageView"
+                        app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+                    <TextView
+                        android:id="@+id/mission_yes2"
+                        style="@style/Title2_Bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:text="이런 사진은 안돼요!"
+                        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+                        app:layout_constraintStart_toEndOf="@+id/imageView2"
+                        app:layout_constraintTop_toTopOf="@+id/imageView2" />
+
+                    <LinearLayout
+                        android:id="@+id/how_to_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="27dp"
+                        android:layout_marginTop="18dp"
+                        android:baselineAligned="true"
+                        android:orientation="horizontal"
+                        app:layout_constraintEnd_toStartOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/imageView">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/imageView4"
+                                loadFullImageUrl="@{vm.challengeOfCrewCampaign.firstHowToImagePath}"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:scaleType="fitCenter"
+                                app:layout_constraintDimensionRatio="1:1"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                tools:srcCompat="@tools:sample/avatars" />
+
+                            <TextView
+                                android:id="@+id/textView16"
+                                style="@style/NanumSquareR14Black"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:lineSpacingExtra="4sp"
+                                android:text="@{vm.challengeOfCrewCampaign.firstHowToDescription}"
+                                android:textAlignment="center"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/imageView4"
+                                tools:text="친환경 이동수단을 이용하는 모습 (이용 중 모습은 위험해요!) " />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <View
+                            android:layout_width="10dp"
+                            android:layout_height="match_parent" />
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/imageView5"
+                                loadFullImageUrl="@{vm.challengeOfCrewCampaign.secondHowToImagePath}"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:scaleType="fitCenter"
+                                app:layout_constraintDimensionRatio="1:1"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                tools:srcCompat="@tools:sample/avatars" />
+
+                            <TextView
+                                android:id="@+id/textView17"
+                                style="@style/NanumSquareR14Black"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:lineSpacingExtra="4sp"
+                                android:text="@{vm.challengeOfCrewCampaign.secondHowToDescription}"
+                                android:textAlignment="center"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/imageView5"
+                                tools:text="친환경 이동수단을 이용하는 모습 (이용 중 모습은 위험해요!) " />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/invalid_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="27dp"
+                        android:layout_marginTop="18dp"
+                        android:baselineAligned="true"
+                        android:orientation="horizontal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/imageView2">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/imageView6"
+                                loadFullImageUrl="@{vm.challengeOfCrewCampaign.firstInvalidImagePath}"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:layout_gravity="top|left"
+                                android:scaleType="fitCenter"
+                                app:layout_constraintDimensionRatio="1:1"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                tools:srcCompat="@tools:sample/avatars" />
+
+                            <TextView
+                                android:id="@+id/textView18"
+                                style="@style/NanumSquareR14Black"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:lineSpacingExtra="6sp"
+                                android:text="@{vm.challengeOfCrewCampaign.firstInvalidDescription}"
+                                android:textAlignment="center"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/imageView6"
+                                tools:text="친환경 이동수단을 이용하는 모습 (이용 중 모습은 위험해요!) " />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <View
+                            android:layout_width="10dp"
+                            android:layout_height="match_parent" />
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/imageView7"
+                                loadFullImageUrl="@{vm.challengeOfCrewCampaign.secondInvalidImagePath}"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:scaleType="fitCenter"
+                                app:layout_constraintDimensionRatio="1:1"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                tools:srcCompat="@tools:sample/avatars" />
+
+                            <TextView
+                                android:id="@+id/textView19"
+                                style="@style/NanumSquareR14Black"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:lineSpacingExtra="6sp"
+                                android:text="@{vm.challengeOfCrewCampaign.secondInvalidDescription}"
+                                android:textAlignment="center"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/imageView7"
+                                tools:text="친환경 이동수단을 이용하는 모습 (이용 중 모습은 위험해요!) " />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/delete_campaign"
+                        style="@style/NanumsquareL10MainFont"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="50dp"
+                        visibleIf="@{vm.myRole == GroupMemberRole.OWNER}"
+                        android:paddingHorizontal="17dp"
+                        android:paddingVertical="10dp"
+                        android:text="@string/delete_crew_campaign"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/invalid_view" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+<!--    </androidx.coordinatorlayout.widget.CoordinatorLayout>-->
+
+</layout>

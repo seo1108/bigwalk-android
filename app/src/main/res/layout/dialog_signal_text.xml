@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <FrameLayout
+        android:id="@+id/outside"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/certificated_text_shadow_color">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:layout_gravity="center"
+            android:background="@drawable/radius18_white_dialog">
+
+            <TextView
+                android:id="@+id/signal_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="28dp"
+                android:layout_marginEnd="26dp"
+                android:fontFamily="@font/nanum_square_light"
+                android:text="@string/signal_text_title"
+                android:textColor="@color/main_black"
+                android:textSize="28sp"
+                app:layout_constraintBottom_toTopOf="@id/signal_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/signal_content"
+                style="@style/NanumSquareRoundBBlack16sp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="26dp"
+                android:lineSpacingExtra="7sp"
+                app:layout_constraintEnd_toEndOf="@id/signal_title"
+                app:layout_constraintStart_toStartOf="@id/signal_title"
+                app:layout_constraintTop_toBottomOf="@id/signal_title"
+                tools:text="감사합니다." />
+
+            <Button
+                android:id="@+id/signal_confirm"
+                style="@style/NanumSquareB18spWhite"
+                android:layout_width="0dp"
+                android:layout_height="54dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="28dp"
+                android:background="@drawable/selector_radius_12_blue"
+                android:stateListAnimator="@null"
+                android:text="@string/confirm"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/signal_content"
+                app:layout_constraintStart_toStartOf="@+id/signal_content"
+                app:layout_constraintTop_toBottomOf="@+id/signal_content"
+                app:layout_constraintVertical_chainStyle="spread" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+</layout>

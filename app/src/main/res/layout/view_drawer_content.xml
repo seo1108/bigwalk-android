@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="content"
+            type="String" />
+
+        <variable
+            name="hint1"
+            type="String" />
+
+        <variable
+            name="hint2"
+            type="String" />
+
+        <variable
+            name="isDrawerOpen"
+            type="Boolean" />
+
+        <variable
+            name="contentDescription"
+            type="String" />
+
+        <variable
+            name="contentImagePath"
+            type="String" />
+
+        <variable
+            name="contentTitle"
+            type="String" />
+
+
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/content_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="73dp">
+
+            <TextView
+                android:id="@+id/content"
+                style="@style/NanumSquareRoundBBlack16sp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="20dp"
+                android:layout_marginStart="17dp"
+                android:layout_marginEnd="7dp"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="7dp"
+                android:text="@{content}"
+                android:textColor="@color/sub2"
+                android:textColorHint="@color/sub2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/down_button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="캠페인 상세1" />
+
+            <ImageView
+                android:id="@+id/down_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="29dp"
+                android:src="@{isDrawerOpen ? @drawable/aos_icon_20_arrow_up : @drawable/aos_icon_20_arrow_down}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/divider"
+                goneIf="@{isDrawerOpen}"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="25dp"
+                android:background="@color/gray_border"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/content_detail_container"
+            visibleIf="@{isDrawerOpen}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/down_button">
+
+            <ImageView
+                android:id="@+id/image"
+                clipToOutline="@{true}"
+                loadCampaignCreateImage="@{contentImagePath}"
+                android:layout_width="104dp"
+                android:layout_height="104dp"
+                android:layout_marginStart="25dp"
+                android:background="@drawable/radius12"
+                android:backgroundTint="@color/background_grey"
+                android:scaleType="centerCrop"
+                android:tag="@{contentImagePath}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:background="@drawable/white_oval_view"
+                android:padding="8dp"
+                android:src="@drawable/ic_group_image_up"
+                app:layout_constraintBottom_toBottomOf="@+id/image"
+                app:layout_constraintEnd_toEndOf="@+id/image"
+                app:layout_constraintStart_toStartOf="@+id/image"
+                app:layout_constraintTop_toTopOf="@+id/image" />
+
+            <ImageView
+                android:id="@+id/content_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="29dp"
+                android:src="@drawable/aos_icon_dowalk_comment_delete"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <include
+                android:id="@+id/detail_title"
+                layout="@layout/view_input_text_single_line"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/image"
+                bind:content="@{contentTitle}"
+                bind:hint="@{hint1}"
+                bind:maxLength="@{20}"
+                bind:minLength="@{10}"/>
+
+            <include
+                android:id="@+id/detail_intro"
+                layout="@layout/view_input_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/detail_title"
+                bind:content="@{contentDescription}"
+                bind:hint="@{hint2}"
+                bind:maxLength="@{400}"
+                bind:minLength="@{100}"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</layout>

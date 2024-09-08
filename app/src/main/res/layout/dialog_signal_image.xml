@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <FrameLayout
+        android:id="@+id/outside"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/certificated_text_shadow_color">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="25dp">
+
+            <View
+                android:id="@+id/view9"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/radius18_white_dialog"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.588" />
+
+            <TextView
+                android:id="@+id/signal_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="26dp"
+                android:layout_marginEnd="26dp"
+                android:fontFamily="@font/nanum_square_light"
+                android:text="@string/signal_image_title"
+                android:textColor="@color/main_black"
+                android:textSize="28sp"
+                android:gravity="center"
+                app:layout_constraintBottom_toTopOf="@id/signal_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView13" />
+
+            <TextView
+                android:id="@+id/signal_content"
+                style="@style/NanumSquareRoundBBlack16sp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="26dp"
+                android:lineSpacingExtra="7sp"
+                android:gravity="center"
+                app:layout_constraintEnd_toEndOf="@id/signal_title"
+                app:layout_constraintStart_toStartOf="@id/signal_title"
+                app:layout_constraintTop_toBottomOf="@id/signal_title"
+                tools:text="감사합니다." />
+
+            <Button
+                android:id="@+id/signal_confirm"
+                style="@style/NanumSquareB18spWhite"
+                android:layout_width="0dp"
+                android:layout_height="54dp"
+                android:layout_marginBottom="28dp"
+                android:background="@drawable/bg_signal_button_gradient"
+                android:stateListAnimator="@null"
+                android:text="@string/creat_effect"
+                app:layout_constraintBottom_toBottomOf="@+id/view9"
+                app:layout_constraintEnd_toEndOf="@+id/signal_content"
+                app:layout_constraintStart_toStartOf="@+id/signal_content"
+                app:layout_constraintVertical_chainStyle="spread" />
+
+            <ImageView
+                android:id="@+id/imageView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@+id/signal_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/aos_icon_group_pop_up_new_badge" />
+
+            <ImageView
+                android:id="@+id/signal_image"
+                android:layout_width="290dp"
+                android:layout_height="290dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintBottom_toTopOf="@+id/signal_confirm"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/signal_content"
+                tools:srcCompat="@tools:sample/avatars" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+</layout>

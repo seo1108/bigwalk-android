@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="kr.co.bigwalk.app.community.share.ShareEditStickerActivity">
+
+    <item
+        android:id="@+id/complete"
+        android:icon="@drawable/ic_20_complete"
+        app:showAsAction="ifRoom">
+
+        <menu>
+            <item
+                android:id="@+id/export"
+                android:icon="@drawable/ic_22_export"
+                android:title="@string/export"
+                app:showAsAction="withText" />
+
+            <item
+                android:id="@+id/save_image"
+                android:icon="@drawable/ic_22_download"
+                android:title="@string/save_image"
+                app:showAsAction="withText" />
+
+        </menu>
+    </item>
+</menu>

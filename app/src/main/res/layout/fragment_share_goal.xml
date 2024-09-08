@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="VM"
+            type="kr.co.bigwalk.app.community.share.GroupShareViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/image_container"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/comHealthCover"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                loadDrawable="@{VM.goalImgBg}"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/image"
+                loadFullImage="@{VM.goalImgRes}"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:scaleType="fitCenter"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/share_group_name_label"
+                style="@style/NanumSquareEb16spWhite"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="22dp"
+                android:lineSpacingExtra="4sp"
+                android:shadowColor="@color/certificated_text_shadow_color"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="8"
+                android:text="@{@string/share_group_goal_step(VM.shareContents.maxName, VM.shareContents.report.donatedSteps)}"
+                android:textSize="16dp"
+                app:layout_constraintBottom_toBottomOf="@+id/image"
+                app:layout_constraintEnd_toStartOf="@+id/logo_image"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="우리 [그룹명그룹명..]은/는 \n 123,355,000걸을 기부했습니다." />
+
+            <TextView
+                android:id="@+id/certificated_date"
+                style="@style/NanumSquareR13White"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:layout_marginBottom="8dp"
+                android:lineSpacingExtra="10sp"
+                android:shadowColor="@color/certificated_text_shadow_color"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="8"
+                android:text="@{VM.currentDate}"
+                android:textSize="13dp"
+                app:layout_constraintBottom_toTopOf="@+id/share_group_name_label"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="2021.06.02 (금)" />
+
+            <ImageView
+                android:id="@+id/logo_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="9dp"
+                android:layout_marginBottom="7dp"
+                android:contentDescription="@string/logo"
+                android:src="@drawable/challenge_bigwalk_logo"
+                app:layout_constraintBottom_toBottomOf="@+id/image"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/share_mode_tab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="62dp"
+            android:clipToPadding="false"
+            app:layout_constraintBottom_toTopOf="@+id/next_page"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/image_container"
+            app:layout_constraintVertical_chainStyle="spread_inside"
+            app:tabBackground="@drawable/tab_bg_share_goal_selector"
+            app:tabIndicator="@color/transparent"
+            app:tabMinWidth="48dp"
+            app:tabMode="scrollable"
+            app:tabRippleColor="@color/transparent" />
+
+        <TextView
+            android:id="@+id/next_page"
+            style="@style/NanumSquareB18spWhite"
+            android:layout_width="282dp"
+            android:layout_height="54dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="57dp"
+            android:background="@drawable/radius48_blue"
+            android:gravity="center"
+            android:text="@string/next_page"
+            android:textSize="18dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/share_mode_tab" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

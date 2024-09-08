@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="data"
+            type="kr.co.bigwalk.app.data.feedNotification.dto.FeedNotificationResponse" />
+    </data>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="20dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:background="@color/white"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/iv_feed_noti_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    setNotificationIcon="@{data.notiType}"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <ImageView
+                    android:id="@+id/iv_feed_noti_detail"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    loadFullImage="@{data.imagePath}"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_feed_noti_title"
+                    style="@style/NanumSquareB16spBlack"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="16dp"
+                    android:lineSpacingExtra="8sp"
+                    android:maxLines="2"
+                    setNotificationTitle="@{data}"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/iv_feed_noti_icon"
+                    app:layout_constraintEnd_toStartOf="@+id/iv_feed_noti_detail"
+                    tools:text="[]님이\n회원님의 챌린지를 좋아합니다."/>
+
+                <TextView
+                    android:id="@+id/tv_feed_noti_description"
+                    style="@style/NanumSquareL14MainFont"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:letterSpacing="-0.01"
+                    android:text="@{data.value}"
+                    android:visibility="@{data.notiType == 9 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_feed_noti_title"
+                    app:layout_constraintStart_toStartOf="@+id/tv_feed_noti_title"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_feed_noti_title"
+                    tools:text="너무 보기 좋아요라는 댓글 내용을 남겨요 한너무 보기 좋아요라는 댓글 내용을 남겨요"/>
+
+                <TextView
+                    android:id="@+id/tv_feed_noti_date"
+                    style="@style/NanumSquareL10spBlack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    displayCommentDate="@{data.createdTime}"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_feed_noti_description"
+                    app:layout_constraintStart_toStartOf="@+id/tv_feed_noti_title"
+                    tools:text="1일 전"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="21dp"
+                android:background="@color/gray_border" />
+
+        </LinearLayout>
+
+</layout>

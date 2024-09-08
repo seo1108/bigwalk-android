@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.github.mmin18.widget.RealtimeBlurView
+            android:id="@+id/grass_effect"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:realtimeBlurRadius="20dp"
+            app:realtimeOverlayColor="#8fff" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <View
+                android:id="@+id/result_icon_background"
+                android:layout_width="210dp"
+                android:layout_height="210dp"
+                android:background="@drawable/bg_blue_oval"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/result_msg"/>
+
+            <ImageView
+                android:id="@+id/result_step_check_icon"
+                android:layout_width="62dp"
+                android:layout_height="51dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="37dp"
+                android:layout_marginEnd="9dp"
+                android:src="@drawable/aos_icon_event_result_step_check"
+                app:layout_constraintBottom_toTopOf="@id/result_step_icon"
+                app:layout_constraintEnd_toEndOf="@+id/result_step_icon"
+                app:layout_constraintStart_toStartOf="@+id/result_step_icon"
+                app:layout_constraintTop_toTopOf="@id/result_icon_background"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <ImageView
+                android:id="@+id/result_step_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="56dp"
+                android:src="@drawable/aos_icon_event_result_step"
+                app:layout_constraintBottom_toBottomOf="@id/result_icon_background"
+                app:layout_constraintEnd_toEndOf="@id/result_icon_background"
+                app:layout_constraintStart_toStartOf="@id/result_icon_background"
+                app:layout_constraintTop_toBottomOf="@id/result_step_check_icon" />
+
+            <TextView
+                android:id="@+id/result_msg"
+                style="@style/NanumSquareB23spBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="9sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/result_icon_background"
+                app:layout_constraintBottom_toTopOf="@id/result_description"
+                tools:text="8,800걸음을\n
+획득하였습니다." />
+
+            <TextView
+                android:id="@+id/result_description"
+                style="@style/NanumSquareRoundBBlack16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="7sp"
+                android:textColor="#666666"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/result_msg"
+                android:text="@string/welcome_event_result_description" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+</layout>

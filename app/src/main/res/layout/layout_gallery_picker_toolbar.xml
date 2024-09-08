@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:contentInsetStartWithNavigation="0dp"
+        android:background="#FFFFFF"
+        app:titleTextColor="#263238"
+        android:elevation="4dp"
+        android:id="@+id/toolbar">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:theme="@style/SubTitle1"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="16dp"
+            android:text="@string/menu_gallery_done"
+            android:background="@color/white"
+            android:layout_gravity="end"
+            android:gravity="center_vertical|right"
+            style="@style/NanumSquareR14spBlue"
+            android:visibility="gone"
+            android:textAllCaps="false"
+            android:id="@+id/btnGalleryPickDone"
+            />
+
+    </androidx.appcompat.widget.Toolbar>
+</layout>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@android:id/text1"
+    style="?android:attr/spinnerItemStyle"
+    android:layout_width="70dp"
+    android:drawablePadding="4dp"
+    android:layout_height="25dp"
+    android:background="@drawable/spinner_funding"
+    android:drawableEnd="@drawable/ic_group_info_down_btn"
+    android:ellipsize="marquee"
+    android:fontFamily="@font/im_hyemin_regular"
+    android:gravity="center"
+    android:singleLine="true"
+    android:textAlignment="inherit"
+    android:textColor="@color/main_black"
+    android:textSize="12dp"
+    tools:text="TOP10" />

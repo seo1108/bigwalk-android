@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/bottom_walk"
+        android:title="@string/bottom_walk"
+        android:icon="@drawable/check_on"/>
+    <item
+        android:id="@+id/bottom_campaign"
+        android:title="@string/bottom_campaign"
+        android:icon="@drawable/arrow_right"/>
+    <item
+        android:id="@+id/bottom_story"
+        android:title="@string/bottom_story"
+        android:icon="@drawable/check_on"/>
+    <item
+        android:id="@+id/bottom_my_page"
+        android:title="@string/bottom_my_page"
+        android:icon="@drawable/arrow_right"/>
+</menu>

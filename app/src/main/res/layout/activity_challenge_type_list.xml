@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="kr.co.bigwalk.app.feed_home.ChallengeHomeViewModel" />
+
+        <variable
+            name="title"
+            type="String" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="32dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/iv_challenge_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/aos_icon_20_arrow"
+            android:layout_marginStart="28dp"
+            android:onClick="@{() -> viewModel.finishActivity()}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_challenge_title"
+            style="@style/NanumSquareB20spBlack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{title}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scroll_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:paddingTop="18dp"
+            app:layout_constraintTop_toBottomOf="@+id/iv_challenge_arrow"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="20dp"
+                android:paddingBottom="24dp"
+                android:clipToPadding="false">
+
+                <LinearLayout
+                    android:id="@+id/first_year_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    visibleIf="@{viewModel.isFirstYear}"
+                    android:layout_marginTop="36dp"
+                    android:orientation="horizontal"
+                    tools:ignore="MissingConstraints">
+
+                    <TextView
+                        style="@style/NanumSquareB20spBlack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:layout_marginStart="24dp"
+                        tools:text="2023년"
+                        android:text="@{viewModel.firstYearTitle}" />
+
+                    <ImageView
+                        android:id="@+id/iv_first_year_arrow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_round_keyboard_arrow_right"
+                        android:layout_marginEnd="24dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"/>
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/first_year_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    visibleIf="@{viewModel.isFirstYear}"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:spanCount="3"
+                    tools:listitem="@layout/item_recycler_challenge_home"
+                    app:bindItem="@{viewModel.firstYearList}"
+                    app:layout_constraintTop_toBottomOf="@+id/first_year_title"/>
+
+
+                <View
+                    android:id="@+id/v1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    visibleIf="@{viewModel.isFirstYear}"
+                    android:background="@color/gray_border_2"
+                    android:layout_marginTop="24dp"
+                    app:layout_constraintTop_toBottomOf="@+id/first_year_recycler"/>
+
+
+                <LinearLayout
+                    android:id="@+id/second_year_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    visibleIf="@{viewModel.isSecondYear}"
+                    android:layout_marginTop="32dp"
+                    android:orientation="horizontal"
+                    tools:ignore="MissingConstraints"
+                    app:layout_constraintTop_toBottomOf="@+id/v1">
+
+                    <TextView
+                        style="@style/NanumSquareB20spBlack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:layout_marginStart="24dp"
+                        tools:text="2022년"
+                        android:text="@{viewModel.secondYearTitle}" /> />
+
+                    <ImageView
+                        android:id="@+id/iv_second_year_arrow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_round_keyboard_arrow_right"
+                        android:layout_marginEnd="24dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"/>
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/second_year_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    visibleIf="@{viewModel.isSecondYear}"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:spanCount="3"
+                    tools:visibility="gone"
+                    tools:listitem="@layout/item_recycler_challenge_home"
+                    app:bindItem="@{viewModel.secondYearList}"
+                    app:layout_constraintTop_toBottomOf="@+id/second_year_title"/>
+
+
+                <View
+                    android:id="@+id/v2"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    visibleIf="@{viewModel.isSecondYear}"
+                    android:background="@color/gray_border_2"
+                    android:layout_marginTop="24dp"
+                    app:layout_constraintTop_toBottomOf="@+id/second_year_recycler"/>
+
+                <LinearLayout
+                    android:id="@+id/third_year_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    visibleIf="@{viewModel.isThirdYear}"
+                    android:layout_marginTop="32dp"
+                    android:orientation="horizontal"
+                    tools:ignore="MissingConstraints"
+                    app:layout_constraintTop_toBottomOf="@+id/v2">
+
+                    <TextView
+                        style="@style/NanumSquareB20spBlack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:layout_marginStart="24dp"
+                        tools:text="2021년"
+                        android:text="@{viewModel.thirdYearTitle}" /> />
+
+                    <ImageView
+                        android:id="@+id/iv_ended_arrow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_round_keyboard_arrow_right"
+                        android:layout_marginEnd="24dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"/>
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/third_year_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    visibleIf="@{viewModel.isThirdYear}"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:spanCount="3"
+                    tools:listitem="@layout/item_recycler_challenge_home"
+                    app:bindItem="@{viewModel.thirdYearList}"
+                    app:layout_constraintTop_toBottomOf="@+id/third_year_title"/>
+
+
+                <View
+                    android:id="@+id/v3"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    visibleIf="@{viewModel.isThirdYear}"
+                    android:background="@color/gray_border_2"
+                    android:layout_marginTop="28dp"
+                    app:layout_constraintTop_toBottomOf="@+id/third_year_recycler"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

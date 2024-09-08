@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="data"
+            type="kr.co.bigwalk.app.data.community.CrewRequestResponse" />
+    </data>
+
+    <FrameLayout
+        android:id="@+id/outside"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/certificated_text_shadow_color">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/dialog_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="25dp"
+            android:background="@drawable/radius25_white_dialog">
+
+            <View
+                android:id="@+id/view9"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.588" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/user_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:paddingLeft="40dp"
+                android:paddingTop="40dp"
+                android:paddingBottom="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/crew_request_profile"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    app:civ_border_color="@color/profile_border"
+                    app:civ_border_overlay="true"
+                    app:civ_border_width="0.5dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:loadImage="@{data.profilePath}" />
+
+                <TextView
+                    android:id="@+id/crew_campaign_name"
+                    style="@style/NanumSquareL10spBlack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:gravity="center"
+                    android:text="@{data.crewCampaignName}"
+                    app:layout_constraintBottom_toTopOf="@id/user_name"
+                    app:layout_constraintStart_toEndOf="@id/crew_request_profile"
+                    app:layout_constraintTop_toTopOf="@id/crew_request_profile"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    tools:text="A크루" />
+
+                <TextView
+                    android:id="@+id/user_name"
+                    style="@style/NanumSquareB15spBlack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:gravity="center"
+                    android:text="@{data.userName}"
+                    app:layout_constraintBottom_toBottomOf="@id/crew_request_profile"
+                    app:layout_constraintStart_toStartOf="@+id/crew_campaign_name"
+                    app:layout_constraintTop_toBottomOf="@id/crew_campaign_name"
+                    tools:text="유저명" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/question"
+                style="@style/IMHyemin12MainBlack"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
+                android:lineSpacingExtra="6sp"
+                android:text="@{data.question}"
+                app:layout_constraintEnd_toEndOf="@+id/view9"
+                app:layout_constraintStart_toStartOf="@+id/view9"
+                app:layout_constraintTop_toBottomOf="@+id/user_view"
+                tools:text="Q. 우리는 토요일, 일요일 주말마다 가족끼리 탄천 공원에서 함께 걸어요. 이 걸음을 100일 동안 모아서 우리 가족만의 선한 영향력으로 기부할거에요 :)아루으리아루르디르이나이랴두라1" />
+
+            <TextView
+                android:id="@+id/answer"
+                style="@style/NanumSquareRoundBBlack16sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="40dp"
+                android:lineSpacingExtra="7sp"
+                android:maxLines="5"
+                android:ellipsize="end"
+                android:text="@{data.answer}"
+                app:layout_constraintEnd_toEndOf="@+id/view9"
+                app:layout_constraintStart_toStartOf="@+id/view9"
+                app:layout_constraintTop_toBottomOf="@+id/question"
+                tools:text="우리는 토요일, 일요일 주말마다 가족끼리 탄천 공원에서 함께 걸어요. 이 걸음을 100일 동안 모아서 우리 가족만의 선한 영향력으로 기부할거에요 :)아루으리아루르디르이나이랴두라1" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="40dp"
+                android:gravity="center"
+                app:layout_constraintBottom_toBottomOf="@+id/view9"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/answer"
+                app:layout_constraintVertical_chainStyle="spread">
+
+                <Button
+                    android:id="@+id/approval_button"
+                    style="@style/NanumSquareB18spWhite"
+                    android:layout_width="143dp"
+                    android:layout_height="60dp"
+                    android:layout_marginRight="2dp"
+                    android:background="@drawable/radius25_electric_blue"
+                    android:stateListAnimator="@null"
+                    android:text="@string/approval" />
+
+                <Button
+                    android:id="@+id/reject_button"
+                    style="@style/NanumSquareB18spWhite"
+                    android:layout_width="143dp"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="2dp"
+                    android:background="@drawable/radius25_calm_red"
+                    android:stateListAnimator="@null"
+                    android:text="@string/reject" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+</layout>

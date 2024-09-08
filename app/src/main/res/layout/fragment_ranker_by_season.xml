@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="kr.co.bigwalk.app.campaign.ranking.RankerBySeasonViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/radius_25"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ranking_my_rank_constraint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/radius_25_top"
+                android:backgroundTint="@color/blue_sky"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="0dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/ranking_my_profile"
+                    loadImage="@{viewModel.rankerInfo.myRankInfo.profilePath}"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/transparent_oval"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/item_ranking_profile_badge_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="3dp"
+                    android:contentDescription="@string/ranking_profile"
+                    android:src="@drawable/ico_badge_rank_1"
+                    android:visibility="invisible"
+                    app:layout_constraintEnd_toEndOf="@+id/ranking_my_profile"
+                    app:layout_constraintTop_toTopOf="@+id/ranking_my_profile" />
+
+                <ImageView
+                    android:id="@+id/item_ranking_profile_badge_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="3dp"
+                    android:contentDescription="@string/ranking_profile"
+                    android:src="@drawable/ico_badge_rank_2"
+                    android:visibility="invisible"
+                    app:layout_constraintEnd_toEndOf="@+id/ranking_my_profile"
+                    app:layout_constraintTop_toTopOf="@+id/ranking_my_profile" />
+
+                <ImageView
+                    android:id="@+id/item_ranking_profile_badge_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="3dp"
+                    android:contentDescription="@string/ranking_profile"
+                    android:src="@drawable/ico_badge_rank_3"
+                    android:visibility="invisible"
+                    app:layout_constraintEnd_toEndOf="@+id/ranking_my_profile"
+                    app:layout_constraintTop_toTopOf="@+id/ranking_my_profile" />
+
+                <TextView
+                    android:id="@+id/ranking_my_rank"
+                    style="@style/NanumSquareL10spWhite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:gravity="center"
+                    android:text="@{viewModel.rankerInfo.myRankInfo.rankString}"
+                    app:layout_constraintBottom_toTopOf="@id/ranking_my_profile_name"
+                    app:layout_constraintStart_toEndOf="@+id/ranking_my_profile"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    tools:text="24위" />
+
+                <TextView
+                    android:id="@+id/ranking_my_profile_name"
+                    style="@style/NanumSquareB20White"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:gravity="center"
+                    android:text="@{viewModel.rankerInfo.myRankInfo.name}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/ranking_my_rank"
+                    app:layout_constraintTop_toBottomOf="@id/ranking_my_rank"
+                    tools:text="유저명" />
+
+                <TextView
+                    android:id="@+id/ranking_my_profile_donated_steps_title"
+                    style="@style/NanumSquareL10spWhite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="18dp"
+                    android:text="@string/donated_step2"
+                    app:layout_constraintBottom_toTopOf="@id/ranking_my_profile_donated_steps"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+                <TextView
+                    android:id="@+id/ranking_my_profile_donated_steps"
+                    style="@style/NanumSquareB10spWhite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:gravity="center"
+                    android:text="@{viewModel.rankerInfo.myRankInfo.donatedStepsString}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@id/ranking_my_profile_donated_steps_title"
+                    app:layout_constraintTop_toBottomOf="@id/ranking_my_profile_donated_steps_title"
+                    tools:text="3,142걸음 기부" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/ranking_recycler"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:paddingHorizontal="18dp"
+                android:paddingVertical="5dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ranking_my_rank_constraint"
+                tools:listitem="@layout/item_recycler_ranker_season" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

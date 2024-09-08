@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="comment"
+            type="kr.co.bigwalk.app.data.crowd_funding.dto.ContentResponse" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_comment_profile"
+            loadImage="@{comment.profilePath}"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="17dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_comment_name"
+            style="@style/NanumSquareB13spBlack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="7dp"
+            android:text="@{comment.userName}"
+            app:layout_constraintStart_toEndOf="@+id/iv_comment_profile"
+            app:layout_constraintTop_toTopOf="@+id/iv_comment_profile"
+            tools:text="닉네임" />
+
+        <TextView
+            android:id="@+id/tv_comment"
+            style="@style/NanumSquareR14Gray"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:lineSpacingExtra="4sp"
+            android:text="@{comment.comment}"
+            app:layout_constraintEnd_toStartOf="@+id/btn_comment_delete"
+            app:layout_constraintStart_toStartOf="@+id/tv_comment_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_comment_name"
+            tools:text="사진이 너무 멋져요. 댓글 남겨드리니 제 프로필에도 한번 방문 부탁드려요~ :)" />
+
+        <Button
+            android:id="@+id/btn_comment_blame"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="14dp"
+            android:background="@drawable/aos_icon_challenge_blame"
+            android:visibility="@{comment.mine ? View.GONE : View.VISIBLE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_comment"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn_comment_delete"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="14dp"
+            android:background="@drawable/ico_24_delete"
+            android:visibility="@{comment.mine ? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_comment"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            style="@style/NanumSquareL10spBlack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            app:displayCommentDate="@{comment.createdTime}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tv_comment"
+            app:layout_constraintTop_toBottomOf="@+id/tv_comment"
+            tools:text="오전 11:32" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="kr.co.bigwalk.app.community.create.CreateCommunityViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:clipToPadding="false"
+            android:orientation="vertical"
+            android:paddingBottom="190dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/crew_image"
+                    clipToOutline="@{true}"
+                    loadFullImage="@{vm.firstCrewImage.first}"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginHorizontal="25dp"
+                    android:background="@drawable/radius_25_placeholder"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@drawable/aos_illust_group_top_bg" />
+
+                <TextView
+                    android:id="@+id/crew_title"
+                    style="@style/BodyBold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:gravity="center_vertical"
+                    android:hint="@string/modify_crew_title_hint"
+                    android:lines="1"
+                    android:minHeight="73dp"
+                    android:paddingVertical="20dp"
+                    android:paddingStart="29dp"
+                    android:paddingEnd="24dp"
+                    android:text="@{vm.firstCrewTitle}"
+                    android:textColorHint="@color/sub2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/crew_image" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="25dp"
+                    android:background="@color/gray_border"
+                    app:layout_constraintBottom_toBottomOf="@+id/crew_title" />
+
+
+                <TextView
+                    android:id="@+id/crew_introduce"
+                    style="@style/BodyBold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:gravity="center_vertical"
+                    android:hint="@string/modify_crew_intro_hint"
+                    android:minHeight="73dp"
+                    android:paddingVertical="20dp"
+                    android:paddingStart="29dp"
+                    android:paddingEnd="24dp"
+                    android:text="@{vm.firstCrewSubTitle}"
+                    android:textColorHint="@color/sub2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/crew_title" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="25dp"
+                    android:background="@color/gray_border"
+                    app:layout_constraintBottom_toBottomOf="@+id/crew_introduce" />
+
+                <TextView
+                    android:id="@+id/area_title"
+                    style="@style/NanumBarunpenBold20spSubGray1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="30dp"
+                    android:text="우리의 활동지"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/crew_introduce" />
+
+                <TextView
+                    android:id="@+id/area"
+                    style="@style/IMHyeminRegular12Black"
+                    visibleIf="@{vm.secondCrewAddress.length() > 0}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="6dp"
+                    android:background="@drawable/radius_25"
+                    android:backgroundTint="@color/emerald_green"
+                    android:letterSpacing="-0.04"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="8dp"
+                    android:text="@{vm.secondCrewAddress}"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    app:layout_constraintStart_toStartOf="@+id/area_title"
+                    app:layout_constraintTop_toBottomOf="@+id/area_title"
+                    tools:text="축구" />
+
+                <TextView
+                    android:id="@+id/interest"
+                    style="@style/NanumBarunpenBold20spSubGray1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="30dp"
+                    android:text="우리의 관심사"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/area" />
+
+                <com.google.android.flexbox.FlexboxLayout
+                    android:id="@+id/interest_list"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="25dp"
+                    android:paddingTop="5dp"
+                    app:flexDirection="row"
+                    app:flexWrap="wrap"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/interest" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

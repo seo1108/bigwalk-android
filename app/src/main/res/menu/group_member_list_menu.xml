@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/request_member"
+        android:icon="@drawable/aos_icon_group_approve"
+        android:title="@null"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/invite_member"
+        android:icon="@drawable/aos_icon_group_add"
+        android:title="@null"
+        app:showAsAction="ifRoom" />
+</menu>

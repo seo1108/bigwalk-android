@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="response"
+            type="kr.co.bigwalk.app.data.crowd_funding.dto.TotalMyFundingResponse" />
+
+        <variable
+            name="viewState"
+            type="kr.co.bigwalk.app.crowd_funding.adapter.FundingStateViewType" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        clipToOutline="@{true}"
+        android:layout_width="match_parent"
+        android:layout_height="144dp"
+        android:layout_marginHorizontal="21dp"
+        android:layout_marginVertical="6dp"
+        android:background="@drawable/radius35"
+        tools:backgroundTint="@color/red">
+
+        <com.fmsirvent.ParallaxEverywhere.PEWImageView
+            loadFullImage="@{response.mainImage}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            android:src="@drawable/aos_icon_crew_category_board" />
+
+        <View
+            visibleIf="@{viewState == viewState.FUNDING}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_total_funding_gradient" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/funding_result_container"
+            goneIf="@{viewState == viewState.FUNDING}"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#e6000000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/title"
+            style="@style/SubTitle1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:ellipsize="end"
+            android:lines="1"
+            android:text="@{response.crewCampaignTitle}"
+            android:textColor="@{viewState == viewState.FUNDING ? @color/white : @color/main_black}"
+            app:layout_constraintBottom_toTopOf="@+id/content"
+            app:layout_constraintEnd_toStartOf="@+id/funding_step_container"
+            app:layout_constraintStart_toStartOf="@+id/textView33"
+            app:layout_constraintTop_toBottomOf="@+id/textView33"
+            tools:text="크루명최대10자이다…" />
+
+        <TextView
+            android:id="@+id/content"
+            style="@style/FootNote"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="22dp"
+            android:ellipsize="end"
+            android:lines="1"
+            android:text="@{response.crewTitle}"
+            android:textColor="@{viewState == viewState.FUNDING ? @color/gray_border : @color/main_black}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/title"
+            app:layout_constraintStart_toStartOf="@+id/title"
+            app:layout_constraintTop_toBottomOf="@+id/title"
+            tools:text="우리는 토요일, 일요일 주말마다\n가족끼리 탄천 공원에서 함께 걸어요…" />
+
+        <TextView
+            android:id="@+id/textView33"
+            style="@style/IMHyeminBold15White"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="19dp"
+            android:layout_marginTop="22dp"
+            android:background="@{viewState == viewState.FUNDING ? @drawable/bg_funding_total_step : @drawable/bg_funding_total_step_disable}"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="9dp"
+            android:text="@{viewState == viewState.FUNDING ? viewState.fundType + response.totalFundingStepsToString : viewState.fundType}"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/funding_step_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:id="@+id/step_title"
+                style="@style/NanumSquareR14White"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="36dp"
+                android:text="@{viewState.stepType}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/step_funding_count"
+                style="@style/NanumSquareRoundEb24spWhite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="16dp"
+                android:text="@{response.remainToString}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/step_progress"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/step_title" />
+
+            <TextView
+                android:id="@+id/step_progress"
+                style="@style/NanumSquareRoundBWhite14sp"
+                visibleIf="@{viewState == viewState.FUNDING}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginBottom="2dp"
+                android:text="@{`(`+ response.progressPercent + `%)`}"
+                android:textColor="@color/background_grey"
+                app:layout_constraintBottom_toBottomOf="@+id/step_funding_count"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/step_funding_count" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            goneIf="@{viewState == viewState.FUNDING}"
+            loadFullImage="@{viewState.drawable}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

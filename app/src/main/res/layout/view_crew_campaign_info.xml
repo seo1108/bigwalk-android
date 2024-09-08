@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="response"
+            type="kr.co.bigwalk.app.data.funding.dto.ContentPreviewResponse" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="25dp"
+        android:layout_marginTop="50dp">
+
+        <ImageView
+            android:id="@+id/main_image"
+            clipToOutline="@{true}"
+            loadFullImageUrl="@{response.contentImagePath}"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/radius_25"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/aos_group_logoplaceholder_1" />
+
+        <TextView
+            android:id="@+id/sub_title"
+            style="@style/BodyBold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:text="@{response.title}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/main_image"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="인권 운동과 함께하는 덴마크 시계" />
+
+        <TextView
+            android:id="@+id/content"
+            style="@style/BodyLight"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@{response.description}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/sub_title"
+            app:layout_constraintTop_toBottomOf="@+id/sub_title"
+            tools:text="6월 19일 저녁 7시, 덴마크 시계 브랜드 스코브 안데르센과 북유럽 최대 음악 축제인 로스킬데 페스티벌의 스페셜 콜라보 에디션이 출시됩니다. 세계적인 뮤지션 롤링 스톤즈가 선물한 실제 무대 ‘오렌지 스테이지’가 삽입되어 특별함을 더하는 ‘1971 스테이지 다이버’는, 판매 수익금의 25%를 비영리 인권 운동 단체인 로스킬데 재단에 기부합니다. 200자 완" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

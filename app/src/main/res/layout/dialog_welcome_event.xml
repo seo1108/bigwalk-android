@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="kr.co.bigwalk.app.dialog.WelcomeEventViewModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/certificated_text_shadow_color">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:layout_gravity="center"
+            android:background="@drawable/radius18_white_dialog">
+
+            <TextView
+                android:id="@+id/welcome_event_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="28dp"
+                android:layout_marginEnd="26dp"
+                android:fontFamily="@font/nanum_square_light"
+                android:text="@string/welcome_event_title"
+                android:textColor="@color/main_black"
+                android:textSize="28sp"
+                app:layout_constraintBottom_toTopOf="@id/welcome_event_description"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/welcome_event_description"
+                style="@style/NanumSquareRoundBBlack16sp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/layout_margin_20dp"
+                android:lineSpacingExtra="7sp"
+                android:text="@{viewModel.description}"
+                app:layout_constraintBottom_toTopOf="@id/welcome_event_mission1_content"
+                app:layout_constraintEnd_toEndOf="@id/welcome_event_title"
+                app:layout_constraintStart_toStartOf="@id/welcome_event_title"
+                app:layout_constraintTop_toBottomOf="@id/welcome_event_title"
+                tools:text="nickname님의\n더 많은 선한 영향력 발휘를 위한\n미션 이벤트입니다.\n2가지의 미션을 완료하시면\n걸음 혜택을 드리니 더 많은 선한 영향력을 발휘하는 데 사용해 주세요 :)" />
+
+            <TextView
+                android:id="@+id/welcome_event_mission1_content"
+                style="@style/NanumSquareB20MainFont"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="34dp"
+                android:background="@drawable/radius18_background_white_border_f2"
+                android:lineSpacingExtra="8sp"
+                android:paddingStart="15dp"
+                android:paddingTop="28dp"
+                android:paddingEnd="15dp"
+                android:paddingBottom="24dp"
+                android:text="@{viewModel.mission1Content}"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toTopOf="@id/welcome_event_mission2_content"
+                app:layout_constraintEnd_toEndOf="@id/welcome_event_description"
+                app:layout_constraintStart_toStartOf="@id/welcome_event_description"
+                app:layout_constraintTop_toBottomOf="@id/welcome_event_description"
+                tools:text="오늘의 걸음 500걸음 걷기" />
+
+            <TextView
+                android:id="@+id/welcome_event_mission1_title"
+                style="@style/NanumSquareL10spWhite"
+                android:layout_width="70dp"
+                android:layout_height="20dp"
+                android:background="@drawable/bg_mission_listing"
+                android:gravity="center"
+                android:text="@string/welcome_event_mission1"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/welcome_event_mission1_content"
+                app:layout_constraintEnd_toEndOf="@id/welcome_event_mission1_content"
+                app:layout_constraintStart_toStartOf="@id/welcome_event_mission1_content"
+                app:layout_constraintTop_toTopOf="@id/welcome_event_mission1_content" />
+
+            <TextView
+                android:id="@+id/welcome_event_mission2_content"
+                style="@style/NanumSquareB20MainFont"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="34dp"
+                android:background="@drawable/radius18_background_white_border_f2"
+                android:lineSpacingExtra="8sp"
+                android:paddingStart="15dp"
+                android:paddingTop="28dp"
+                android:paddingEnd="15dp"
+                android:paddingBottom="24dp"
+                android:text="@{viewModel.mission2Content}"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toTopOf="@id/welcome_event_expired_date"
+                app:layout_constraintEnd_toEndOf="@id/welcome_event_mission1_content"
+                app:layout_constraintStart_toStartOf="@id/welcome_event_mission1_content"
+                app:layout_constraintTop_toBottomOf="@id/welcome_event_mission1_content"
+                tools:text="걸음 기부 3회 이상 참여" />
+
+            <TextView
+                android:id="@+id/welcome_event_mission2_title"
+                style="@style/NanumSquareL10spWhite"
+                android:layout_width="70dp"
+                android:layout_height="20dp"
+                android:background="@drawable/bg_mission_listing"
+                android:gravity="center"
+                android:text="@string/welcome_event_mission2"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/welcome_event_mission2_content"
+                app:layout_constraintEnd_toEndOf="@id/welcome_event_mission2_content"
+                app:layout_constraintStart_toStartOf="@id/welcome_event_mission2_content"
+                app:layout_constraintTop_toTopOf="@id/welcome_event_mission2_content" />
+
+            <TextView
+                android:id="@+id/welcome_event_expired_date"
+                style="@style/NanumSquareRoundR13spBlack"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="5sp"
+                android:text="@{viewModel.expiredDate}"
+                app:layout_constraintBottom_toTopOf="@id/welcome_event_confirm"
+                app:layout_constraintEnd_toEndOf="@id/welcome_event_mission2_content"
+                app:layout_constraintStart_toStartOf="@id/welcome_event_mission2_content"
+                app:layout_constraintTop_toBottomOf="@id/welcome_event_mission2_content"
+                tools:text="~2021.08.16" />
+
+            <Button
+                android:id="@+id/welcome_event_confirm"
+                style="@style/NanumSquareB18spWhite"
+                android:layout_width="0dp"
+                android:layout_height="54dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="28dp"
+                android:background="@drawable/selector_radius_12_blue"
+                android:onClick="@{() -> viewModel.goToEvent()}"
+                android:text="@string/welcome_event_go_to_event_page"
+                android:stateListAnimator="@null"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/welcome_event_expired_date"
+                app:layout_constraintStart_toStartOf="@id/welcome_event_expired_date"
+                app:layout_constraintTop_toBottomOf="@id/welcome_event_expired_date"
+                app:layout_constraintVertical_chainStyle="spread" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+</layout>

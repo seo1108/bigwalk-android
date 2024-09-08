@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="kr.co.bigwalk.app.report.Report2ViewModel" />
+
+        <import type="kr.co.bigwalk.app.R" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fcfcfc">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:background="@color/white"
+            android:elevation="3dp"
+            app:buttonGravity="center_vertical"
+            app:contentInsetStartWithNavigation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:titleTextAppearance="@style/AppTheme.Toolbar.Title"
+            app:titleTextColor="@color/main_black" />
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scroll_container"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/title_1"
+                        style="@style/NanumSquareB16spBlack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="27dp"
+                        android:layout_marginTop="32dp"
+                        android:text="걸음·기부 분석"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.tabs.TabLayout
+                        android:id="@+id/period_tab"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:layout_marginEnd="24dp"
+                        android:clipToPadding="false"
+                        app:layout_constraintBottom_toBottomOf="@+id/title_1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/title_1"
+                        app:tabBackground="@drawable/tab_bg_report_period_selector"
+                        app:tabIndicator="@color/transparent"
+                        app:tabMargin="@{8}"
+                        app:tabMinWidth="66dp"
+                        app:tabMode="scrollable"
+                        app:tabPaddingEnd="10dp"
+                        app:tabPaddingStart="10dp"
+                        app:tabRippleColor="@color/transparent"
+                        app:tabTextAppearance="@style/NanumSquareB14dpWhite                                                                "
+                        app:tabTextColor="@color/white">
+
+                        <com.google.android.material.tabs.TabItem
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/weekly" />
+
+                        <com.google.android.material.tabs.TabItem
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/monthly" />
+
+                    </com.google.android.material.tabs.TabLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="24dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="40dp"
+                        android:background="@drawable/radius_10_white"
+                        android:elevation="3dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/title_1">
+
+                        <androidx.fragment.app.FragmentContainerView
+                            android:id="@+id/chart_data_container"
+                            android:layout_width="0dp"
+                            android:layout_height="326dp"
+                            android:layout_marginTop="40dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/unselect_step_data"
+                            style="@style/NanumSquareB18dpMainBlack"
+                            android:layout_width="0dp"
+                            android:layout_height="72dp"
+                            android:layout_marginHorizontal="18dp"
+                            android:layout_marginTop="32dp"
+                            android:layout_marginBottom="40dp"
+                            android:background="@color/white"
+                            android:gravity="center"
+                            android:lineSpacingExtra="7dp"
+                            android:text="@{vm.totalDonationSteps}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/chart_data_container"
+                            bind:text="일주일 총 걸음\n이정도에요" />
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/select_step_data"
+                            visibleIf="@{vm.isShowingSelectData}"
+                            android:layout_width="0dp"
+                            android:layout_height="72dp"
+                            android:layout_marginHorizontal="18dp"
+                            android:layout_marginTop="32dp"
+                            android:layout_marginBottom="40dp"
+                            android:background="@drawable/radius5"
+                            android:backgroundTint="@color/theme_174dfe"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/chart_data_container">
+
+                            <TextView
+                                android:id="@+id/step_count"
+                                style="@style/NanumSquareB20White"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@{vm.stepItem.first}"
+                                android:textSize="20dp"
+                                app:layout_constraintBottom_toTopOf="@+id/step_title"
+                                app:layout_constraintEnd_toStartOf="@+id/divider"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintVertical_chainStyle="packed" />
+
+                            <TextView
+                                android:id="@+id/step_title"
+                                style="@style/NanumSquareR10ShamrockGreen"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="걸음"
+                                android:textColor="@color/background_grey"
+                                android:textSize="10dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="@id/step_count"
+                                app:layout_constraintStart_toStartOf="@id/step_count"
+                                app:layout_constraintTop_toBottomOf="@+id/step_count" />
+
+                            <View
+                                android:id="@+id/divider"
+                                android:layout_width="1dp"
+                                android:layout_height="0dp"
+                                android:layout_marginVertical="18dp"
+                                android:background="@color/background_grey"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/donation_step_count"
+                                style="@style/NanumSquareB20White"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@{vm.stepItem.second}"
+                                android:textSize="20dp"
+                                app:layout_constraintBottom_toTopOf="@+id/donation_step_title"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@+id/divider"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintVertical_chainStyle="packed" />
+
+                            <TextView
+                                android:id="@+id/donation_step_title"
+                                style="@style/NanumSquareR10ShamrockGreen"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="기부 걸음"
+                                android:textColor="@color/background_grey"
+                                android:textSize="10dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="@id/donation_step_count"
+                                app:layout_constraintStart_toStartOf="@id/donation_step_count"
+                                app:layout_constraintTop_toBottomOf="@+id/donation_step_count" />
+
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <TextView
+                            style="@style/NanumSquareR8Sub2"
+                            goneIf="@{vm.dayOfWeekReportResponse.weekOfMonth.length() > 0}"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_margin="5dp"
+                            android:background="@color/white"
+                            android:gravity="center"
+                            android:lineSpacingExtra="7dp"
+                            android:text="기간별 기록 확인을 위해\n걸음을 기부해보세요!"
+                            android:textSize="18dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            bind:visibility="invisible" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/title_2"
+                        style="@style/NanumSquareB16spBlack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:text="걸어서 만든 효과"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/NanumSquareR8Sub"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="24dp"
+                        android:text="기부한 걸음 수 기준입니다."
+                        android:textSize="10dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/title_2"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <include
+                    android:id="@+id/carbon_effect"
+                    layout="@layout/view_report_step_effect"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    bind:ImageData="@{R.drawable.report_carbon_anim}"
+                    bind:content1="@{`탄소저감 효과`}"
+                    bind:content2="@{String.valueOf(vm.carbonEffect.carbonEffect) +`kg`}"
+                    bind:content3="@{String.valueOf(vm.carbonEffect.addedCarbonEffect) +`kg`}"
+                    bind:isEmpty="@{vm.carbonEffect.carbonEffect &lt;= 0}"
+                    bind:startGif="@{vm.startGif}"
+                    bind:title="@{vm.carbonEffect.description}" />
+
+                <include
+                    android:id="@+id/energy_effect"
+                    layout="@layout/view_report_step_effect"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    bind:ImageData="@{R.drawable.report_energy_anim}"
+                    bind:content1="@{`에너지절약 효과`}"
+                    bind:content2="@{String.valueOf(vm.energyEffect.energyEffect) +`kWh`}"
+                    bind:content3="@{String.valueOf(vm.energyEffect.addedEnergyEffect) +`kWh`}"
+                    bind:isEmpty="@{vm.energyEffect.energyEffect &lt;= 0}"
+                    bind:startGif="@{vm.startGif}"
+                    bind:title="@{vm.energyEffect.description}" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="false"
+                    android:paddingBottom="50dp">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/title_3"
+                        style="@style/NanumSquareB16spBlack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="32dp"
+                        android:text="주로 기부하는 분야"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/NanumSquareR8Sub"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="24dp"
+                        android:text="매일 새벽 03시 기준으로 업데이트 됩니다."
+                        android:textSize="10dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/title_3"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="24dp"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/radius_10_white"
+                        android:elevation="3dp"
+                        android:paddingBottom="40dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/title_3">
+
+                        <com.github.mikephil.charting.charts.PieChart
+                            android:id="@+id/pie_chart"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_marginHorizontal="82dp"
+                            android:layout_marginTop="40dp"
+                            app:layout_constraintDimensionRatio="1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <GridLayout
+                            android:id="@+id/category"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="32dp"
+                            android:columnCount="3"
+                            android:orientation="horizontal"
+                            android:rowCount="2"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/pie_chart">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/NanumSquareR8Sub"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:drawableStart="@drawable/rect_report_donate_category"
+                                android:drawablePadding="8dp"
+                                android:text="환경"
+                                android:textSize="10dp"
+                                app:drawableTint="@color/emerald_green" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/NanumSquareR8Sub"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="24dp"
+                                android:drawableStart="@drawable/rect_report_donate_category"
+                                android:drawablePadding="8dp"
+                                android:text="동물"
+                                android:textSize="10dp"
+                                app:drawableTint="@color/blue" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/NanumSquareR8Sub"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="24dp"
+                                android:drawableStart="@drawable/rect_report_donate_category"
+                                android:drawablePadding="8dp"
+                                android:text="아이"
+                                android:textSize="10dp"
+                                app:drawableTint="@color/maize" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/NanumSquareR8Sub"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:drawableStart="@drawable/rect_report_donate_category"
+                                android:drawablePadding="8dp"
+                                android:text="장애인"
+                                android:textSize="10dp"
+                                app:drawableTint="#fc7987" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/NanumSquareR8Sub"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="24dp"
+                                android:layout_marginTop="8dp"
+                                android:drawableStart="@drawable/rect_report_donate_category"
+                                android:drawablePadding="8dp"
+                                android:text="노인"
+                                android:textSize="10dp"
+                                app:drawableTint="@color/groove_purple" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/NanumSquareR8Sub"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="24dp"
+                                android:layout_marginTop="8dp"
+                                android:drawableStart="@drawable/rect_report_donate_category"
+                                android:drawablePadding="8dp"
+                                android:text="지구촌"
+                                android:textSize="10dp"
+                                app:drawableTint="@color/pacific_blue" />
+                        </GridLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="18dp"
+                            android:layout_marginTop="32dp"
+                            android:background="@drawable/radius8"
+                            android:backgroundTint="@color/background_grey"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/category">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/tendency_icon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginVertical="18dp"
+                                android:layout_marginStart="24dp"
+                                android:src="@drawable/report_category_environment"
+                                android:visibility="invisible"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toStartOf="@+id/tendency_title"
+                                app:layout_constraintHorizontal_bias="0"
+                                app:layout_constraintHorizontal_chainStyle="packed"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tendency_title"
+                                style="@style/NanumSquareEb12dpWhite"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginEnd="24dp"
+                                android:text="빅워크 선정 NO.1 환경 지킴이"
+                                android:textColor="@color/main_black"
+                                android:visibility="invisible"
+                                app:layout_constraintBottom_toTopOf="@+id/tendency_sub_title"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@+id/tendency_icon"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintVertical_chainStyle="packed" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tendency_sub_title"
+                                style="@style/NanumSquareR10ShamrockGreen"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginEnd="24dp"
+                                android:maxLines="2"
+                                android:text="환경 관련 캠페인에 40% 기부했어요!"
+                                android:textColor="@color/sub"
+                                android:textSize="10dp"
+                                android:visibility="invisible"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0"
+                                app:layout_constraintStart_toStartOf="@+id/tendency_title"
+                                app:layout_constraintTop_toBottomOf="@+id/tendency_title" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tendency_empty_view"
+                                style="@style/NanumSquareR12Sub"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:lineSpacingExtra="7dp"
+                                android:text="빅워커님이 주로 기부하는 분야를 알려드릴게요!\n매일 새벽 3시 업데이트 됩니다 :)"
+                                android:textAlignment="center"
+                                android:textSize="12dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.core.widget.NestedScrollView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

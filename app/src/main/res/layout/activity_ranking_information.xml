@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="kr.co.bigwalk.app.campaign.ranking.info.RankingInformationViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_grey">
+
+        <ImageView
+            android:id="@+id/info_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="22dp"
+            android:paddingTop="35dp"
+            android:paddingEnd="22dp"
+            android:paddingBottom="35dp"
+            android:src="@drawable/aos_icon_20_exit"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:onClick="@{() -> viewModel.finish()}"/>
+
+        <TextView
+            android:id="@+id/info_title"
+            style="@style/NanumSquareB20MainFont"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/grade_info"
+            app:layout_constraintBottom_toBottomOf="@+id/info_back"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/info_back" />
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/info_scroll"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/info_back"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <ImageView
+                android:id="@+id/info_img"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </androidx.core.widget.NestedScrollView>
+
+        <Button
+            android:id="@+id/info_move_btn"
+            android:layout_width="0dp"
+            android:layout_height="54dp"
+            android:background="@drawable/selector_radius_12_blue"
+            android:text="@string/grade_info_ranking_plus_enjoying"
+            style="@style/NanumSquareB18spWhite"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:stateListAnimator="@null"
+            android:layout_marginStart="66dp"
+            android:layout_marginEnd="66dp"
+            android:layout_marginBottom="50dp"
+            android:onClick="@{() -> viewModel.finish()}"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

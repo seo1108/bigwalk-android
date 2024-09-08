@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="kr.co.bigwalk.app.campaign.ranking.RankingPlusViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/report_card"
+        android:layout_width="match_parent"
+        android:layout_height="369dp"
+        android:paddingTop="17dp">
+
+        <TextView
+            android:id="@+id/report_card_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="전체"
+            style="@style/NanumSquareL10spBlack"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/report_total_donated_step"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/report_card_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:background="@drawable/radius18_background_white_border_f2">
+
+            <ImageView
+                android:id="@+id/total_donated_step_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/aos_illust_ranking_report_1"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="7dp"
+                android:layout_marginStart="26dp" />
+
+            <TextView
+                android:id="@+id/total_donated_step_title"
+                style="@style/NanumSquareL14Sub"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/total_donated_steps"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toTopOf="@id/total_donated_step_value"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/total_donated_step_icon"
+                app:layout_constraintTop_toTopOf="@id/total_donated_step_icon"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <TextView
+                android:id="@+id/total_donated_step_value"
+                style="@style/NanumSquareRoundB14spBlue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="4dp"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="@id/total_donated_step_icon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/total_donated_step_icon"
+                app:layout_constraintTop_toBottomOf="@id/total_donated_step_title"
+                tools:text="14,968,299,021걸음"
+                android:text="@{viewModel.totalDonatedStepsText}"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/report_carbon_reduction"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/report_total_donated_step"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:background="@drawable/radius18_background_white_border_f2">
+
+            <ImageView
+                android:id="@+id/carbon_reduction_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/aos_illust_ranking_report_2"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="7dp"
+                android:layout_marginStart="26dp" />
+
+            <TextView
+                android:id="@+id/carbon_reduction_title"
+                style="@style/NanumSquareL14Sub"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/total_carbon_reduction"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toTopOf="@id/carbon_reduction_value"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/carbon_reduction_icon"
+                app:layout_constraintTop_toTopOf="@id/carbon_reduction_icon"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <TextView
+                android:id="@+id/carbon_reduction_value"
+                style="@style/NanumSquareRoundB14spBlue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="4dp"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="@id/carbon_reduction_icon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/carbon_reduction_icon"
+                app:layout_constraintTop_toBottomOf="@id/carbon_reduction_title"
+                tools:text="1234,810,000kg"
+                android:text="@{viewModel.reducedCarbonAmountText}"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/report_planting"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/report_carbon_reduction"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="32dp"
+            android:background="@drawable/radius18_background_white_border_f2">
+
+            <ImageView
+                android:id="@+id/planting_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/aos_illust_ranking_report_3"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="7dp"
+                android:layout_marginStart="26dp" />
+
+            <TextView
+                android:id="@+id/planting_title"
+                style="@style/NanumSquareL14Sub"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/total_planting"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toTopOf="@id/planting_value"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/planting_icon"
+                app:layout_constraintTop_toTopOf="@id/planting_icon"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <TextView
+                android:id="@+id/planting_value"
+                style="@style/NanumSquareRoundB14spBlue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="4dp"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="@id/planting_icon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/planting_icon"
+                app:layout_constraintTop_toBottomOf="@id/planting_title"
+                tools:text="2,329,126그루"
+                android:text="@{viewModel.plantingAmountText}"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

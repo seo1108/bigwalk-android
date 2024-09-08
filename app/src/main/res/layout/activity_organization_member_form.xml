@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="kr.co.bigwalk.app.my_page.OrganizationMemberFormViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/sub_constraint_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="64dp"
+            app:layout_constraintBottom_toTopOf="@id/organization_form_confirm_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/corporate_form_back_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/back_image"
+                android:onClick="@{() -> viewModel.finishActivity()}"
+                android:src="@drawable/ico_24_back"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                style="@style/NanumSquareEb16spBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:text="@string/input_organization_member_info"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/organization_form_organization"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60dp"
+                android:onClick="@{() -> viewModel.showOrganizations()}"
+                app:layout_constraintTop_toBottomOf="@+id/corporate_form_back_image">
+
+                <TextView
+                    android:id="@+id/organization"
+                    style="@style/SubTitleBlackRegular"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/please_select_corporate"
+                    android:padding="16dp"
+                    android:text="@{viewModel.organization.name}"
+                    android:textColorHint="@color/black"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/very_light_pink"
+                    app:layout_constraintTop_toBottomOf="@+id/organization" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/organization_form_department"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:onClick="@{() -> viewModel.showDepartments()}"
+                android:visibility="@{viewModel.hasDepartment ? View.VISIBLE : View.GONE}"
+                app:layout_constraintTop_toBottomOf="@+id/organization_form_organization">
+
+                <TextView
+                    android:id="@+id/department"
+                    style="@style/SubTitleBlackRegular"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/please_select_department"
+                    android:padding="16dp"
+                    android:text="@{viewModel.department.name}"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/very_light_pink"
+                    app:layout_constraintTop_toBottomOf="@+id/department" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/organization_form_employee_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:visibility="@{viewModel.hasEmployeeNumber ? View.VISIBLE : View.GONE}"
+                app:layout_constraintTop_toBottomOf="@+id/organization_form_department">
+
+                <EditText
+                    android:id="@+id/employee_number"
+                    style="@style/SubTitleBlackRegular"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:hint="@string/please_input_employee_number"
+                    android:inputType="text"
+                    android:padding="16dp"
+                    android:text="@={viewModel.employeeNumber}"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="Autofill,TextFields" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/very_light_pink"
+                    app:layout_constraintTop_toBottomOf="@+id/employee_number" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:visibility="@{viewModel.hasOrganizationEmail ? View.VISIBLE : View.GONE}"
+                app:layout_constraintTop_toBottomOf="@+id/organization_form_employee_number">
+
+                <EditText
+                    android:id="@+id/employee_email"
+                    style="@style/SubTitleBlackRegular"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:hint="@string/please_input_employee_email"
+                    android:inputType="textEmailAddress"
+                    android:padding="16dp"
+                    android:text="@={viewModel.organizationEmail}"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="Autofill" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/very_light_pink"
+                    app:layout_constraintTop_toBottomOf="@+id/employee_email" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/agreement_service"
+                style="@style/NanumSquareRoundRBlack14sp20height"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="3dp"
+                android:gravity="center_vertical"
+                android:onClick="@{() -> viewModel.agreeWithService()}"
+                android:text="@string/terms_of_enterprise_privacy"
+                android:visibility="@{viewModel.hasOrganization ? View.VISIBLE : View.INVISIBLE }"
+                app:layout_constraintBottom_toBottomOf="@+id/agreement_service_image"
+                app:layout_constraintStart_toEndOf="@+id/agreement_service_image" />
+
+            <ImageView
+                android:id="@+id/agreement_service_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="20dp"
+                android:contentDescription="@string/agreement_service_image"
+                android:onClick="@{() -> viewModel.agreeWithService()}"
+                android:src="@{viewModel.hasAgreeWithEnterprisePrivacy ? @drawable/ui_checkbox_on : @drawable/ui_checkbox_off}"
+                android:visibility="@{viewModel.hasOrganization ? View.VISIBLE : View.INVISIBLE }"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageView
+                android:id="@+id/agreement_service_docs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:contentDescription="@string/agreement_service_image"
+                android:onClick="@{() -> viewModel.showAgreementWithEnterprisePrivacy()}"
+                android:src="@drawable/ico_24_arrow_right"
+                android:visibility="@{viewModel.hasOrganization ? View.VISIBLE : View.INVISIBLE }"
+                app:layout_constraintBottom_toBottomOf="@+id/agreement_service_image"
+                app:layout_constraintEnd_toEndOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/organization_form_confirm_button"
+            style="@style/NanumSquareB20White"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:background="@{viewModel.hasOrganization &amp;&amp; viewModel.hasAgreeWithEnterprisePrivacy ? @color/blue : @color/inactive_blue}"
+            android:gravity="center"
+            android:onClick="@{() -> viewModel.changeOrganizationAccount()}"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <TextView
+                android:id="@+id/donation_donate_label"
+                style="@style/NanumSquareB20White"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/confirm" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="kr.co.bigwalk.app.walk.WalkViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/walk_pager_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/walk_random_text"
+            style="@style/NanumSquareLWhite28sp"
+            android:layout_width="296dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:gravity="start"/>
+
+        <ImageView
+            android:id="@+id/walk_kcal_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:contentDescription="@string/kcal_icon"
+            android:src="@drawable/ico_kcal_white"
+            app:layout_constraintStart_toStartOf="@+id/walk_random_text"
+            app:layout_constraintTop_toBottomOf="@+id/walk_random_text" />
+
+
+        <TextView
+            android:id="@+id/walk_kcal_text"
+            style="@style/NanumSquareRWhite12sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@{viewModel.kcalText}"
+            app:layout_constraintStart_toEndOf="@+id/walk_kcal_icon"
+            app:layout_constraintTop_toTopOf="@+id/walk_kcal_icon" />
+
+        <ImageView
+            android:id="@+id/walk_bubble"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ui_bubble_small"
+            app:layout_constraintBottom_toTopOf="@+id/walk_donation_rank"
+            android:layout_marginBottom="183dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:contentDescription="@string/walk_bubble" />
+
+        <TextView
+            android:id="@+id/walk_bubble_today_walk_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/total_donation_walk"
+            app:layout_constraintLeft_toLeftOf="@+id/walk_bubble"
+            app:layout_constraintRight_toRightOf="@+id/walk_bubble"
+            app:layout_constraintTop_toTopOf="@+id/walk_bubble"
+            android:layout_marginTop="12dp"
+            style="@style/NanumSquareLBlack12" />
+
+        <TextView
+            android:id="@+id/walk_total_donation_walk_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.totalDonationStep}"
+            style="@style/NanumSquareRoundEb20spBlack"
+            app:layout_constraintLeft_toLeftOf="@+id/walk_bubble"
+            app:layout_constraintRight_toRightOf="@+id/walk_bubble"
+            app:layout_constraintTop_toBottomOf="@+id/walk_bubble_today_walk_label" />
+
+
+        <ImageView
+            android:id="@+id/walk_moving_character"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginBottom="216dp"
+            android:contentDescription="@string/walk_moving_character" />
+
+        <TextView
+            android:id="@+id/walk_donation_rank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.donationRank}"
+            style="@style/NanumSquareRoundEb56spRed"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/walk_steps_to_donate_test"
+            tools:text="3600"
+            android:layout_marginBottom="8dp"/>
+
+
+        <ImageView
+            android:id="@+id/walk_step_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ico_16_notice_ranking"
+            app:layout_constraintBottom_toTopOf="@+id/walk_donate_button"
+            app:layout_constraintRight_toLeftOf="@+id/walk_steps_to_donate_test"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginBottom="24dp"
+            android:contentDescription="@string/walk_step_icon" />
+
+        <TextView
+            android:id="@+id/walk_steps_to_donate_test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/walk_donate_button"
+            style="@style/NanumSquareRBlack12sp"
+            android:layout_marginBottom="24dp"
+            android:layout_marginStart="8.5dp"
+            app:layout_constraintLeft_toRightOf="@+id/walk_step_icon"
+            app:layout_constraintRight_toRightOf="parent"
+            android:text="@string/donation_rank"/>
+
+        <View
+            android:id="@+id/walk_donate_button"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginBottom="40dp"
+            android:background="@drawable/circle_red"
+            android:elevation="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:onClick="@{()->viewModel.moveToRank()}"/>
+
+        <ImageView
+            android:id="@+id/walk_donate_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/donate_icon"
+            android:elevation="15dp"
+            android:outlineProvider="none"
+            android:src="@drawable/ico_32_ranking_white"
+            app:layout_constraintBottom_toBottomOf="@+id/walk_donate_button"
+            app:layout_constraintEnd_toEndOf="@+id/walk_donate_button"
+            app:layout_constraintStart_toStartOf="@+id/walk_donate_button"
+            app:layout_constraintTop_toTopOf="@+id/walk_donate_button"
+            android:onClick="@{()->viewModel.moveToRank()}"/>
+
+        <View
+            android:id="@+id/walk_share_button"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/circle_border0_5_white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <ImageView
+            android:id="@+id/walk_share_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/share_icon"
+            android:src="@drawable/ico_24_share"
+            app:layout_constraintBottom_toBottomOf="@+id/walk_share_button"
+            app:layout_constraintEnd_toEndOf="@+id/walk_share_button"
+            app:layout_constraintStart_toStartOf="@+id/walk_share_button"
+            app:layout_constraintTop_toTopOf="@+id/walk_share_button"
+            android:onClick="@{()->viewModel.moveToShare()}"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

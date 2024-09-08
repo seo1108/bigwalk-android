@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="kr.co.bigwalk.app.report.Report2ViewModel" />
+
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/previous_button"
+            visibleIf="@{vm.isExistPreviousWeek()}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/arrow_left"
+            app:layout_constraintBottom_toBottomOf="@+id/weekly"
+            app:layout_constraintEnd_toStartOf="@+id/weekly"
+            app:layout_constraintTop_toTopOf="@+id/weekly" />
+
+        <ImageView
+            android:id="@+id/next_button"
+            invisibleIf="@{vm.isCurrentWeek()}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/ic_report_arrow_right"
+            app:layout_constraintBottom_toBottomOf="@+id/weekly"
+            app:layout_constraintStart_toEndOf="@+id/weekly"
+            app:layout_constraintTop_toTopOf="@+id/weekly" />
+
+        <TextView
+            android:id="@+id/weekly"
+            style="@style/NanumSquareB16dpWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:text="@{vm.dayOfWeekReportResponse.weekOfMonth}"
+            android:textColor="@color/sub"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="22년 10월 1주차" />
+
+        <TextView
+            android:id="@+id/date"
+            style="@style/NanumSquareR12Sub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:text="@{vm.dayOfWeekReportResponse.rangeOfWeek}"
+            android:textColor="@color/sub2"
+            android:textSize="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/weekly"
+            tools:text="2022/10/02 ~ 2022/10/08" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/chart_data"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/date">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/step_legend"
+                style="@style/NanumSquareR8Sub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/rect_report_step_count"
+                android:drawablePadding="4dp"
+                android:text="걸음 수"
+                android:textSize="10dp"
+                app:drawableTint="@color/gray_border"
+                app:layout_constraintStart_toStartOf="@+id/donated_step_legend"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/donated_step_legend"
+                style="@style/NanumSquareR8Sub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="33dp"
+                android:drawableStart="@drawable/rect_report_step_count"
+                android:drawablePadding="4dp"
+                android:text="기부 걸음 수"
+                android:textSize="10dp"
+                app:drawableTint="@color/main_point_disable"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/step_legend" />
+
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/bar_chart"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/donated_step_legend" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

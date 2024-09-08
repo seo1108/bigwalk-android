@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="user"
+            type="kr.co.bigwalk.app.data.user.dto.UserProfileResponse" />
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="73dp"
+        android:background="@color/white">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/feed_like_profile"
+            loadImage="@{user.profilePath}"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="18dp"
+            app:civ_border_overlay="true"
+            app:civ_border_color="@color/profile_border"
+            app:civ_border_width="1dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginStart="18dp"
+            android:gravity="center_vertical|left"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/feed_like_profile"
+            app:layout_constraintTop_toTopOf="parent">
+            <TextView
+                android:id="@+id/feed_like_department"
+                style="@style/NanumsquareL10MainFont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="3dp"
+                android:gravity="center"
+                android:text="@{user.megaDepartment.name}"
+                android:visibility="gone"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="프로덕트팀" />
+
+            <TextView
+                android:id="@+id/feed_like_profile_name"
+                style="@style/NanumSquareB15spBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@{user.name}"
+                tools:text="유저명" />
+        </LinearLayout>
+
+
+        <View
+            android:id="@+id/item_divider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginEnd="18dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/gray_border"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

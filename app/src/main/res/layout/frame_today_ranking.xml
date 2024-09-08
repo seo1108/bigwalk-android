@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="kr.co.bigwalk.app.campaign.ranking.RankingPlusViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/ranking_date"
+            style="@style/NanumSquareRoundBBlack16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="28dp"
+            android:text="@{viewModel.totalRankPeriod}"
+            tools:text="20.01.01~20.12.31"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/my_ranking_profile_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="25dp"
+            android:background="@drawable/radius_top_18_background_white"
+            android:elevation="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ranking_date">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/my_ranking_profile_img"
+                loadImage="@{viewModel.myReport.profilePath}"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="17dp"
+                android:src="@drawable/img_default_48"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/my_ranking_name"
+                style="@style/NanumSquareB20MainFont"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="30dp"
+                android:text="@{viewModel.myReport.name}"
+                app:layout_constraintEnd_toStartOf="@+id/my_ranking_share"
+                app:layout_constraintStart_toEndOf="@id/my_ranking_profile_img"
+                app:layout_constraintTop_toTopOf="@id/my_ranking_profile_img"
+                tools:text="My Nickname" />
+
+            <TextView
+                android:id="@+id/my_ranking_donated_step_title"
+                style="@style/NanumSquareL10spBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="@string/donated_step2"
+                app:layout_constraintStart_toStartOf="@+id/my_ranking_name"
+                app:layout_constraintTop_toBottomOf="@+id/my_ranking_name" />
+
+            <TextView
+                android:id="@+id/my_ranking_donated_step"
+                style="@style/NanumSquareB10DarkSkyBlue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="@{viewModel.myReport.getTotalDonatedSteps}"
+                app:layout_constraintBottom_toBottomOf="@id/my_ranking_donated_step_title"
+                app:layout_constraintEnd_toEndOf="@+id/my_ranking_name"
+                app:layout_constraintStart_toEndOf="@id/my_ranking_donated_step_title"
+                app:layout_constraintTop_toTopOf="@id/my_ranking_donated_step_title"
+                tools:text="14291만 9021" />
+
+            <ImageView
+                android:id="@+id/my_ranking_share"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/share_24_icon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:onClick="@{() -> viewModel.moveToShare()}"/>
+
+            <ImageView
+                android:id="@+id/my_ranking_quick_donate"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_marginTop="23dp"
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/aos_icon_44_quick_btn_v_1"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:onClick="@{() -> viewModel.moveToCampaign()}"/>
+
+            <TextView
+                android:id="@+id/influence_report_title"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:paddingBottom="17dp"
+                android:text="@string/influence_report"
+                android:gravity="center|bottom"
+                style="@style/NanumSquareB20MainFont"
+                android:background="@drawable/radius_top_18_background_white"
+                android:visibility="gone"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:translationZ="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/my_ranking_profile_card"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/app_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:id="@+id/toolbar_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="40dp"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                    android:background="@color/white">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="43dp"
+                        android:background="@color/background_grey"
+                        app:layout_collapseMode="pin"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginEnd="25dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="@drawable/radius_bottom_18_background_white"
+                        android:elevation="4dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent">
+
+                        <androidx.viewpager2.widget.ViewPager2
+                            android:id="@+id/report_pager"
+                            android:layout_width="match_parent"
+                            android:layout_height="369dp"
+                            android:orientation="horizontal" />
+
+                        <kr.co.bigwalk.app.campaign.donation.additional_service.CustomIndicator
+                            android:id="@+id/report_pager_indicator"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:layout_gravity="center|bottom"
+                            android:layout_marginBottom="14dp"/>
+
+                    </FrameLayout>
+
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/ranking_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="none"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                tools:listitem="@layout/item_recycler_ranking" />
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

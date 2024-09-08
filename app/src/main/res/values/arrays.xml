@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer-array name="share_background">
+        <item>@drawable/bg_share_purple</item>
+        <item>@drawable/bg_share_blue</item>
+        <item>@drawable/bg_share_red</item>
+        <item>@drawable/bg_share_yellow</item>
+        <item>@drawable/bg_share_spring_day</item>
+        <item>@drawable/bg_share_spring_night</item>
+        <item>@drawable/bg_share_summer_day</item>
+        <item>@drawable/bg_share_summer_night</item>
+        <item>@drawable/bg_share_autumn_day</item>
+        <item>@drawable/bg_share_autumn_night</item>
+        <item>@drawable/bg_share_winter_day</item>
+        <item>@drawable/bg_share_winter_night</item>
+    </integer-array>
+
+    <integer-array name="ranking_grade_img">
+        <item>@drawable/aos_icon_ranking_lv_1</item>
+        <item>@drawable/aos_icon_ranking_lv_2</item>
+        <item>@drawable/aos_icon_ranking_lv_3</item>
+        <item>@drawable/aos_icon_ranking_lv_4</item>
+        <item>@drawable/aos_icon_ranking_lv_5</item>
+        <item>@drawable/aos_icon_ranking_lv_6</item>
+        <item>@drawable/aos_icon_ranking_lv_7</item>
+        <item>@drawable/aos_icon_ranking_lv_8</item>
+        <item>@drawable/aos_icon_ranking_lv_9</item>
+        <item>@drawable/aos_icon_ranking_lv_10</item>
+        <item>@drawable/aos_icon_ranking_lv_11</item>
+        <item>@drawable/aos_icon_ranking_lv_12</item>
+        <item>@drawable/aos_icon_ranking_lv_13</item>
+        <item>@drawable/aos_icon_ranking_lv_14</item>
+        <item>@drawable/aos_icon_ranking_lv_15</item>
+    </integer-array>
+
+    <integer-array name="ranking_today_grade_img">
+        <item>@drawable/aos_icon_ranking_today_lv_1</item>
+        <item>@drawable/aos_icon_ranking_today_lv_2</item>
+        <item>@drawable/aos_icon_ranking_today_lv_3</item>
+        <item>@drawable/aos_icon_ranking_today_lv_4</item>
+        <item>@drawable/aos_icon_ranking_today_lv_5</item>
+        <item>@drawable/aos_icon_ranking_today_lv_6</item>
+        <item>@drawable/aos_icon_ranking_today_lv_7</item>
+        <item>@drawable/aos_icon_ranking_today_lv_8</item>
+        <item>@drawable/aos_icon_ranking_today_lv_9</item>
+        <item>@drawable/aos_icon_ranking_today_lv_10</item>
+    </integer-array>
+
+    <integer-array name="eco_img">
+        <item>@drawable/eco1</item>
+        <item>@drawable/eco2</item>
+        <item>@drawable/eco3</item>
+    </integer-array>
+
+    <integer-array name="health_img">
+        <item>@drawable/health1</item>
+        <item>@drawable/health2</item>
+        <item>@drawable/health3</item>
+    </integer-array>
+
+    <integer-array name="running_img">
+        <item>@drawable/running1</item>
+        <item>@drawable/running2</item>
+        <item>@drawable/running3</item>
+    </integer-array>
+
+    <string-array name="group_info_tab">
+        <item>@string/goal</item>
+        <item>@string/report</item>
+    </string-array>
+
+    <string-array name="group_share_tab">
+        <item>@string/my_influence</item>
+        <item>@string/goal</item>
+        <item>@string/report</item>
+    </string-array>
+
+    <string-array name="dialog_group_member">
+        <item>@string/dialog_group_member_delegate_auth</item>
+        <item>@string/dialog_group_member_kick</item>
+    </string-array>
+
+    <string-array name="dialog_group_my">
+        <item>@string/dialog_group_member_leave</item>
+    </string-array>
+
+    <string-array name="crew_campaign_preview_tab">
+        <item>@string/campaign</item>
+        <item>@string/challenge</item>
+    </string-array>
+
+    <string-array name="funding_sort_array">
+        <item>@string/sort_latest</item>
+        <item>@string/sort_popularity</item>
+    </string-array>
+
+</resources>

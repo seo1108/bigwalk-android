@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="kr.co.bigwalk.app.crowd_funding.detail.funding.StepFundingViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".crowd_funding.detail.funding.StepFundingActivity">
+
+        <ImageView
+            android:id="@+id/funding_background"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/aos_bg_funding_dial_bg"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/toolbar"
+            android:layout_width="0dp"
+            android:layout_height="90dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/exit_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:src="@drawable/aos_icon_20_exit"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                style="@style/NanumBarunpenBold22spBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/step_funding"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/coupon_btn"
+                visibleIf="@{vm.isCouponVisible}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="22dp"
+                android:src="@drawable/aos_icon_funding_join_coupon"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/mission_pager"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:overScrollMode="never"
+                    android:paddingStart="13dp"
+                    android:paddingEnd="18dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_percent=".239"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/guide_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="9dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/mission_pager">
+
+                    <TextView
+                        android:id="@+id/step_funding_tag"
+                        style="@style/IMHyeminRegular12Black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="4dp"
+                        android:letterSpacing="-0.04"
+                        android:text="@string/step_funding_guide"
+                        android:textColor="@color/sub2"
+                        android:textSize="15sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/guide_image"
+                        app:layout_constraintEnd_toStartOf="@+id/guide_image"
+                        app:layout_constraintTop_toTopOf="@+id/guide_image" />
+
+                    <ImageView
+                        android:id="@+id/guide_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="24dp"
+                        android:src="@drawable/aos_icon_ranking_rank_guide"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/guide_container">
+
+                    <TextView
+                        android:id="@+id/donation_step_number"
+                        style="@style/NanumSquareRoundEb56spBlue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="33dp"
+                        android:layout_marginBottom="40dp"
+                        android:text="@{String.valueOf(vm.stepProgress)}"
+                        app:layout_constraintBottom_toTopOf="@id/donation_seek_bar"
+                        app:layout_constraintHorizontal_bias="0.498"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_chainStyle="spread_inside"
+                        tools:text="3000" />
+
+                    <TextView
+                        style="@style/NanumSquareR16MainGray"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="10dp"
+                        android:paddingBottom="15dp"
+                        android:text="걸음"
+                        app:layout_constraintBottom_toBottomOf="@id/donation_step_number"
+                        app:layout_constraintStart_toEndOf="@id/donation_step_number" />
+
+                    <TextView
+                        android:id="@+id/funding_state"
+                        style="@style/IMHyeminBold15White"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{vm.fundingProgress.str}"
+                        android:textColor="@color/blue"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toStartOf="@+id/funding_count"
+                        app:layout_constraintHorizontal_chainStyle="packed"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/donation_step_number" />
+
+                    <TextView
+                        android:id="@+id/funding_count"
+                        style="@style/IMHyeminBold15White"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{@string/percent_funding(vm.myFundingStepsToString, vm.fundingProgress.percent)}"
+                        android:textColor="@color/blue"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/funding_state"
+                        app:layout_constraintTop_toBottomOf="@+id/donation_step_number" />
+
+                    <TextView
+                        android:id="@+id/donation_mimimum_label"
+                        style="@style/NanumSquareLSub12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{String.valueOf(vm.minStep)}"
+                        app:layout_constraintBottom_toTopOf="@id/donation_seek_bar"
+                        app:layout_constraintLeft_toLeftOf="@+id/donation_seek_bar" />
+
+                    <TextView
+                        android:id="@+id/donation_maximum_label"
+                        style="@style/NanumSquareLSub12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="15dp"
+                        android:text="@{String.valueOf(vm.fundingInfo.todayRemainingSteps)}"
+                        app:layout_constraintBottom_toTopOf="@id/donation_seek_bar"
+                        app:layout_constraintRight_toRightOf="@+id/donation_seek_bar"
+                        tools:text="10000" />
+
+
+                    <SeekBar
+                        android:id="@+id/donation_seek_bar"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="324dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="32dp"
+                        android:max="@{vm.fundingInfo.todayRemainingSteps}"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="20dp"
+                        android:progress="@{vm.stepProgress}"
+                        android:progressDrawable="@drawable/seek_bar_progress"
+                        android:thumb="@drawable/seek_bar_thumb"
+                        app:layout_constraintBottom_toTopOf="@+id/donation_mimimum_button"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/donation_step_number"
+                        tools:progress="20" />
+
+                    <Button
+                        android:id="@+id/donation_mimimum_button"
+                        style="@style/NanumSquareRBlack12sp"
+                        android:layout_width="88dp"
+                        android:layout_height="32dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="48dp"
+                        android:background="@drawable/funding_select_button"
+                        android:onClick="@{()->vm.setMinimum()}"
+                        android:outlineProvider="none"
+                        android:text="@string/minimum"
+                        app:layout_constraintBottom_toTopOf="@id/funding_btn"
+                        app:layout_constraintHorizontal_chainStyle="packed"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toLeftOf="@+id/donation_middle_button"
+                        app:layout_constraintTop_toBottomOf="@id/donation_seek_bar" />
+
+                    <Button
+                        android:id="@+id/donation_middle_button"
+                        style="@style/NanumSquareRBlack12sp"
+                        android:layout_width="88dp"
+                        android:layout_height="32dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/funding_select_button"
+                        android:onClick="@{()->vm.setMiddle()}"
+                        android:outlineProvider="none"
+                        android:text="@string/middle"
+                        app:layout_constraintBottom_toBottomOf="@+id/donation_mimimum_button"
+                        app:layout_constraintLeft_toRightOf="@id/donation_mimimum_button"
+                        app:layout_constraintRight_toLeftOf="@+id/donation_maximum_button" />
+
+                    <Button
+                        android:id="@+id/donation_maximum_button"
+                        style="@style/NanumSquareRBlack12sp"
+                        android:layout_width="88dp"
+                        android:layout_height="32dp"
+                        android:background="@drawable/funding_select_button"
+                        android:onClick="@{()->vm.setMaximum()}"
+                        android:outlineProvider="none"
+                        android:text="@string/maximum"
+                        app:layout_constraintBottom_toBottomOf="@+id/donation_mimimum_button"
+                        app:layout_constraintLeft_toRightOf="@id/donation_middle_button"
+                        app:layout_constraintRight_toRightOf="parent" />
+
+                    <TextView
+                        android:id="@+id/funding_btn"
+                        style="@style/NanumBarunpenBold20spWhite"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_marginHorizontal="61dp"
+                        android:layout_marginTop="42dp"
+                        android:layout_marginBottom="50dp"
+                        android:background="@drawable/radius_25"
+                        android:backgroundTint="@color/theme_174dfe"
+                        android:gravity="center"
+                        android:text="@string/to_fund"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/donation_mimimum_button" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <TextView
+            android:id="@+id/tooltip_coupon"
+            style="@style/IMHyeminBold15White"
+            visibleIf="@{vm.isCouponVisible}"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="65dp"
+            android:layout_marginEnd="22dp"
+            android:background="@drawable/aos_icon_crew_tooltipbox_edit"
+            android:gravity="center"
+            android:lines="1"
+            android:paddingTop="8dp"
+            android:text="@string/tooltip_join_coupon_explain"
+            app:layout_constraintDimensionRatio="1:.1933"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent=".728" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

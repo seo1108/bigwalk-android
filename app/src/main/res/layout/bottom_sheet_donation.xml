@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="kr.co.bigwalk.app.campaign.donation.DonationViewModel" />
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bottom_sheet_background"
+        app:behavior_hideable="true"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+        <TextView
+            android:id="@+id/donation_step_number"
+            style="@style/NanumSquareRoundEb56spBlue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="37dp"
+            android:layout_marginBottom="40dp"
+            android:text="@{String.valueOf(viewModel.stepsToDonateLabel)}"
+            android:textColor="@{viewModel.basicColor.intValue()}"
+            app:layout_constraintBottom_toTopOf="@id/donation_mimimum_label"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rolling_container"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="3000" />
+
+        <ViewFlipper
+            android:id="@+id/rolling_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inAnimation="@anim/slide_down"
+            android:paddingTop="6dp"
+            android:outAnimation="@anim/slide_out_down"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/campaign_content_period_text2"
+                    style="@style/NanumSquareB8Black26"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:gravity="end"
+                    android:text="@{viewModel.eventDescriptionLabel}"
+                    android:visibility="@{viewModel.event == null ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintBottom_toBottomOf="@+id/campaign_content_event_name2"
+                    app:layout_constraintStart_toEndOf="@+id/campaign_content_event_name2"
+                    app:layout_constraintTop_toTopOf="@+id/campaign_content_event_name2"
+                    tools:text="이벤트 내용" />
+
+                <TextView
+                    android:id="@+id/campaign_content_event_name2"
+                    style="@style/NanumSquareB8spWhite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="17dp"
+                    android:layout_marginStart="14dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/radius_10_background_red"
+                    android:gravity="center_vertical"
+                    android:paddingStart="7dp"
+                    android:paddingEnd="7dp"
+                    android:text="@{viewModel.eventNameLabel}"
+                    android:visibility="@{viewModel.event == null ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/campaign_content_period_text3"
+                    style="@style/NanumSquareB8Black26"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:gravity="end"
+                    android:text="@{@string/campaign_donate_terms(viewModel.donationItem.todayDonatedStepsToString, viewModel.donationItem.maxDonationPerDayToString)}"
+                    android:visibility="@{viewModel.donationItem.maxDonationPerDay != null ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="@+id/campaign_content_event_name3"
+                    app:layout_constraintStart_toEndOf="@+id/campaign_content_event_name3"
+                    app:layout_constraintTop_toTopOf="@+id/campaign_content_event_name3"
+                    tools:text="1일 기부 가능 걸음 (45,000 / 50,000)" />
+
+                <TextView
+                    android:id="@+id/campaign_content_event_name3"
+                    style="@style/NanumSquareB8spWhite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="17dp"
+                    android:layout_marginStart="14dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/radius_10_background_emerald_green"
+                    android:gravity="center_vertical"
+                    android:paddingStart="7dp"
+                    android:paddingEnd="7dp"
+                    android:text="캠페인 조건"
+                    android:visibility="@{viewModel.donationItem.maxDonationPerDay != null ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ViewFlipper>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="걸음"
+            style="@style/NanumSquareR16MainGray"
+            android:paddingStart="10dp"
+            android:paddingBottom="15dp"
+            app:layout_constraintStart_toEndOf="@id/donation_step_number"
+            app:layout_constraintBottom_toBottomOf="@id/donation_step_number"
+            />
+
+        <TextView
+            android:id="@+id/donation_mimimum_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/NanumSquareLSub12"
+            android:text="@{viewModel.isCompleteCampaignTerms() ? @string/_0 : @string/_1}"
+            app:layout_constraintBottom_toTopOf="@id/donation_seek_bar"
+            app:layout_constraintLeft_toLeftOf="@+id/donation_seek_bar"
+            android:layout_marginStart="15dp"
+            />
+
+        <TextView
+            android:id="@+id/donation_maximum_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/NanumSquareLSub12"
+            app:layout_constraintBottom_toTopOf="@id/donation_seek_bar"
+            app:layout_constraintRight_toRightOf="@+id/donation_seek_bar"
+            android:layout_marginEnd="15dp"
+            android:text="@{String.valueOf(viewModel.maxDonableSteps)}"
+            tools:text="10000"
+            />
+
+
+        <SeekBar
+            android:id="@+id/donation_seek_bar"
+            android:layout_width="310dp"
+            android:layout_height="wrap_content"
+            style="?android:attr/progressBarStyleHorizontal"
+            app:layout_constraintBottom_toTopOf="@+id/donation_mimimum_button"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginBottom="32dp"
+            android:progressDrawable="@{viewModel.progressDrawable}"
+            android:thumb="@{viewModel.seekBarThumbDrawable}"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:max="@{viewModel.maxDonableSteps}"
+            android:progress="@{viewModel.stepsToDonate}"
+            app:seekBarChangeListener="@{viewModel.seekBarChangeListener}"
+            tools:progress="20"/>
+
+        <Button
+            android:id="@+id/donation_mimimum_button"
+            android:layout_width="88dp"
+            android:layout_height="32dp"
+            android:text="@string/minimum"
+            style="@style/NanumSquareRBlack12sp"
+            android:background="@drawable/donation_select_button"
+            app:layout_constraintBottom_toTopOf="@id/donation_button"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/donation_middle_button"
+            android:layout_marginBottom="48dp"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            android:layout_marginEnd="8dp"
+            android:outlineProvider="none"
+            android:onClick="@{()->viewModel.setMinimum()}"
+            />
+
+        <Button
+            android:id="@+id/donation_middle_button"
+            android:layout_width="88dp"
+            android:layout_height="32dp"
+            android:text="@string/middle"
+            style="@style/NanumSquareRBlack12sp"
+            android:background="@drawable/donation_select_button"
+            app:layout_constraintBottom_toBottomOf="@+id/donation_mimimum_button"
+            app:layout_constraintLeft_toRightOf="@id/donation_mimimum_button"
+            app:layout_constraintRight_toLeftOf="@+id/donation_maximum_button"
+            android:layout_marginEnd="8dp"
+            android:outlineProvider="none"
+            android:onClick="@{()->viewModel.setMiddle()}"
+            />
+
+        <Button
+            android:id="@+id/donation_maximum_button"
+            android:layout_width="88dp"
+            android:layout_height="32dp"
+            android:text="@string/maximum"
+            style="@style/NanumSquareRBlack12sp"
+            android:background="@drawable/donation_select_button"
+            app:layout_constraintBottom_toBottomOf="@+id/donation_mimimum_button"
+            app:layout_constraintBottom_toTopOf="@id/donation_button"
+            app:layout_constraintLeft_toRightOf="@id/donation_middle_button"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginBottom="48dp"
+            android:outlineProvider="none"
+            android:onClick="@{()->viewModel.setMaximum()}"
+            />
+
+        <LinearLayout
+            android:id="@+id/donation_button"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:alpha="@{viewModel.isCompleteCampaignTerms() ? Float.valueOf(0.3f) : Float.valueOf(1.0f)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            style="@style/NanumSquareB20White"
+            android:background="@{viewModel.basicColor.intValue()}"
+            android:orientation="horizontal"
+            android:gravity="center"
+            app:onThrottleFirstClickState="@{viewModel.networkState}"
+            app:onThrottleFirstClick="@{(v) -> viewModel.checkCampaignAchieved(donationSeekBar.getProgress())}">
+
+            <ImageView
+                android:id="@+id/donation_donate_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@{viewModel.donationButtonIconImage}"
+                android:contentDescription="@string/donation_donate_icon"
+                />
+
+            <TextView
+                android:id="@+id/donation_donate_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/donate"
+                style="@style/NanumSquareB20White"
+                android:layout_marginStart="8dp"
+                />
+
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

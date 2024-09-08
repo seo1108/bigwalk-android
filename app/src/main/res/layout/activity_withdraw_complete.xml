@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="kr.co.bigwalk.app.my_page.withdraw.WithdrawCompleteModel" />
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusableInTouchMode="true"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="#f7f8f9"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/default_information_constraint"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/next_page"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/donation_complete_character"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="159dp"
+                android:contentDescription="@string/character"
+                android:src="@drawable/img_profile_share_02"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView2"
+                style="@style/NanumSquareEb20spBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="39dp"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="7dp"
+                android:text="@string/withdraw_complete"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/donation_complete_character" />
+
+            <TextView
+                android:id="@+id/textView11"
+                style="@style/NanumSquareRBlack14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="13dp"
+                android:text="@string/withdraw_better_service"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textView2" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/next_page"
+            style="@style/NanumSquareRoundRWhite20sp28heightAndBackground"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:background="@color/blue"
+            android:textColor="@color/white"
+            android:gravity="center_vertical"
+            android:text="@string/confirm"
+            android:textAlignment="center"
+            android:onClick="@{() -> viewModel.finishActivity()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="parent"
+            app:layout_constraintRight_toLeftOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

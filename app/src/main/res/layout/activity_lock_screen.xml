@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="viewModel"
+            type="kr.co.bigwalk.app.lock_screen.LockScreenViewModel" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/walk_background_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/spring_day"
+            android:contentDescription="@string/main_background" />
+
+        <View
+            android:id="@+id/walk_bottom_progress_background"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@drawable/transparent_oval"
+            app:layout_constraintBottom_toBottomOf="@+id/walk_bottom_ellipse"
+            android:layout_marginBottom="8dp"/>
+
+        <View
+            android:id="@+id/walk_bottom_progress"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@drawable/level_clip"
+            app:layout_constraintBottom_toBottomOf="@+id/walk_bottom_ellipse"
+            android:layout_marginBottom="8dp"
+            />
+
+        <View
+            android:id="@+id/walk_bottom_rectangle"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <View
+            android:id="@+id/walk_bottom_ellipse"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@drawable/white_oval_view"
+            app:layout_constraintBottom_toTopOf="@+id/walk_bottom_rectangle"
+            app:layout_constraintTop_toTopOf="@id/walk_bottom_rectangle" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/_0"
+            style="@style/NanumSquareR8Sub"
+            app:layout_constraintTop_toTopOf="@+id/walk_bottom_ellipse"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="40dp"
+            android:layout_marginStart="8dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/maximum_10000"
+            style="@style/NanumSquareR8Sub"
+            app:layout_constraintTop_toTopOf="@+id/walk_bottom_ellipse"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="8dp"
+            />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/lock_view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/scroll_area"
+            android:layout_width="240dp"
+            android:layout_height="48dp"
+            android:layout_marginBottom="48dp"
+            android:background="@drawable/rounded_oval_background_lock_screen"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageView
+                android:id="@+id/unlock_btn_center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_oval_background_color"
+                android:contentDescription="@string/walk_moving_character"
+                android:onClick="@{() -> viewModel.onClickListener()}"
+                android:src="@drawable/unlock_btn_n"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/scroll_area" />
+
+
+            <ImageView
+                android:id="@+id/unlock_btn_l"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="260dp"
+                android:contentDescription="@string/walk_moving_character"
+                android:src="@drawable/unlock_guide_l"
+                app:layout_constraintTop_toTopOf="@+id/scroll_area"
+                app:layout_constraintLeft_toLeftOf="parent" />
+
+            <ImageView
+                android:id="@+id/unlock_btn_r"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="260dp"
+                android:contentDescription="@string/walk_moving_character"
+                android:src="@drawable/unlock_guide_r"
+                app:layout_constraintTop_toTopOf="@+id/scroll_area"
+                app:layout_constraintRight_toRightOf="parent" />
+
+            <ImageView
+                android:id="@+id/unlock_arrow_l"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/walk_moving_character"
+                android:src="@drawable/unlock_arrow_l"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/unlock_btn_center"
+                app:layout_constraintLeft_toRightOf="@+id/unlock_btn_l"
+                />
+
+            <ImageView
+                android:id="@+id/unlock_arrow_r"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/walk_moving_character"
+                android:src="@drawable/unlock_arrow_r"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@+id/unlock_btn_center"
+                app:layout_constraintRight_toLeftOf="@id/unlock_btn_r"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

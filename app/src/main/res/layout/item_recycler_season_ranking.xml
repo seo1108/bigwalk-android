@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="data"
+            type="kr.co.bigwalk.app.data.campaign.dto.SeasonTopRankerResponse" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="144dp"
+        android:layout_marginHorizontal="25dp"
+        android:layout_marginVertical="5dp"
+        android:background="@drawable/radius45">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/image"
+            loadImage="@{data.profilePath}"
+            android:layout_width="94dp"
+            android:layout_height="94dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="30dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/info_container"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/aos_illust_ranking_report_1" />
+
+        <ImageView
+            android:id="@+id/badge"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/aos_icon_badge_legendary"
+            app:layout_constraintEnd_toEndOf="@+id/image"
+            app:layout_constraintTop_toTopOf="@+id/image" />
+
+        <TextView
+            style="@style/NanumSquareR14Black"
+            android:layout_width="wrap_content"
+            android:layout_height="28dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/bg_season_button"
+            android:gravity="center"
+            android:paddingHorizontal="10dp"
+            android:text="@{data.getSeason()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/image"
+            app:layout_constraintStart_toStartOf="@+id/image"
+            tools:text="프리시즌" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/info_container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            app:layout_constraintBottom_toBottomOf="@+id/image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/image"
+            app:layout_constraintTop_toTopOf="@+id/image">
+
+            <TextView
+                android:id="@+id/nickname"
+                style="@style/SubTitle1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{data.name}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="유저닉네임" />
+
+            <TextView
+                android:id="@+id/content"
+                style="@style/SubBodyLight"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="@string/donated_step2"
+                android:textAlignment="center"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nickname" />
+
+            <TextView
+                android:id="@+id/content2"
+                style="@style/NanumSquareRoundB14spBlue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="6dp"
+                android:text="@{data.getDonatedStepsString()}"
+                android:textAlignment="center"
+                app:layout_constraintStart_toEndOf="@+id/content"
+                app:layout_constraintTop_toBottomOf="@+id/nickname"
+                tools:text="1429만 2022" />
+
+            <TextView
+                android:id="@+id/content3"
+                style="@style/CaptionLight"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/ranking_ko"
+                app:layout_constraintStart_toStartOf="@+id/content"
+                app:layout_constraintTop_toBottomOf="@+id/content" />
+
+            <TextView
+                android:id="@+id/content4"
+                style="@style/NanumSquareB10spBlue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="8dp"
+                android:text="@{String.valueOf(data.number)}"
+                app:layout_constraintStart_toEndOf="@+id/content3"
+                app:layout_constraintTop_toBottomOf="@+id/content"
+                tools:text="1" />
+
+            <TextView
+                android:id="@+id/content5"
+                style="@style/CaptionLight"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/grade"
+                app:layout_constraintStart_toStartOf="@+id/content"
+                app:layout_constraintTop_toBottomOf="@+id/content3" />
+
+            <TextView
+                android:id="@+id/content6"
+                style="@style/NanumSquareB10spBlue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:text="@{data.rank.name}"
+                app:layout_constraintStart_toEndOf="@+id/content5"
+                app:layout_constraintTop_toBottomOf="@+id/content3"
+                tools:text="영롱한 무지개 소나무" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="context"
+            type="kr.co.bigwalk.app.community.MyCommunityListActivity" />
+
+        <variable
+            name="viewModel"
+            type="kr.co.bigwalk.app.community.MyCommunityListViewModel" />
+
+        <import type="kr.co.bigwalk.app.R" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".community.MyCommunityListActivity">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="0dp"
+            android:layout_height="90dp"
+            android:background="@color/white_two"
+            app:buttonGravity="center_vertical"
+            app:contentInsetStartWithNavigation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/homeAsUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{()-> context.finish()}"
+                android:src="@drawable/aos_icon_20_home" />
+
+            <TextView
+                style="@style/NanumBarunpenBold22spBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/my_crew" />
+        </androidx.appcompat.widget.Toolbar>
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white_two"
+            android:scaleType="centerCrop"
+            android:src="@drawable/aos_illust_group_top_bg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/crew_list"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:clipToPadding="false"
+            android:orientation="vertical"
+            android:overScrollMode="never"
+            android:paddingTop="175dp"
+            android:paddingBottom="160dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/image"
+            tools:listitem="@layout/item_recycler_community" />
+
+        <androidx.constraintlayout.widget.Group
+            goneIf="@{viewModel.myCrewList.data.size() > 0}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:constraint_referenced_ids="donated_report_view, carbon_report_view, tree_report_view" />
+
+        <include
+            android:id="@+id/donated_report_view"
+            layout="@layout/view_group_report"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="25dp"
+            app:layout_constraintBottom_toTopOf="@id/image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent=".15"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/image"
+            app:layout_constraintVertical_bias=".1"
+            bind:content="@{viewModel.communityReport.totalDonatedSteps}"
+            bind:contentType="@{@string/walk}"
+            bind:icon="@{R.drawable.aos_illust_ranking_report_1}"
+            bind:title="@{@string/total_donated_steps}" />
+
+        <include
+            android:id="@+id/carbon_report_view"
+            layout="@layout/view_group_report"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="14dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent=".15"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/donated_report_view"
+            bind:content="@{viewModel.communityReport.reducedCarbonAmount}"
+            bind:contentType="@{@string/unit_kg}"
+            bind:icon="@{R.drawable.aos_illust_ranking_report_2}"
+            bind:title="@{@string/total_carbon_reduction}" />
+
+        <include
+            android:id="@+id/tree_report_view"
+            layout="@layout/view_group_report"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent=".15"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/carbon_report_view"
+            bind:content="@{viewModel.communityReport.plantingAmount}"
+            bind:contentType="@{@string/unit_tree}"
+            bind:icon="@{R.drawable.aos_illust_ranking_report_3}"
+            bind:title="@{@string/total_planting}" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/bg_crew_list_gradient"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent=".3"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/create_crew_btn"
+            style="@style/NanumBarunpenBold20spWhite"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="61dp"
+            android:layout_marginTop="54dp"
+            android:layout_marginBottom="50dp"
+            android:background="@drawable/radius_12_bg_gradient"
+            android:gravity="center"
+            android:text="@string/create_crew"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

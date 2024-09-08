@@ -1,0 +1,1527 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
+    </style>
+
+    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_background</item>
+    </style>
+
+    <style name="MaterialTheme" parent="Theme.MaterialComponents.NoActionBar">
+
+    </style>
+
+    <style name="AppUpdateDialogStyle" parent="Theme.AppCompat.Light.Dialog" />
+
+    <style name="AppTheme.Toolbar" parent="ThemeOverlay.AppCompat.ActionBar">
+        <!--        &lt;!&ndash; Customize color of navigation drawer icon and back arrow &ndash;&gt;-->
+        <!--        <item name="colorControlNormal">@color/toolbar_icon</item>-->
+    </style>
+
+    <style name="AppTheme.Toolbar.Title" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <!-- Set proper title size -->
+        <item name="android:textSize">22sp</item>
+        <!-- Set title color -->
+        <item name="android:textColor">@color/main_black</item>
+        <item name="android:fontFamily">@font/nanum_barunpen_b</item>
+        <item name="android:letterSpacing">-0.01</item>
+
+    </style>
+
+    <style name="tabTheme" parent="MaterialTheme">
+        <item name="tabSelectedTextColor">@color/main_black</item>
+        <item name="tabTextAppearance">@style/tabTextAppearence</item>
+        <item name="tabIndicatorColor">@color/blue</item>
+        <item name="tabIndicatorHeight">2dp</item>
+    </style>
+
+    <style name="categoryTabTheme" parent="MaterialTheme">
+        <item name="tabSelectedTextColor">@color/white</item>
+        <item name="tabTextAppearance">@style/categoryTabTextAppearence</item>
+        <item name="tabIndicatorHeight">0dp</item>
+        <item name="tabBackground">@drawable/category_tab_selector</item>
+    </style>
+
+    <style name="categoryFeedTabTheme" parent="MaterialTheme">
+        <item name="tabTextColor">@color/white</item>
+        <item name="tabSelectedTextColor">@color/white</item>
+        <item name="tabTextAppearance">@style/categoryFeedTabTextAppearence</item>
+        <item name="tabIndicatorHeight">0dp</item>
+        <item name="tabBackground">@drawable/category_feed_tab_selector</item>
+    </style>
+
+    <style name="categoryRankingTabTheme" parent="MaterialTheme">
+        <item name="tabTextColor">@color/white</item>
+        <item name="tabSelectedTextColor">@color/white</item>
+        <item name="tabTextAppearance">@style/categoryFeedTabTextAppearence</item>
+        <item name="tabIndicatorHeight">0dp</item>
+        <item name="tabBackground">@drawable/category_ranking_tab_selector</item>
+        <item name="tabPaddingStart">10dp</item>
+        <item name="tabPaddingEnd">10dp</item>
+        <item name="tabRippleColor">@color/transparent</item>
+    </style>
+
+    <style name="Theme.AppCompat.Transparent.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@color/black78</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="AllTransparent" parent="Theme.AppCompat.Transparent.NoActionBar">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <style name="Theme.AppCompat.Transparent.NoTitle.FullScreen" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="supportersCampaignFullScreen" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="tabTextAppearence" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">23sp</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+        <item name="android:textColor">@color/sub</item>
+    </style>
+
+    <style name="categoryTabTextAppearence" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+        <item name="android:textColor">@color/main_black</item>
+    </style>
+
+    <style name="categoryFeedTabTextAppearence" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/nanum_square_regular</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="ManiBigTitle">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="SubBigText">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/brown_gray</item>
+    </style>
+
+    <style name="NormalSubText">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/brown_gray</item>
+    </style>
+
+    <style name="ButtonBigTextDisabled">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/brown_gray</item>
+    </style>
+
+    <style name="ButtonBigTextDefault">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/tiffany_blue</item>
+    </style>
+
+    <style name="TitleBar">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/noto_sans_kr_medium_hestia</item>
+    </style>
+
+    <style name="ButtonTextSmall">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/tiffany_blue</item>
+    </style>
+
+    <style name="SubTitleBlackRegular">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/nanum_square_round_r</item>
+    </style>
+
+    <style name="ErrorText">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/pinkish_red</item>
+    </style>
+
+    <style name="ButtonTextWhite">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="ButtonTextDefault">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/nanum_square_round_r</item>
+    </style>
+
+    <style name="PointText">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/maize</item>
+        <item name="android:fontFamily">@font/nanum_square_round_r</item>
+    </style>
+
+    <style name="PointText12">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/maize</item>
+        <item name="android:fontFamily">@font/nanum_square_round_r</item>
+    </style>
+
+    <style name="Point">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/maize</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+    </style>
+
+
+    <style name="PointBigMint">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/tiffany_blue</item>
+        <item name="android:fontFamily">@font/roboto_bold</item>
+    </style>
+
+    <style name="PointMint">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/tiffany_blue</item>
+        <item name="android:fontFamily">@font/roboto_bold</item>
+    </style>
+
+    <style name="CaptionPointMint">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/tiffany_blue</item>
+        <item name="android:fontFamily">@font/noto_sans_kr_bold_hestia</item>
+    </style>
+
+    <style name="CaptionWhite">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/noto_sans_kr_regular_hestia</item>
+    </style>
+
+    <style name="H1">
+        <item name="android:textSize">32sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/noto_sans_kr_bold_hestia</item>
+    </style>
+
+    <style name="SubText">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/noto_sans_kr_medium_hestia</item>
+    </style>
+
+    <style name="CaptionGray">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/brown_gray</item>
+        <item name="android:fontFamily">@font/noto_sans_kr_regular_hestia</item>
+    </style>
+
+    <style name="CaptionGrayRoboto">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/brown_gray</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+    </style>
+
+    <style name="CaptionGray2Roboto">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/brown_gray</item>
+        <item name="android:fontFamily">@font/roboto_regular</item>
+    </style>
+
+    <style name="H1Black">
+        <item name="android:textSize">32sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/noto_sans_kr_medium_hestia</item>
+    </style>
+
+    <style name="H1BlackRoboto">
+        <item name="android:textSize">34sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/roboto_bold</item>
+    </style>
+
+    <style name="H6Mint">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/tiffany_blue</item>
+        <item name="android:fontFamily">@font/noto_sans_kr_bold_hestia</item>
+    </style>
+
+    <style name="SubTitleBlackBold">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/noto_sans_kr_bold_hestia</item>
+    </style>
+
+    <style name="SubTitleMintMedium">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/tiffany_blue</item>
+        <item name="android:fontFamily">@font/noto_sans_kr_medium_hestia</item>
+    </style>
+
+    <style name="SubTitleBlackMedium">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/noto_sans_kr_medium_hestia</item>
+    </style>
+
+    <style name="SubTitle2BlackMedium">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/noto_sans_kr_medium_hestia</item>
+    </style>
+
+    <style name="H2Roboto">
+        <item name="android:textSize">28sp</item>
+        <item name="android:textColor">@color/tiffany_blue</item>
+        <item name="android:fontFamily">@font/roboto_bold</item>
+    </style>
+
+    <style name="AppBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/AppModalStyle</item>
+    </style>
+
+    <style name="AppModalStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/bottom_sheet_background</item>
+    </style>
+
+    <style name="NanumSquareRoundBWhite18sp">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/nanum_square_round_b</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="NanumSquareRoundBWhite18dp">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/nanum_square_round_b</item>
+        <item name="android:textSize">18dp</item>
+    </style>
+
+    <style name="NanumSquareRoundBWhite14sp">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/nanum_square_round_b</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="NanumSquareRoundB14spBlue">
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:fontFamily">@font/nanum_square_round_b</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="NanumSquareRoundBWhite14dp">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/nanum_square_round_b</item>
+        <item name="android:textSize">14dp</item>
+    </style>
+
+    <style name="NanumSquareRoundBWhite16sp">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/nanum_square_round_b</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="NanumSquareRoundBBlack16sp">
+        <item name="android:textColor">@color/black78</item>
+        <item name="android:fontFamily">@font/nanum_square_round_b</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="NanumSquareRoundBRed16sp">
+        <item name="android:textColor">@color/red</item>
+        <item name="android:fontFamily">@font/nanum_square_round_b</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="NanumSquareRoundBWhite12sp">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/nanum_square_round_b</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="NanumSquareRoundBWhite12dp">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/nanum_square_round_b</item>
+        <item name="android:textSize">12dp</item>
+    </style>
+
+    <style name="NanumSquareRoundRBlue">
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:fontFamily">@font/nanum_square_round_r</item>
+    </style>
+
+    <style name="NanumSquareRoundRBlue12sp16height">
+        <item name="android:textSize">12sp</item>
+        <item name="android:height">16sp</item>
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:fontFamily">@font/nanum_square_round_r</item>
+    </style>
+
+    <style name="NanumSquareRoundRBlueBold12sp">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/nanum_square_round_r</item>
+    </style>
+
+    <style name="NanumSquareRoundRBlue16sp">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:fontFamily">@font/nanum_square_round_r</item>
+    </style>
+
+    <style name="NanumSquareRoundRBlack">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#222222</item>
+        <item name="android:fontFamily">@font/nanum_square_round_r</item>
+    </style>
+
+    <style name="NanumSquareRoundRBlack20">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">#222222</item>
+        <item name="android:fontFamily">@font/nanum_square_round_r</item>
+    </style>
+
+    <style name="NanumSquareRoundBBlack20">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">#222222</item>
+        <item name="android:fontFamily">@font/nanum_square_round_b</item>
+    </style>
+
+    <style name="NanumSquareRoundRBlack14sp20height">
+        <item name="android:textSize">14sp</item>
+        <item name="android:height">20dp</item>
+        <item name="android:textColor">#222222</item>
+        <item name="android:fontFamily">@font/nanum_square_round_r</item>
+    </style>
+
+    <style name="NanumSquareRoundRBlack14sp">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#222222</item>
+        <item name="android:fontFamily">@font/nanum_square_round_b</item>
+    </style>
+
+    <style name="NanumSquareRoundRBlackBold16sp24height">
+        <item name="android:textSize">16sp</item>
+        <item name="android:height">24dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#222222</item>
+        <item name="android:fontFamily">@font/nanum_square_round_r</item>
+    </style>
+
+    <style name="NanumSquareRoundRBlackBold24sp">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">#222222</item>
+        <item name="android:fontFamily">@font/nanum_square_round_b</item>
+    </style>
+
+    <style name="NanumSquareRoundRBlack16sp">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">#222222</item>
+        <item name="android:fontFamily">@font/nanum_square_round_r</item>
+    </style>
+
+    <style name="NanumSquareRoundRB12sp">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#222222</item>
+        <item name="android:fontFamily">@font/nanum_square_round_b</item>
+    </style>
+
+    <style name="NanumSquareRoundRBlack16sp24height">
+        <item name="android:textSize">16sp</item>
+        <item name="android:height">24dp</item>
+        <item name="android:textColor">#222222</item>
+        <item name="android:fontFamily">@font/nanum_square_round_r</item>
+    </style>
+
+    <style name="NanumSquareRoundRGray12sp">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#666666</item>
+        <item name="android:fontFamily">@font/nanum_square_round_r</item>
+    </style>
+
+    <style name="NanumSquareRoundRGray12sp16height">
+        <item name="android:textSize">12sp</item>
+        <item name="android:height">16dp</item>
+        <item name="android:textColor">#666666</item>
+        <item name="android:fontFamily">@font/nanum_square_round_r</item>
+    </style>
+
+    <style name="NanumSquareRoundRWhite20sp28heightAndBackground">
+        <item name="android:textSize">20sp</item>
+        <item name="android:height">28dp</item>
+        <item name="android:color">#ffffff</item>
+        <item name="android:background">#4379e7</item>
+        <item name="android:fontFamily">@font/nanum_square_round_r</item>
+    </style>
+
+    <style name="NanumSquareRoundRWhite12sp">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:fontFamily">@font/nanum_square_round_r</item>
+    </style>
+
+    <style name="NanumSquareRoundRWhite14sp">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:fontFamily">@font/nanum_square_round_r</item>
+    </style>
+
+    <style name="NanumSquareRoundRWhite20sp">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:fontFamily">@font/nanum_square_round_r</item>
+    </style>
+
+    <style name="NanumSquareRoundRWhite20sp28heightAlignCenterBold">
+        <item name="android:textSize">20sp</item>
+        <item name="android:height">28dp</item>
+        <item name="android:color">#222222</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/nanum_square_round_r</item>
+    </style>
+
+    <style name="NanumSquareRoundRWhite14sp20heightAlignCenter">
+        <item name="android:textSize">14sp</item>
+        <item name="android:height">20dp</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:fontFamily">@font/nanum_square_round_r</item>
+    </style>
+
+    <style name="NanumSquareRoundRWhite16sp24">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:fontFamily">@font/nanum_square_round_r</item>
+    </style>
+
+    <style name="NanumSquareRoundRWhite56sp64heightAlignCenter">
+        <item name="android:textSize">56sp</item>
+        <item name="android:height">64dp</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:fontFamily">@font/nanum_square_extra_bold</item>
+    </style>
+
+    <style name="NanumSquareL20spMainFont">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/main_black</item>
+        <item name="android:fontFamily">@font/nanum_square_light</item>
+    </style>
+
+    <style name="NanumSquareL20dpMainFont">
+        <item name="android:textSize">20dp</item>
+        <item name="android:textColor">@color/main_black</item>
+        <item name="android:fontFamily">@font/nanum_square_light</item>
+    </style>
+
+    <style name="NanumSquareLWhite28sp">
+        <item name="android:textSize">28sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/nanum_square_light</item>
+    </style>
+
+    <style name="NanumSquareLWhite32sp">
+        <item name="android:textSize">32sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/nanum_square_light</item>
+    </style>
+
+    <style name="NanumSquareRError12sp16spHeightCenterAlign">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#f15060</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:fontFamily">@font/nanum_square_round_r</item>
+    </style>
+
+    <style name="NanumSquareRError12sp16spHeightCenterAlignGreen">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#01DF01</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:fontFamily">@font/nanum_square_round_r</item>
+    </style>
+
+    <style name="NanumSquareRWhite12sp">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/nanum_square_regular</item>
+    </style>
+
+    <style name="NanumSquareRWhite14sp">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/nanum_square_regular</item>
+    </style>
+
+    <style name="NanumSquareRBlack12sp">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/nanum_square_regular</item>
+    </style>
+
+    <style name="NanumSquareRBlack14sp">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/nanum_square_regular</item>
+    </style>
+
+    <style name="NanumSquareR12Red">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/red</item>
+        <item name="android:fontFamily">@font/nanum_square_regular</item>
+    </style>
+
+    <style name="NanumSquareR12MainFont">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/main_black</item>
+        <item name="android:fontFamily">@font/nanum_square_regular</item>
+    </style>
+
+    <style name="NanumSquareR12Sub">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/sub</item>
+        <item name="android:fontFamily">@font/nanum_square_regular</item>
+    </style>
+
+    <style name="NanumSquareR18Sub">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/sub</item>
+        <item name="android:fontFamily">@font/nanum_square_regular</item>
+    </style>
+
+    <style name="NanumSquareR14MainFont">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/main_black</item>
+        <item name="android:fontFamily">@font/nanum_square_regular</item>
+    </style>
+
+    <style name="NanumSquareR14White">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/nanum_square_regular</item>
+    </style>
+
+    <style name="NanumSquareR16MainFont">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/main_black</item>
+        <item name="android:fontFamily">@font/nanum_square_regular</item>
+    </style>
+
+    <style name="NanumSquareR16MainGray">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/sub</item>
+        <item name="android:fontFamily">@font/nanum_square_regular</item>
+    </style>
+
+    <style name="NanumSquareR20MainFont">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/main_black</item>
+        <item name="android:fontFamily">@font/nanum_square_regular</item>
+    </style>
+
+    <style name="NanumSquareB28MainFont">
+        <item name="android:textSize">28sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/main_black</item>
+        <item name="android:fontFamily">@font/nanum_square_regular</item>
+    </style>
+
+    <style name="NanumSquareRB14dpWhite">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/nanum_square_regular</item>
+    </style>
+
+    <style name="backgroundMint">
+        <item name="android:background">#74f6db</item>
+    </style>
+
+    <style name="NanumSquareRoundEb56spBlue">
+        <item name="android:textSize">56sp</item>
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:fontFamily">@font/nanum_square_round_eb</item>
+    </style>
+
+    <style name="NanumSquareRoundEb56spRed">
+        <item name="android:textSize">56sp</item>
+        <item name="android:textColor">@color/red</item>
+        <item name="android:fontFamily">@font/nanum_square_round_eb</item>
+    </style>
+
+    <style name="NanumSquareRoundEb20spBlack">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/main_black</item>
+        <item name="android:fontFamily">@font/nanum_square_round_eb</item>
+    </style>
+
+    <style name="NanumSquareRoundEb22spWhite">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/nanum_square_round_eb</item>
+    </style>
+
+    <style name="NanumSquareRoundEb24spWhite">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/nanum_square_round_eb</item>
+    </style>
+
+    <style name="NanumSquareRoundEb24spBlack">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/main_black</item>
+        <item name="android:fontFamily">@font/nanum_square_round_eb</item>
+    </style>
+
+    <style name="NanumSquareRoundEb20spWhite">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/nanum_square_round_eb</item>
+    </style>
+
+    <style name="NanumSquareRoundEb16spBlack">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/main_black</item>
+        <item name="android:fontFamily">@font/nanum_square_round_eb</item>
+    </style>
+
+    <style name="NanumSquareRoundEb16spWhite">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/nanum_square_round_eb</item>
+    </style>
+
+    <style name="NanumSquareRoundEb14spYellow">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/maize</item>
+        <item name="android:fontFamily">@font/nanum_square_round_eb</item>
+    </style>
+
+    <style name="NanumSquareRoundR16spWhite">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/nanum_square_round_r</item>
+    </style>
+
+    <style name="NanumSquareRoundR16spBlack">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">#222222</item>
+        <item name="android:fontFamily">@font/nanum_square_round_r</item>
+    </style>
+
+    <style name="NanumSquareRoundL16spYellow">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/maize</item>
+        <item name="android:fontFamily">@font/nanum_square_round_l</item>
+    </style>
+
+    <style name="NanumSquareRoundL16spBlack">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/main_black</item>
+        <item name="android:fontFamily">@font/nanum_square_round_l</item>
+    </style>
+
+    <style name="NanumSquareRoundL14spYellow">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/maize</item>
+        <item name="android:fontFamily">@font/nanum_square_round_l</item>
+    </style>
+
+    <style name="NanumSquareRoundL14spSub2">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/sub2</item>
+        <item name="android:fontFamily">@font/nanum_square_round_l</item>
+    </style>
+
+    <style name="NanumSquareB18spWhite">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+    </style>
+
+    <style name="NanumSquareB18dpWhite">
+        <item name="android:textSize">18dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+    </style>
+
+    <style name="NanumSquareB18dpMainBlack">
+        <item name="android:textSize">18dp</item>
+        <item name="android:textColor">@color/main_black</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+    </style>
+
+    <style name="NanumSquareB16spWhite">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+    </style>
+
+    <style name="NanumSquareB16dpWhite">
+        <item name="android:textSize">16dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+    </style>
+
+    <style name="NanumSquareB12spBlue">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+    </style>
+
+    <style name="NanumSquareB12spBlack">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#222222</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+    </style>
+
+    <style name="NanumSquareB13spBlack">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">#222222</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+    </style>
+
+    <style name="NanumSquareB15spBlack">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">#222222</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+    </style>
+
+    <style name="NanumSquareB16spBlack">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">#222222</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+    </style>
+
+    <style name="NanumSquareB18spBlack">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">#222222</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+    </style>
+
+    <style name="NanumSquareB19spBlack">
+        <item name="android:textSize">19sp</item>
+        <item name="android:textColor">#222222</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+    </style>
+
+    <style name="NanumSquareB20spBlack">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">#222222</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+    </style>
+
+    <style name="NanumSquareB12spWhite">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+    </style>
+
+    <style name="NanumSquareB12dpWhite">
+        <item name="android:textSize">12dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+    </style>
+
+    <style name="NanumSquareB10spWhite">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+    </style>
+
+    <style name="NanumSquareB10spBlack">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">@color/main_black</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+    </style>
+
+    <style name="NanumSquareB10spBlue">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+    </style>
+
+    <style name="NanumSquareB11spBrownishGrey">
+        <item name="android:textSize">11sp</item>
+        <item name="android:textColor">@color/brownish_grey</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+    </style>
+
+    <style name="NanumSquareB13spBrownishGrey">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/brownish_grey</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+    </style>
+
+    <style name="NanumSquareB15spBrownishGrey">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/brownish_grey</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+    </style>
+
+    <style name="NanumSquareL11spBrownishGrey">
+        <item name="android:textSize">11sp</item>
+        <item name="android:textColor">@color/brownish_grey</item>
+        <item name="android:fontFamily">@font/nanum_square_light</item>
+    </style>
+
+    <style name="NanumSquareRoundR13spBlack">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">#222222</item>
+        <item name="android:fontFamily">@font/nanum_square_round_r</item>
+    </style>
+
+    <style name="NanumSquareRoundR13spWhite">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/nanum_square_round_r</item>
+    </style>
+
+    <style name="NanumSquareB10dpWhite">
+        <item name="android:textSize">10dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+    </style>
+
+    <style name="NanumSquareB8spDarkSkyBlue">
+        <item name="android:textSize">8sp</item>
+        <item name="android:textColor">@color/dark_sky_blue</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+    </style>
+
+    <style name="NanumSquareB12spDarkSkyBlue">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/dark_sky_blue</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+    </style>
+
+    <style name="NanumSquareB16spDarkSkyBlue">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/dark_sky_blue</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+    </style>
+
+    <style name="NanumSquareB8spBlue">
+        <item name="android:textSize">8sp</item>
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+    </style>
+
+    <style name="NanumSquareB8spWhite">
+        <item name="android:textSize">8sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+    </style>
+
+    <style name="NanumSquareB9spWhite">
+        <item name="android:textSize">9sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+    </style>
+
+    <style name="NanumSquareB8dpWhite">
+        <item name="android:textSize">8dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+    </style>
+
+    <style name="NanumSquareEb20spBlack">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/main_black</item>
+        <item name="android:fontFamily">@font/nanum_square_extra_bold</item>
+    </style>
+
+    <style name="NanumSquareEb24spWhite">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/nanum_square_extra_bold</item>
+    </style>
+
+    <style name="NanumSquareEb14spWhite">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/nanum_square_extra_bold</item>
+    </style>
+
+    <style name="NanumSquareEb14dpWhite">
+        <item name="android:textSize">14dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/nanum_square_extra_bold</item>
+    </style>
+
+    <style name="NanumSquareEb16spWhite">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/nanum_square_extra_bold</item>
+    </style>
+
+    <style name="NanumSquareEb16dpWhite">
+        <item name="android:textSize">16dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/nanum_square_extra_bold</item>
+    </style>
+
+    <style name="NanumSquareEb12spWhite">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/nanum_square_extra_bold</item>
+    </style>
+
+    <style name="NanumSquareEb12dpWhite">
+        <item name="android:textSize">12dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/nanum_square_extra_bold</item>
+    </style>
+
+    <style name="NanumSquareEb11dpWhite">
+        <item name="android:textSize">11dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/nanum_square_regular</item>
+    </style>
+
+    <style name="NanumSquareB11spWhite">
+        <item name="android:textSize">11sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+    </style>
+
+    <style name="NanumSquareB14MainFont">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/main_black</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+    </style>
+
+    <style name="NanumSquareB14Watermelon">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/water_melon</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+    </style>
+
+    <style name="NanumSquareB14White">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+    </style>
+
+    <style name="NanumSquareB14Gray">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/brownish_grey</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+    </style>
+
+    <style name="NanumsquareB15dpPacificBlue">
+        <item name="android:textSize">15dp</item>
+        <item name="android:textColor">@color/pacific_blue</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+    </style>
+
+    <style name="NanumsquareB16MainFont">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/main_black</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+    </style>
+
+    <style name="NanumsquareB16White">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+    </style>
+
+    <style name="NanumsquareB16Blue">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+    </style>
+
+    <style name="NanumSquareB20White">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+    </style>
+
+    <style name="NanumSquareB20MainFont">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/main_black</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+    </style>
+
+    <style name="NanumSquareB25MainFont">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/main_black</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+    </style>
+
+    <style name="NanumSquareB16ShamrockGreen">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/shamrock_green</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+    </style>
+
+    <style name="NanumSquareR8Sub">
+        <item name="android:textSize">8sp</item>
+        <item name="android:textColor">@color/sub</item>
+        <item name="android:fontFamily">@font/nanum_square_regular</item>
+    </style>
+
+    <style name="NanumSquareR8Sub2">
+        <item name="android:textSize">8sp</item>
+        <item name="android:textColor">@color/sub2</item>
+        <item name="android:fontFamily">@font/nanum_square_regular</item>
+    </style>
+
+    <style name="NanumSquareR9WarmGreyTwo">
+        <item name="android:textSize">9sp</item>
+        <item name="android:textColor">@color/warmGreyTwo</item>
+        <item name="android:fontFamily">@font/nanum_square_regular</item>
+    </style>
+
+    <style name="NanumSquareR13White">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/nanum_square_regular</item>
+    </style>
+
+    <style name="NanumSquareR14Gray">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/brownish_grey</item>
+        <item name="android:fontFamily">@font/nanum_square_regular</item>
+    </style>
+
+    <style name="NanumSquareR14Sub2">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/sub2</item>
+        <item name="android:fontFamily">@font/nanum_square_regular</item>
+    </style>
+
+    <style name="NanumSquareR14Black">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/main_black</item>
+        <item name="android:fontFamily">@font/nanum_square_regular</item>
+    </style>
+
+    <style name="NanumSquareR16Black">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/main_black</item>
+        <item name="android:fontFamily">@font/nanum_square_regular</item>
+    </style>
+
+
+    <style name="NanumSquareR16WarmGreyTwo">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/warmGreyTwo</item>
+        <item name="android:fontFamily">@font/nanum_square_regular</item>
+    </style>
+
+    <style name="NanumSquareR10ShamrockGreen">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">@color/shamrock_green</item>
+        <item name="android:fontFamily">@font/nanum_square_regular</item>
+    </style>
+
+    <style name="NanumSquareB10DarkSkyBlue">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">@color/dark_sky_blue</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+    </style>
+
+    <style name="NanumSquareR12Blue">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:fontFamily">@font/nanum_square_regular</item>
+    </style>
+
+    <style name="NanumSquareR16Sub">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/sub</item>
+        <item name="android:fontFamily">@font/nanum_square_regular</item>
+    </style>
+
+    <style name="NanumsquareL8MainFont">
+        <item name="android:textSize">8sp</item>
+        <item name="android:textColor">@color/main_black</item>
+        <item name="android:fontFamily">@font/nanum_square_light</item>
+    </style>
+
+    <style name="NanumsquareL10MainFont">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">@color/main_black</item>
+        <item name="android:fontFamily">@font/nanum_square_light</item>
+    </style>
+
+    <style name="NanumsquareL10White">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/nanum_square_light</item>
+    </style>
+
+    <style name="NanumSquareL10spBlack">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">@color/main_black</item>
+        <item name="android:fontFamily">@font/nanum_square_light</item>
+    </style>
+
+    <style name="NanumSquareL10spWhite">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/nanum_square_light</item>
+    </style>
+
+    <style name="NanumSquareLBlack12">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/main_black</item>
+        <item name="android:fontFamily">@font/nanum_square_light</item>
+    </style>
+
+    <style name="NanumSquareL12Blue">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:fontFamily">@font/nanum_square_light</item>
+    </style>
+
+    <style name="NanumSquareLSub12">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/sub</item>
+        <item name="android:fontFamily">@font/nanum_square_light</item>
+    </style>
+
+    <style name="NanumSquareL14MainFont">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/main_black</item>
+        <item name="android:fontFamily">@font/nanum_square_light</item>
+    </style>
+
+    <style name="NanumSquareL14dpMainFont">
+        <item name="android:textSize">14dp</item>
+        <item name="android:textColor">@color/main_black</item>
+        <item name="android:fontFamily">@font/nanum_square_light</item>
+    </style>
+
+    <style name="NanumSquareL14Sub">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/sub</item>
+        <item name="android:fontFamily">@font/nanum_square_light</item>
+    </style>
+
+    <style name="NanumSquareL14White">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/nanum_square_light</item>
+    </style>
+
+    <style name="NanumSquareEb48spWhite">
+        <item name="android:textSize">48sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/nanum_square_extra_bold</item>
+    </style>
+
+    <style name="NanumSquareEb16spBlack">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/main_black</item>
+        <item name="android:fontFamily">@font/nanum_square_extra_bold</item>
+    </style>
+
+    <style name="NanumSquareEb12MainFont">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/main_black</item>
+        <item name="android:fontFamily">@font/nanum_square_extra_bold</item>
+    </style>
+
+    <style name="NanumSquareEb12spBlue">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:fontFamily">@font/nanum_square_extra_bold</item>
+    </style>
+
+    <style name="NanumSquareEb12Sub">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/sub</item>
+        <item name="android:fontFamily">@font/nanum_square_extra_bold</item>
+    </style>
+
+    <style name="NanumSquareB14spWhiteGray">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#999999</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+    </style>
+
+    <style name="BottomSheet" parent="Animation.Design.BottomSheetDialog">
+        <item name="android:background">@drawable/rounded_oval_background</item>
+    </style>
+
+    <style name="NanumSquareR16spSpaceBlack">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">#222222</item>
+        <item name="android:fontFamily">@font/nanum_square_round_r</item>
+    </style>
+
+    <style name="NanumSquareL25spBlackUnderline">
+        <item name="android:textSize">25sp</item>
+        <item name="android:textColor">@color/black26</item>
+        <item name="android:fontFamily">@font/nanum_square_light</item>
+        <item name="android:background">@drawable/hyperlink_underline</item>
+    </style>
+
+    <style name="NanumSquareB8Black26">
+        <item name="android:textSize">8sp</item>
+        <item name="android:textColor">@color/black26</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+    </style>
+
+    <style name="NanumSquareB14dpWhite">
+        <item name="android:textSize">14dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+    </style>
+
+    <style name="NanumSquareB15spSub2">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/sub2</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+    </style>
+
+    <style name="NanumSquareB23spWhite">
+        <item name="android:textSize">23sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+    </style>
+
+    <style name="NanumSquareB16spSub">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/sub2</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+    </style>
+
+    <style name="NanumSquareR18spSub">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/sub2</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+    </style>
+
+    <style name="NanumSquareR16spWhite">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/nanum_square_regular</item>
+    </style>
+
+    <style name="NanumSquareR14spBlue">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:fontFamily">@font/nanum_square_regular</item>
+    </style>
+
+    <style name="NanumSquareR14spBlack">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/nanum_square_regular</item>
+    </style>
+
+    <style name="NanumSquareB17spBlack">
+        <item name="android:textSize">17sp</item>
+        <item name="android:textColor">@color/main_black</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+    </style>
+
+    <style name="NanumSquareB14spBlack">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/main_black</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+    </style>
+
+    <style name="NanumSquareB23spBlack">
+        <item name="android:textSize">23sp</item>
+        <item name="android:textColor">@color/main_black</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+    </style>
+
+    <style name="NanumSquareB20spBlue">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+    </style>
+
+    <style name="Cafe24OhSquare26spWhite">
+        <item name="android:textSize">26sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/cafe24_ohsquare</item>
+    </style>
+
+    <style name="fullscreen_dialog">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowBackground">@color/transparent</item>
+    </style>
+
+    <style name="Title2_Bold">
+        <item name="android:textSize">20sp</item>
+        <item name="android:lineHeight">26sp</item>
+        <item name="android:textColor">@color/main_black</item>
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+    </style>
+
+    <style name="BodyBold">
+        <item name="android:fontFamily">@font/nanum_square_round_b</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:lineHeight">23sp</item>
+        <item name="android:textColor">@color/main_black</item>
+        <item name="android:textAlignment">textStart</item>
+    </style>
+
+    <style name="Body_Regular">
+        <item name="android:fontFamily">@font/nanum_square_round_r</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:lineHeight">23sp</item>
+        <item name="android:textColor">@color/main_black</item>
+        <item name="android:textAlignment">textStart</item>
+    </style>
+
+    <style name="Large_Title">
+        <item name="android:fontFamily">@font/nanum_square_light</item>
+        <item name="android:textSize">28sp</item>
+        <item name="android:lineHeight">37sp</item>
+        <item name="android:textColor">@color/main_black</item>
+        <item name="android:textAlignment">textStart</item>
+    </style>
+
+    <style name="CaptionLight">
+        <item name="android:fontFamily">@font/nanum_square_light</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:lineHeight">17sp</item>
+        <item name="android:textColor">@color/main_black</item>
+        <item name="android:textAlignment">textStart</item>
+    </style>
+
+    <style name="SubTitle1">
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:lineHeight">22sp</item>
+        <item name="android:textColor">@color/main_black</item>
+        <item name="android:textAlignment">textStart</item>
+    </style>
+
+    <style name="SubBodyBold">
+        <item name="android:fontFamily">@font/nanum_square_bold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+        <item name="android:textColor">@color/main_black</item>
+        <item name="android:textAlignment">textStart</item>
+    </style>
+
+    <style name="SubBodyLight">
+        <item name="android:fontFamily">@font/nanum_square_light</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:lineHeight">18sp</item>
+        <item name="android:textColor">@color/main_black</item>
+        <item name="android:textAlignment">textStart</item>
+    </style>
+
+    <style name="FootNote">
+        <item name="android:fontFamily">@font/nanum_square_round_r</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:lineHeight">18sp</item>
+        <item name="android:textColor">@color/main_black</item>
+        <item name="android:textAlignment">textStart</item>
+    </style>
+
+    <style name="BodyLight">
+        <item name="android:fontFamily">@font/nanum_square_round_l</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:lineHeight">23sp</item>
+        <item name="android:textColor">@color/main_black</item>
+        <item name="android:textAlignment">textStart</item>
+    </style>
+
+    <style name="NanumBarunpenBold22spBlack">
+        <item name="android:fontFamily">@font/nanum_barunpen_b</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:letterSpacing">-0.01</item>
+        <item name="android:textColor">@color/main_black</item>
+    </style>
+
+    <style name="NanumBarunpenBold20spWhite">
+        <item name="android:fontFamily">@font/nanum_barunpen_b</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:letterSpacing">-0.01</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="NanumBarunpenBold20spSubGray1">
+        <item name="android:fontFamily">@font/nanum_barunpen_b</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/sub</item>
+    </style>
+
+    <style name="IMHyeminBold15White">
+        <item name="android:fontFamily">@font/im_hyemin_bold</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:letterSpacing">-0.04</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="IMHyeminRegular12Black">
+        <item name="android:fontFamily">@font/im_hyemin_regular</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/main_black</item>
+    </style>
+
+    <style name="IMHyemin12MainBlack">
+        <item name="android:fontFamily">@font/im_hyemin_bold</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:letterSpacing">-0.04</item>
+        <item name="android:textColor">@color/main_black</item>
+    </style>
+    
+    <style name="yspotlightot16Regular">
+        <item name="android:fontFamily">@font/yspotlightot_regular</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/main_black</item>
+    </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <style name="DialogThemeAppCompat" parent="Theme.AppCompat.Light.Dialog">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="colorPrimary">@color/design_default_color_primary</item>
+        <item name="colorAccent">@color/design_default_color_on_primary</item>
+        <item name="colorPrimaryDark">@color/design_default_color_primary_dark</item>
+        <item name="colorControlActivated">@color/design_default_color_primary_variant</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+        <item name="android:windowMinWidthMajor">94%</item>
+        <item name="android:windowMinWidthMinor">94%</item>
+        <!--added below line for cancelable false behaviour on touch outside dialog-->
+        <item name="android:windowCloseOnTouchOutside">false</item>
+    </style>
+
+</resources>

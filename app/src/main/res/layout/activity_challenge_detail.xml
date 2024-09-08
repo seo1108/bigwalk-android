@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="kr.co.bigwalk.app.feed.ChallengeDetailViewModel" />
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/feed_detail_top"
+            android:layout_width="0dp"
+            android:layout_height="84dp"
+            android:background="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/iv_feed_detail_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/aos_icon_dowalk_challenge_list_back_btn"
+                android:layout_marginStart="18dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/NanumSquareB23spBlack"
+                android:text="@string/feed"
+                app:layout_constraintStart_toEndOf="@+id/iv_feed_detail_back"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:text="챌린지"/>
+
+            <ImageView
+                android:id="@+id/iv_feed_detail_mypage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                visibleIf="@{viewModel.isOrganizationVisible}"
+                android:onClick="@{() -> viewModel.goFeedMyPage()}"
+                android:src="@drawable/aos_icon_dowalk_mypage"
+                android:layout_marginEnd="18dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <ImageView
+                android:id="@+id/iv_feed_detail_play"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                visibleIf="@{viewModel.isOrganizationVisible}"
+                android:src="@drawable/aos_icon_dowalk_play"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/iv_feed_detail_mypage"/>
+
+            <FrameLayout
+                android:id="@+id/feed_detail_notice_frame"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                visibleIf="@{viewModel.isOrganizationVisible}"
+                android:onClick="@{() -> viewModel.goFeedNotification()}"
+                android:layout_marginEnd="19dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/iv_feed_detail_play">
+
+                <ImageView
+                    android:id="@+id/iv_feed_detail_notice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/aos_icon_dowalk_notice"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/iv_feed_detail_play"/>
+
+                <View
+                    android:id="@+id/feed_detail_notice_circle"
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:background="@drawable/circle_red"
+                    android:layout_gravity="end"/>
+
+            </FrameLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <kr.co.bigwalk.app.base.StickyHeaderScrollView
+            android:id="@+id/main_scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/feed_detail_top">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="15dp">
+
+                <LinearLayout
+                    android:id="@+id/top_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="118dp"
+                        android:layout_height="172dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        app:cardElevation="5dp"
+                        app:cardCornerRadius="8dp">
+
+                        <ImageView
+                            android:id="@+id/iv_member"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitXY"
+                            loadFullImage="@{viewModel.challengeDetail.mainImagePath}"
+                            tools:src="@drawable/autumn_day" />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="11dp"
+                        android:layout_marginEnd="16dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/NanumSquareR14Sub2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingTop="23dp"
+                            android:text="@{viewModel.challengeDetail.startDate + ` ~ ` + viewModel.challengeDetail.endDate}"
+                            tools:text="2023.02.01 ~ 2023.02.28" />
+
+                        <TextView
+                            style="@style/NanumSquareB19spBlack"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingTop="8dp"
+                            android:text="@{viewModel.challengeDetail.title}"
+                            tools:text="걸으면서 주워보깅 챌린지" />
+
+                        <TextView
+                            style="@style/NanumSquareR16Black"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingTop="16dp"
+                            android:lineHeight="22sp"
+                            android:text="@{viewModel.challengeDetail.content}"
+                            tools:text="플로깅을 같이하며 나의 건강과 함께 실천해요!" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/report_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="38dp"
+                    android:paddingBottom="38dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/top_container">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="1">
+
+                        <TextView
+                            style="@style/NanumSquareEb20spBlack"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@{viewModel.challengeDetail.avgParticipations}"
+                            tools:text="2.5" />
+
+                        <TextView
+                            style="@style/NanumSquareB16spSub"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="8dp"
+                            android:gravity="center"
+                            android:text="@string/user_average_participate" />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="1">
+
+                        <TextView
+                            style="@style/NanumSquareEb20spBlack"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@{viewModel.challengeDetail.myParticipations}"
+                            tools:text="2" />
+
+                        <TextView
+                            style="@style/NanumSquareB16spSub"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="8dp"
+                            android:gravity="center"
+                            android:text="@string/my_average_participate" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="1">
+
+                        <TextView
+                            style="@style/NanumSquareEb20spBlack"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@{viewModel.challengeDetail.myLikes}"
+                            tools:text="300" />
+
+                        <TextView
+                            style="@style/NanumSquareB16spSub"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="8dp"
+                            android:gravity="center"
+                            android:text="@string/like_count" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/header_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="1dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/report_container">
+
+                    <LinearLayout
+                        android:id="@+id/popular_container"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/popular_title"
+                            android:textSize="18sp"
+                            android:textColor="@{viewModel.isPopular? @color/main_black : @color/sub}"
+                            android:background="@{viewModel.isPopular? @color/white_gray : @color/white}"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="14dp"
+                            android:paddingBottom="14dp"
+                            android:gravity="center"
+                            android:text="@string/popular_post" />
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@{viewModel.isPopular? @color/main_black : @color/white}" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/recent_container"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/recent_title"
+                            android:textSize="18sp"
+                            android:textColor="@{viewModel.isRecent? @color/main_black : @color/sub}"
+                            android:background="@{viewModel.isRecent? @color/white_gray : @color/white}"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="14dp"
+                            android:paddingBottom="14dp"
+                            android:gravity="center"
+                            android:text="@string/recent_post" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@{viewModel.isRecent? @color/main_black : @color/white}" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/my_container"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/my_title"
+                            android:textSize="18sp"
+                            android:textColor="@{viewModel.isMy? @color/main_black : @color/sub}"
+                            android:background="@{viewModel.isMy? @color/white_gray : @color/white}"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="14dp"
+                            android:paddingBottom="14dp"
+                            android:gravity="center"
+                            android:text="@string/my_post" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@{viewModel.isMy? @color/main_black : @color/white}" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/challenge_detail_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:spanCount="3"
+                    android:nestedScrollingEnabled="false"
+                    bindImageItem="@{viewModel.challengeImageList}"
+                    tools:listitem="@layout/item_recycler_challenge_post"
+                    app:layout_constraintTop_toBottomOf="@+id/header_view"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
+
+        </kr.co.bigwalk.app.base.StickyHeaderScrollView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="kr.co.bigwalk.app.community.funding.SupportersCampaignsViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".community.funding.SupportersCampaignsActivity">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/aos_bg_crew_list_bg"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/toolbar"
+            android:layout_width="0dp"
+            android:layout_height="90dp"
+            android:layout_marginTop="34dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/exit_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:padding="20dp"
+                android:src="@drawable/aos_icon_20_exit"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                style="@style/NanumBarunpenBold22spBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/crew_campaign"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="크루 캠페인" />
+
+            <ImageView
+                android:id="@+id/guide_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:padding="12dp"
+                android:src="@drawable/aos_icon_crewcampaign_guide"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            app:layout_constraintVertical_bias="0.41">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/shelf1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/board1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:srcCompat="@drawable/aos_illust_crew_top_skateboard" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="56dp"
+                    android:layout_marginEnd="50dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <View
+                        android:id="@+id/group_1"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/photo_frame_1"
+                        app:layout_constraintEnd_toEndOf="@+id/photo_frame_1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/photo_frame_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="54dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintHorizontal_chainStyle="packed"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/aos_illust_crew_top_frame_1" />
+
+                    <ImageView
+                        android:id="@+id/photo_1"
+                        loadFullImageUrl="@{vm.supportersCampaigns.get(1).thumbnailPath}"
+                        visibleIf="@{vm.supportersCampaigns.get(1).thumbnailPath == null ? false : true}"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginHorizontal="12dp"
+                        android:layout_marginVertical="11dp"
+                        android:scaleType="centerCrop"
+                        app:layout_constraintBottom_toBottomOf="@+id/photo_frame_1"
+                        app:layout_constraintEnd_toEndOf="@+id/photo_frame_1"
+                        app:layout_constraintStart_toStartOf="@+id/photo_frame_1"
+                        app:layout_constraintTop_toTopOf="@+id/photo_frame_1"
+                        tools:background="@color/colorGrey" />
+
+                    <ImageView
+                        android:id="@+id/add_btn_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/aos_icon_crew_list_add_btn" />
+
+                    <ImageView
+                        android:id="@+id/imageView16"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="124dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@+id/photo_frame_1"
+                        app:srcCompat="@drawable/aos_illust_crew_top_camera" />
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/imageView15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="56dp"
+                        android:layout_marginBottom="16dp"
+                        app:layout_constraintBottom_toTopOf="@+id/imageView16"
+                        app:layout_constraintStart_toEndOf="@+id/photo_frame_1"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:lottie_rawRes="@raw/aos_camera"
+                        tools:src="@drawable/aos_lottie_crew_top_camera" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/shelf2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="9dp">
+
+                <ImageView
+                    android:id="@+id/board2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:srcCompat="@drawable/aos_illust_crew_mid_skateboard" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="34dp"
+                    android:layout_marginEnd="52dp"
+                    android:layout_marginBottom="54dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.451"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0">
+
+                    <ImageView
+                        android:id="@+id/radio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/add_btn_2"
+                        app:srcCompat="@drawable/aos_illust_crew_mid_speaker" />
+
+                    <ImageView
+                        android:id="@+id/photo_frame_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        app:layout_constraintStart_toStartOf="@+id/add_btn_2"
+                        app:layout_constraintTop_toTopOf="@+id/add_btn_2"
+                        app:srcCompat="@drawable/aos_illust_crew_mid_frame_2" />
+
+                    <ImageView
+                        loadFullImageUrl="@{vm.supportersCampaigns.get(2).thumbnailPath}"
+                        visibleIf="@{vm.supportersCampaigns.get(2).thumbnailPath == null ? false : true}"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginHorizontal="13dp"
+                        android:layout_marginVertical="14dp"
+                        android:scaleType="centerCrop"
+                        app:layout_constraintBottom_toBottomOf="@+id/photo_frame_2"
+                        app:layout_constraintEnd_toEndOf="@+id/photo_frame_2"
+                        app:layout_constraintStart_toStartOf="@+id/photo_frame_2"
+                        app:layout_constraintTop_toTopOf="@+id/photo_frame_2"
+                        tools:background="@color/colorGrey" />
+
+                    <ImageView
+                        android:id="@+id/add_btn_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="34dp"
+                        app:layout_constraintStart_toEndOf="@+id/imageView17"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/aos_icon_crew_list_add_btn" />
+
+                    <ImageView
+                        android:id="@+id/photo_frame_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="75dp"
+                        android:layout_marginEnd="10dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/photo_frame_2"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/photo_frame_2"
+                        app:srcCompat="@drawable/aos_illust_crew_mid_frame_3" />
+
+                    <ImageView
+                        clipToOutline="@{true}"
+                        loadFullImageUrl="@{vm.supportersCampaigns.get(3).thumbnailPath}"
+                        visibleIf="@{vm.supportersCampaigns.get(3).thumbnailPath == null ? false : true}"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginVertical="9dp"
+                        android:background="@drawable/radius5"
+                        android:scaleType="centerCrop"
+                        app:layout_constraintBottom_toBottomOf="@+id/photo_frame_3"
+                        app:layout_constraintEnd_toEndOf="@+id/photo_frame_3"
+                        app:layout_constraintStart_toStartOf="@+id/photo_frame_3"
+                        app:layout_constraintTop_toTopOf="@+id/photo_frame_3"
+                        tools:backgroundTint="@color/colorGrey" />
+
+                    <ImageView
+                        android:id="@+id/add_btn_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toTopOf="@+id/photo_frame_3"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/photo_frame_3"
+                        app:srcCompat="@drawable/aos_icon_crew_list_add_btn" />
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/imageView17"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="2dp"
+                        app:layout_constraintBottom_toTopOf="@+id/radio"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:lottie_rawRes="@raw/aos_speaker"
+                        tools:src="@drawable/aos_lottie_crew_mid_speaker" />
+
+                    <View
+                        android:id="@+id/group_2"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/photo_frame_2"
+                        app:layout_constraintEnd_toEndOf="@+id/photo_frame_2"
+                        app:layout_constraintStart_toStartOf="@+id/add_btn_2"
+                        app:layout_constraintTop_toTopOf="@+id/add_btn_2" />
+
+                    <View
+                        android:id="@+id/group_3"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/photo_frame_3"
+                        app:layout_constraintEnd_toEndOf="@+id/add_btn_3"
+                        app:layout_constraintStart_toStartOf="@+id/photo_frame_3"
+                        app:layout_constraintTop_toTopOf="@+id/add_btn_3" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/shelf3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-8dp">
+
+                <ImageView
+                    android:id="@+id/board3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:srcCompat="@drawable/aos_illust_crew_bottom_skateboard" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="14dp"
+                    android:layout_marginBottom="54dp"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/photo_frame_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:srcCompat="@drawable/aos_illust_crew_bottom_frame_4" />
+
+                    <ImageView
+                        loadFullImageUrl="@{vm.supportersCampaigns.get(4).thumbnailPath}"
+                        visibleIf="@{vm.supportersCampaigns.get(4).thumbnailPath == null ? false : true}"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_margin="11dp"
+                        android:scaleType="centerCrop"
+                        app:layout_constraintBottom_toBottomOf="@+id/photo_frame_4"
+                        app:layout_constraintEnd_toEndOf="@+id/photo_frame_4"
+                        app:layout_constraintStart_toStartOf="@+id/photo_frame_4"
+                        app:layout_constraintTop_toTopOf="@+id/photo_frame_4"
+                        tools:background="@color/colorGrey" />
+
+                    <ImageView
+                        android:id="@+id/add_btn_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toTopOf="@+id/photo_frame_4"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/photo_frame_4"
+                        app:srcCompat="@drawable/aos_icon_crew_list_add_btn" />
+
+                    <ImageView
+                        android:id="@+id/photo_frame_5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/photo_frame_4"
+                        app:srcCompat="@drawable/aos_illust_crew_bottom_frame_5" />
+
+                    <ImageView
+                        loadFullImageUrl="@{vm.supportersCampaigns.get(5).thumbnailPath}"
+                        visibleIf="@{vm.supportersCampaigns.get(5).thumbnailPath == null ? false : true}"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginHorizontal="9dp"
+                        android:layout_marginVertical="10dp"
+                        android:scaleType="centerCrop"
+                        app:layout_constraintBottom_toBottomOf="@+id/photo_frame_5"
+                        app:layout_constraintEnd_toEndOf="@+id/photo_frame_5"
+                        app:layout_constraintStart_toStartOf="@+id/photo_frame_5"
+                        app:layout_constraintTop_toTopOf="@+id/photo_frame_5"
+                        tools:background="@color/colorGrey" />
+
+                    <ImageView
+                        android:id="@+id/add_btn_5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toTopOf="@+id/photo_frame_5"
+                        app:layout_constraintEnd_toStartOf="@+id/photo_frame_5"
+                        app:layout_constraintStart_toStartOf="@+id/photo_frame_5"
+                        app:layout_constraintTop_toTopOf="@+id/photo_frame_5"
+                        app:srcCompat="@drawable/aos_icon_crew_list_add_btn" />
+
+                    <View
+                        android:id="@+id/group_4"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/photo_frame_4"
+                        app:layout_constraintEnd_toEndOf="@+id/photo_frame_4"
+                        app:layout_constraintStart_toStartOf="@+id/add_btn_4"
+                        app:layout_constraintTop_toTopOf="@+id/add_btn_4" />
+
+                    <View
+                        android:id="@+id/group_5"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/photo_frame_5"
+                        app:layout_constraintEnd_toEndOf="@+id/photo_frame_5"
+                        app:layout_constraintStart_toStartOf="@+id/add_btn_5"
+                        app:layout_constraintTop_toTopOf="@+id/add_btn_5" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tooltip_guide"
+            style="@style/IMHyeminBold15White"
+            visibleIf="@{vm.tooltipVisible}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="99dp"
+            android:layout_marginEnd="22dp"
+            android:background="@drawable/aos_icon_crewcampaign_tooltipbox_guide"
+            android:gravity="center"
+            android:paddingTop="8dp"
+            android:text="@string/tooltip_crew_campaign_list_explain"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

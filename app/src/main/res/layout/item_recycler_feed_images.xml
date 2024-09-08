@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="feed"
+            type="kr.co.bigwalk.app.data.feed.dto.Feed" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:id="@+id/feed_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="17dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                loadImage="@{feed.user.profilePath}"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                app:civ_border_color="@color/profile_border"
+                app:civ_border_overlay="true"
+                app:civ_border_width="0.5dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/profile_name"
+                style="@style/NanumSquareB15spBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="19dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="7dp"
+                android:gravity="center"
+                android:text="@{feed.user.name}"
+                tools:text="유저명" />
+
+        </LinearLayout>
+
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewpager_feed_images"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintDimensionRatio="H,360:360"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/feed_profile" />
+
+        <ImageView
+            android:id="@+id/iv_feed_images_like"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/aos_icon_dowalk_like_image_over"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/viewpager_feed_images"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/feed_profile" />
+
+        <TextView
+            android:id="@+id/tv_feed_images_count"
+            style="@style/NanumSquareB11spWhite"
+            android:layout_width="36dp"
+            android:layout_height="19dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="18dp"
+            android:background="@drawable/bg_feed_images_count"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@+id/viewpager_feed_images"
+            app:layout_constraintTop_toTopOf="@+id/viewpager_feed_images"
+            tools:text="1/3"
+            tools:visibility="visible" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingBottom="17dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewpager_feed_images">
+
+            <Button
+                android:id="@+id/btnLiked"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="17dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/btnComment"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/aos_icon_dowalk_comment"
+                app:layout_constraintStart_toEndOf="@+id/btnLiked"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/comment"
+                style="@style/SubBodyBold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:bufferType="spannable"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="17dp"
+                visibleIf="@{feed.comment.length() > 0}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/btnLiked"
+                app:layout_constraintTop_toBottomOf="@+id/btnLiked"
+                tools:text="텍스트가 보여지는 것음 20자로 제한 (이건 안보여야 됨)(이건 안보여야 됨)(이건 안보여야 됨)(이건 안보여야 됨)(이건 안보여야 됨)"/>
+
+            <TextView
+                android:id="@+id/like_count"
+                style="@style/NanumSquareB14spBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:paddingEnd="16dp"
+                android:paddingBottom="2dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/comment"
+                tools:text="좋아요" />
+
+            <TextView
+                android:id="@+id/comment_count"
+                style="@style/NanumSquareRoundR13spBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingTop="2dp"
+                android:paddingEnd="16dp"
+                app:layout_constraintStart_toStartOf="@+id/like_count"
+                app:layout_constraintTop_toBottomOf="@+id/like_count"
+                tools:text="댓글" />
+
+            <kr.co.bigwalk.app.campaign.donation.additional_service.CustomIndicator
+                android:id="@+id/indicator_feed_images"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <ImageView
+            android:id="@+id/more_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="14dp"
+            android:src="@drawable/aos_icon_challenge_meatball"
+            app:layout_constraintBottom_toBottomOf="@+id/feed_profile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/feed_profile" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/block_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:clickable="true"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/black" />
+
+            <TextView
+                android:id="@+id/title"
+                style="@style/NanumSquareB15spBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="게시물이 차단되었습니다."
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toTopOf="@+id/sub_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <TextView
+                android:id="@+id/sub_title"
+                style="@style/IMHyemin12MainBlack"
+                android:layout_width="wrap_content"
+                android:textAlignment="center"
+                android:layout_height="wrap_content"
+                android:text="해당 유저의 게시물(피드 및 댓글)이\n
+회원님에게 보이지 않도록 설정되었습니다."
+                android:textColor="@color/sub2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

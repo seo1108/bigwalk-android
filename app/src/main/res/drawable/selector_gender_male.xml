@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="true">
+        <shape android:shape="rectangle" android:tint="@color/pacific_blue">
+            <corners android:bottomLeftRadius="15dp" android:bottomRightRadius="6dp" android:topLeftRadius="15dp" android:topRightRadius="6dp" />
+        </shape>
+    </item>
+    <item android:state_checked="false">
+        <shape android:shape="rectangle" android:tint="@color/gray_border">
+            <corners android:bottomLeftRadius="15dp" android:bottomRightRadius="6dp" android:topLeftRadius="15dp" android:topRightRadius="6dp" />
+        </shape>
+    </item>
+</selector>

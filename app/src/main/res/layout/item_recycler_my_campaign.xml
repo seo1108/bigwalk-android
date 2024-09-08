@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="campaign"
+            type="kr.co.bigwalk.app.data.campaign.dto.ResponseCampaign" />
+        <import type="android.view.View"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/item_my_campaign_card_view"
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            app:cardCornerRadius="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:cardElevation="0dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/main_background"
+                    android:scaleType="centerCrop"
+                    loadFullImage="@{campaign.smallListThumbnailImagePath}"/>
+
+                <ImageView
+                    android:id="@+id/item_my_campaign_donate_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/btn_donation_med_n"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:contentDescription="@string/donate"
+                    android:visibility="@{campaign.endedCampaign ? View.GONE : View.VISIBLE}"/>
+
+                <TextView
+                    android:id="@+id/item_my_campaign_achievement_rate"
+                    style="@style/NanumSquareB12spWhite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{campaign.stepAchievementRate}"
+                    app:layout_constraintBottom_toTopOf="@+id/item_my_campaign_progressbar"
+                    app:layout_constraintEnd_toEndOf="@+id/item_my_campaign_progressbar"
+                    android:layout_marginBottom="4dp"/>
+
+                <ProgressBar
+                    android:id="@+id/item_my_campaign_progressbar"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:progressDrawable="@drawable/campaign_progressbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginBottom="4dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layerType="none"
+                    android:progress="@{campaign.stepAchievmentProgress}"
+                    android:max="100"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/item_my_campaign_card_view"
+            app:layout_constraintStart_toStartOf="@+id/item_my_campaign_card_view"
+            app:layout_constraintEnd_toEndOf="@+id/item_my_campaign_card_view"
+            android:layout_marginTop="4dp"
+            android:text="@{campaign.name}"
+            style="@style/NanumSquareL14MainFont"/>
+
+        <View
+            android:id="@+id/notify_ended_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:alpha=".7"
+            android:background="@color/white"
+            android:visibility="@{campaign.endedCampaign ? View.VISIBLE : View.GONE}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="item"
+            type="kr.co.bigwalk.app.data.feedHome.dto.ChallengeInfoResponse" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/root_challenge_home_item"
+        android:layout_width="126dp"
+        android:layout_height="184dp"
+        android:clipToPadding="false"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:id="@+id/iv_challenge_home_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    loadFullImage="@{item.mainImagePath}"/>
+
+                <TextView
+                    android:id="@+id/tv_feed_home_group_type"
+                    style="@style/NanumSquareB10spWhite"
+                    android:layout_width="45dp"
+                    android:layout_height="23dp"
+                    android:layout_marginStart="@dimen/layout_margin_8dp"
+                    android:layout_marginTop="@dimen/layout_margin_8dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:background="@{item.open ? @drawable/radius_12_background_greenblue : @drawable/radius_12_background_yellow}"
+                    android:gravity="center"
+                    android:text="@{item.open ? @string/public_type : @string/business_type}"
+                    tools:text="기업형" />
+
+                <FrameLayout
+                    android:id="@+id/blur_text"
+                    android:layout_width="126dp"
+                    android:layout_height="92dp"
+                    android:background="@drawable/bg_challenge_gradient"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/tv_feed_home_date">
+
+                    <TextView
+                        android:id="@+id/tv_feed_home_title"
+                        style="@style/NanumSquareRoundBWhite14sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="7sp"
+                        android:layout_marginStart="@dimen/layout_margin_8dp"
+                        android:layout_marginEnd="@dimen/layout_margin_8dp"
+                        android:layout_marginBottom="8dp"
+                        tools:text="운동전에 스트레칭"
+                        android:text="@{item.title}"/>
+
+                    <View
+                        android:id="@+id/progress_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="4dp"
+                        goneIf="@{item.remainDays > 0}" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_feed_home_date"
+                    style="@style/NanumSquareB10spWhite"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    goneIf="@{item.remainDays &lt;= 0}"
+                    android:text="@{`종료 ` + item.remainDays + `일전`}"
+                    android:layout_marginStart="@dimen/layout_margin_8dp"
+                    android:layout_marginEnd="@dimen/layout_margin_8dp"
+                    android:layout_marginBottom="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+                
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <FrameLayout
+            android:id="@+id/blur_screen"
+            android:layout_width="126dp"
+            android:layout_height="184dp"
+            android:visibility="gone"
+            android:background="@color/transparent_50_white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</layout>

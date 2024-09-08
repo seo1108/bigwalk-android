@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="kr.co.bigwalk.app.share.ShareViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ico_24_exit"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:padding="19.5dp"
+            android:layout_marginTop="14dp"
+            android:onClick="@{()->viewModel.finish()}"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/share_title"
+            style="@style/NanumSquareEb20spBlack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/share"
+            android:layout_marginTop="32dp"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/share_screenshot_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/share_title"
+            android:layout_marginTop="26dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:contentDescription="@string/share_image"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintTop_toTopOf="parent"
+                loadFullImage="@{viewModel.campaignShare.imagePath}"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintTop_toTopOf="parent"
+                android:src="@drawable/bg_share_shadow"
+                android:contentDescription="@string/shadow" />
+
+            <TextView
+                android:id="@+id/share_campaign_name_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/campaign_name"
+                style="@style/NanumSquareB8dpWhite"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="17.5dp"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="18dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/logo"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="17dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="18dp"
+                android:contentDescription="@string/logo" />
+
+            <TextView
+                android:id="@+id/share_campaign_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.campaignShare.campaignName}"
+                style="@style/NanumSquareB18dpWhite"
+                app:layout_constraintTop_toBottomOf="@+id/share_campaign_name_label"
+                android:layout_marginTop="5dp"
+                app:layout_constraintStart_toStartOf="@+id/share_campaign_name_label"/>
+
+            <TextView
+                android:id="@+id/share_campaign_period_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/campaign_period"
+                style="@style/NanumSquareB8dpWhite"
+                app:layout_constraintStart_toStartOf="@+id/share_campaign_name"
+                app:layout_constraintTop_toBottomOf="@+id/share_campaign_name"
+                android:layout_marginTop="14dp"/>
+
+            <TextView
+                android:id="@+id/share_campaign_period"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/share_campaign_period_label"
+                app:layout_constraintTop_toBottomOf="@+id/share_campaign_period_label"
+                android:layout_marginTop="5dp"
+                android:text="@{viewModel.campaignShare.periodString}"
+                style="@style/NanumSquareRoundBWhite12dp"/>
+
+            <TextView
+                android:id="@+id/share_campaign_achievement_rate_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/share_campaign_period"
+                app:layout_constraintTop_toBottomOf="@+id/share_campaign_period"
+                android:layout_marginTop="15.5dp"
+                android:text="@string/campaign_achievement_rate"
+                style="@style/NanumSquareB8dpWhite" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/share_campaign_achievement_rate_label"
+                app:layout_constraintTop_toBottomOf="@+id/share_campaign_achievement_rate_label"
+                android:layout_marginTop="5dp"
+                android:text="@{viewModel.campaignShare.donationRatioString}"
+                style="@style/NanumSquareRoundBWhite12dp" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/share_campaign_rank_const"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="24.5dp"
+                app:layout_constraintStart_toStartOf="@+id/share_campaign_donation_const">
+
+                <ImageView
+                    android:id="@+id/share_campaign_rank_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:src="@drawable/share_campaign_rank_icon"
+                    android:contentDescription="@string/rank_icon" />
+
+                <TextView
+                    android:id="@+id/share_campaign_rank"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toEndOf="@+id/share_campaign_rank_icon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginBottom="2.5dp"
+                    android:layout_marginStart="8dp"
+                    android:text="@{viewModel.campaignShare.rankString}"
+                    style="@style/NanumSquareRoundBWhite14dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toEndOf="@+id/share_campaign_rank_icon"
+                    android:layout_marginStart="8.5dp"
+                    app:layout_constraintBottom_toTopOf="@+id/share_campaign_rank"
+                    android:text="@string/campaign_donation_rank"
+                    style="@style/NanumSquareB8dpWhite" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/share_campaign_donation_const"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@+id/share_campaign_rank_const"
+                android:layout_marginBottom="13dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="18.5dp">
+
+                <ImageView
+                    android:id="@+id/share_campaign_donation_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:src="@drawable/share_campaign_donation_icon"
+                    android:contentDescription="@string/donation_donate_icon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:lineSpacingMultiplier="1.2"
+                    app:layout_constraintStart_toEndOf="@+id/share_campaign_donation_icon"
+                    android:layout_marginStart="8.5dp"
+                    android:text="@{viewModel.campaignShare.donatedStepsString}"
+                    style="@style/NanumSquareB14dpWhite"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/icon_kakao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:src="@drawable/ico_40_kakao"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/share_screenshot_view"
+            app:layout_constraintEnd_toStartOf="@+id/icon_instagram"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            android:onClick="@{()->viewModel.shareScreenshot(viewModel.CAMPAIGN)}"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/icon_instagram"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ico_40_instagram"
+            android:layout_marginStart="16dp"
+            app:layout_constraintStart_toEndOf="@id/icon_kakao"
+            app:layout_constraintEnd_toStartOf="@+id/icon_facebook"
+            app:layout_constraintTop_toBottomOf="@+id/share_screenshot_view"
+            app:layout_constraintTop_toTopOf="@id/icon_kakao"
+            android:onClick="@{()->viewModel.shareScreenshot(viewModel.CAMPAIGN)}"
+            tools:ignore="ContentDescription" />
+        <ImageView
+            android:id="@+id/icon_facebook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ico_40_facebook"
+            android:layout_marginStart="16dp"
+            app:layout_constraintStart_toEndOf="@id/icon_instagram"
+            app:layout_constraintEnd_toStartOf="@+id/icon_download"
+            app:layout_constraintTop_toBottomOf="@+id/share_screenshot_view"
+            app:layout_constraintTop_toTopOf="@id/icon_instagram"
+            android:onClick="@{()->viewModel.shareScreenshot(viewModel.CAMPAIGN)}"
+            tools:ignore="ContentDescription" />
+        <ImageView
+            android:id="@+id/icon_download"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ico_40_download"
+            android:layout_marginStart="16dp"
+            app:layout_constraintStart_toEndOf="@+id/icon_facebook"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/share_screenshot_view"
+            app:layout_constraintTop_toTopOf="@id/icon_instagram"
+            android:onClick="@{()->viewModel.galleryAddFile(viewModel.CAMPAIGN)}"
+            tools:ignore="ContentDescription" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

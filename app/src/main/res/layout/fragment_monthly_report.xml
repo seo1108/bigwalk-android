@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="kr.co.bigwalk.app.report.Report2ViewModel" />
+
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/previous_button"
+            visibleIf="@{vm.isExistPreviousMonth()}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/arrow_left"
+            app:layout_constraintBottom_toBottomOf="@+id/monthly"
+            app:layout_constraintEnd_toStartOf="@+id/monthly"
+            app:layout_constraintTop_toTopOf="@+id/monthly" />
+
+        <ImageView
+            android:id="@+id/next_button"
+            invisibleIf="@{vm.isCurrentMonth}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/ic_report_arrow_right"
+            app:layout_constraintBottom_toBottomOf="@+id/monthly"
+            app:layout_constraintStart_toEndOf="@+id/monthly"
+            app:layout_constraintTop_toTopOf="@+id/monthly" />
+
+        <TextView
+            android:id="@+id/monthly"
+            style="@style/NanumSquareB16dpWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:text="@{vm.dayOfMonthReportResponse.getMonth()}"
+            android:textColor="@color/sub"
+            app:layout_constraintBottom_toBottomOf="@+id/previous_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/previous_button"
+            tools:text="22년 10월" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/chart_data"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/monthly">
+
+            <com.github.sundeepk.compactcalendarview.CompactCalendarView
+                android:id="@+id/compact_calendar_view"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:compactCalendarBackgroundColor="@color/white"
+                app:compactCalendarCurrentDayBackgroundColor="@color/white"
+                app:compactCalendarCurrentDayTextColor="@color/theme_174dfe"
+                app:compactCalendarCurrentSelectedDayBackgroundColor="@color/theme_174dfe"
+                app:compactCalendarCurrentSelectedDayTextColor="@color/white"
+                app:compactCalendarShouldSelectFirstDayOfMonthOnScroll="false"
+                app:compactCalendarTextColor="@color/sub"
+                app:compactCalendarTextSize="14dp"
+                app:layout_constraintBottom_toTopOf="@+id/tv1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv1"
+                style="@style/NanumSquareR8Sub2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="기부 걸음"
+                android:textSize="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/compact_calendar_view" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv2"
+                style="@style/NanumSquareR8Sub2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:drawableStart="@drawable/rect_report_step_count"
+                android:drawablePadding="4dp"
+                android:text="1~4,999"
+                android:textSize="10dp"
+                app:drawableTint="#26174cf5"
+                app:layout_constraintStart_toEndOf="@+id/tv1"
+                app:layout_constraintTop_toBottomOf="@id/compact_calendar_view" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv3"
+                style="@style/NanumSquareR8Sub2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:drawableStart="@drawable/rect_report_step_count"
+                android:drawablePadding="4dp"
+                android:text="5,000~9,999"
+                android:textSize="10dp"
+                app:drawableTint="#66174cf5"
+                app:layout_constraintStart_toEndOf="@+id/tv2"
+                app:layout_constraintTop_toBottomOf="@id/compact_calendar_view" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv4"
+                style="@style/NanumSquareR8Sub2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:drawableStart="@drawable/rect_report_step_count"
+                android:drawablePadding="4dp"
+                android:text="10,000 이상"
+                android:textSize="10dp"
+                app:drawableTint="#a6174cf5"
+                app:layout_constraintStart_toEndOf="@+id/tv3"
+                app:layout_constraintTop_toBottomOf="@id/compact_calendar_view" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

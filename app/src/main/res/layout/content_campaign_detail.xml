@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="viewModel"
+            type="kr.co.bigwalk.app.campaign.detail.CampaignDetailViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scroll_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/campaign_content_detail_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                android:background="@color/white"
+                android:paddingStart="24dp"
+                android:paddingEnd="24dp"
+                android:paddingBottom="38.4dp">
+
+                <TextView
+                    android:id="@+id/campaign_content_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.campaign.name}"
+                    style="@style/NanumSquareB20MainFont"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="24dp"
+                    tools:text="봄 맞이 걷기 행사 이벤트"
+                    />
+
+                <ImageView
+                    android:id="@+id/campaign_detail_share_button_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ico_24_share"
+                    android:contentDescription="@string/campaign_detail_share_button_icon"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginTop="24dp"
+                    android:onClick="@{()->viewModel.shareCampaign()}"
+                    />
+
+                <TextView
+                    android:id="@+id/campaign_content_promoter_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.campaign.promoterName}"
+                    style="@style/NanumSquareL14MainFont"
+                    app:layout_constraintTop_toBottomOf="@+id/campaign_content_name"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintHorizontal_weight="6"
+                    tools:text="사단법인 빅워크"
+                    />
+
+                <TextView
+                    android:id="@+id/campaign_content_participant_count"
+                    style="@style/NanumSquareR12Blue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@{viewModel.campaign.participantCountString}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
+                    tools:text="456명 참여" />
+
+                <TextView
+                    android:id="@+id/campaign_content_step_achievement_rate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="@+id/campaign_content_participant_count"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginBottom="2dp"
+                    android:text="@{viewModel.campaign.stepAchievementRate}"
+                    style="@style/NanumSquareR12Blue"
+                    tools:text="54%"/>
+
+                <ProgressBar
+                    android:id="@+id/campaign_content_achievement_progress"
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/campaign_content_participant_count"
+                    android:layout_marginTop="4dp"
+                    android:progressDrawable="@drawable/curved_progress_bar"
+                    android:progress="@{viewModel.campaign.stepAchievmentProgress}"
+                    android:max="100"
+                    tools:progress="30"
+                    />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="28dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/campaign_content_promoter_text">
+
+                    <TextView
+                        android:id="@+id/campaign_content_donated_step_text"
+                        style="@style/NanumsquareB16Blue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewModel.campaign.donatedStepsString}"
+                        app:layout_constraintBottom_toBottomOf="@+id/campaign_content_donated_step_label"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:text="3,456,002" />
+
+                    <TextView
+                        android:id="@+id/campaign_content_event_name"
+                        style="@style/NanumSquareB8spWhite"
+                        android:layout_width="wrap_content"
+                        android:layout_height="17dp"
+                        android:layout_marginStart="4dp"
+                        android:background="@drawable/radius_10_background_red"
+                        android:gravity="center_vertical"
+                        android:paddingStart="7dp"
+                        android:paddingEnd="7dp"
+                        android:text="@{viewModel.campaign.getEventTypeName()}"
+                        android:visibility="@{viewModel.campaign.event == null ? View.GONE : View.VISIBLE}"
+                        app:layout_constraintBottom_toBottomOf="@+id/campaign_content_event_label"
+                        app:layout_constraintStart_toEndOf="@+id/campaign_content_event_label" />
+
+                    <TextView
+                        android:id="@+id/campaign_content_goal_step_label"
+                        style="@style/NanumSquareL14MainFont"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/goal_step"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/campaign_content_period_label" />
+
+                    <TextView
+                        android:id="@+id/campaign_content_period_text"
+                        style="@style/NanumSquareB14MainFont"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:text="@{viewModel.campaign.campaignPeriod}"
+                        app:layout_constraintBottom_toBottomOf="@+id/campaign_content_period_label"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:text="20.01.01~20.12.31" />
+
+                    <TextView
+                        android:id="@+id/campaign_content_goal_step_text"
+                        style="@style/NanumSquareB14MainFont"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewModel.campaign.goalStepString}"
+                        app:layout_constraintBottom_toBottomOf="@+id/campaign_content_goal_step_label"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:text="6,000,000" />
+
+                    <TextView
+                        android:id="@+id/campaign_content_period_label"
+                        style="@style/NanumSquareL14MainFont"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/period_of_campaign_without_colon"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/campaign_content_event_label" />
+
+                    <TextView
+                        android:id="@+id/campaign_content_event_description"
+                        style="@style/NanumSquareB14Watermelon"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:text="@{viewModel.campaign.event.description}"
+                        android:visibility="@{viewModel.campaign.event == null ? View.GONE : View.VISIBLE}"
+                        app:layout_constraintBottom_toBottomOf="@+id/campaign_content_event_label"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:text="이벤트 설명" />
+
+                    <TextView
+                        android:id="@+id/campaign_content_donated_step_label"
+                        style="@style/NanumSquareL14MainFont"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/donated_step"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/campaign_content_goal_step_label" />
+
+                    <TextView
+                        android:id="@+id/campaign_content_event_label"
+                        style="@style/NanumSquareL14MainFont"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/event"
+                        android:visibility="@{viewModel.campaign.event == null ? View.GONE : View.VISIBLE}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!--                <LinearLayout-->
+<!--                    android:id="@+id/campaign_content_donate_button"-->
+<!--                    android:layout_width="160dp"-->
+<!--                    android:layout_height="48dp"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:background="@{viewModel.isEnded() || !viewModel.isEligibleUser() ? @drawable/radius_24_inactive : @drawable/radius24_blue}"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/campaign_content_achievement_progress"-->
+<!--                    android:layout_marginTop="32dp"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    android:onClick="@{()->viewModel.showDonationFragment()}"-->
+<!--                    android:gravity="center">-->
+
+<!--                    <ImageView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:src="@drawable/ico_24_donation_white"-->
+<!--                        android:contentDescription="@string/ico_24_donation_white"-->
+<!--                        android:layout_marginEnd="8dp"/>-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="@string/donation"-->
+<!--                        style="@style/NanumsquareB16White"-->
+<!--                        />-->
+<!--                </LinearLayout>-->
+
+<!--                <View-->
+<!--                    android:id="@+id/campaign_content_share_button"-->
+<!--                    android:layout_width="40dp"-->
+<!--                    android:layout_height="40dp"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/campaign_content_achievement_progress"-->
+<!--                    android:layout_marginTop="32dp"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    android:background="@drawable/circle_border0_5_white"-->
+<!--                    android:onClick="@{()->viewModel.shareCampaign()}"-->
+<!--                    />-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    app:layout_constraintTop_toTopOf="@+id/campaign_content_share_button"-->
+<!--                    app:layout_constraintBottom_toBottomOf="@id/campaign_content_share_button"-->
+<!--                    app:layout_constraintStart_toStartOf="@+id/campaign_content_share_button"-->
+<!--                    app:layout_constraintEnd_toEndOf="@id/campaign_content_share_button"-->
+<!--                    android:src="@drawable/ico_24_share"-->
+<!--                    android:contentDescription="@string/ico_24_share" />-->
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@+id/campaign_content_detail_info_divider"
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:background="@color/divider_white_gray"
+                app:layout_constraintTop_toBottomOf="@+id/campaign_content_detail_info"
+                />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/campaign_my_ranking"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="24dp"
+                android:paddingTop="16dp"
+                android:paddingEnd="24dp"
+                android:paddingBottom="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/campaign_content_detail_info_divider"
+                android:background="@color/tiffany_blue"
+                android:onClick="@{() -> viewModel.moveToRanking()}">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/campaign_content_profile_image"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/img_default_48"
+                    loadImage="@{viewModel.userRanking.profilePath}"
+                    android:contentDescription="@string/campaign_profile"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+                <TextView
+                    android:id="@+id/campaign_content_profile_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.userRanking.name}"
+                    style="@style/NanumsquareB16White"
+                    tools:text="김이든"
+                    app:layout_constraintStart_toEndOf="@+id/campaign_content_profile_image"
+                    android:layout_marginStart="8dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/campaign_content_profile_rank_score_text"
+                    app:layout_constraintVertical_chainStyle="packed"
+                />
+
+                <TextView
+                    android:id="@+id/campaign_content_profile_rank_score_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.userRanking.donatedStepsString}"
+                    app:layout_constraintStart_toStartOf="@+id/campaign_content_profile_name"
+                    app:layout_constraintTop_toBottomOf="@+id/campaign_content_profile_name"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    tools:text="34,500걸음 기부"
+                    style="@style/NanumSquareL14White"
+                    />
+
+
+                <TextView
+                    android:id="@+id/campaign_rank_text"
+                    style="@style/NanumsquareB16White"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="@{viewModel.userRanking.rankString}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/campaign_content_rank_right_arrow"
+                    tools:text="25위"/>
+
+                <ImageView
+                    android:id="@+id/campaign_content_rank_right_arrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/arrow_right"
+                    android:src="@drawable/ico_24_arrow_right_white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@+id/campaign_content_my_ranking_divider"
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:background="@color/divider_white_gray"
+                app:layout_constraintTop_toBottomOf="@+id/campaign_my_ranking"
+                />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/campaign_content_beneficiary_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/campaign_content_my_ranking_divider"
+                android:paddingStart="24dp"
+                android:paddingEnd="24dp"
+                android:paddingTop="14dp"
+                android:paddingBottom="14dp"
+                android:background="@color/white"
+                android:visibility="@{viewModel.campaign.beneficiaryExistsVisibility}">
+
+                <ImageView
+                    android:id="@+id/campaign_content_beneficiary_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ico_24_arrow_sponser"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:contentDescription="@string/campaign_content_beneficiary_icon" />
+
+                <TextView
+                    android:id="@+id/campaign_content_beneficiary_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/donate_beneficiary"
+                    style="@style/NanumsquareL8MainFont"
+                    app:layout_constraintStart_toStartOf="@+id/campaign_content_beneficiary_name"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/campaign_content_beneficiary_name"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    />
+
+                <TextView
+                    android:id="@+id/campaign_content_beneficiary_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.campaign.beneficiary}"
+                    style="@style/NanumSquareR16MainFont"
+                    app:layout_constraintStart_toEndOf="@+id/campaign_content_beneficiary_icon"
+                    android:layout_marginStart="8dp"
+                    app:layout_constraintTop_toBottomOf="@+id/campaign_content_beneficiary_label"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    tools:text="사단법인 무엇무엇"
+                    />
+
+                <Button
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:text="@{viewModel.campaign.beneficiaryBtnString}"
+                    style="@style/NanumSquareRoundRWhite14sp"
+                    android:background="@drawable/radius24_blue"
+                    android:outlineProvider="none"
+                    android:visibility="@{viewModel.campaign.beneficiaryLinkExistsVisibility}"
+                    android:onClick="@{()->viewModel.moveToBeneficiaryLink()}"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@+id/campaign_content_beneficiary_content_divider"
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:background="@color/divider_white_gray"
+                app:layout_constraintTop_toBottomOf="@+id/campaign_content_beneficiary_view"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/campaign_content_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:bindItem="@{viewModel.contents}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@+id/campaign_content_beneficiary_content_divider"
+                tools:listitem="@layout/item_recycler_campaign_content_images"
+                tools:itemCount="1"/>
+
+            <View
+                android:id="@+id/campaign_content_story_link_view_divider"
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:background="@color/divider_white_gray"
+                app:layout_constraintTop_toBottomOf="@+id/campaign_content_recycler"
+                />
+
+            <View
+                android:id="@+id/campaign_content_story_view_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:background="@color/divider_white_gray"
+                tools:layout_editor_absoluteY="1054dp" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

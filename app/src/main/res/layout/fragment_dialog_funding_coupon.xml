@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/outside"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/dialog_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/radius_25"
+            android:paddingHorizontal="36dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="@color/colorPrimary">
+
+            <ImageView
+                android:id="@+id/coupon_image"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="78dp"
+                android:src="@drawable/aos_coupon_funding_join"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView23"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="13dp"
+                android:fontFamily="@font/nanum_barunpen_b"
+                android:letterSpacing="-0.01"
+                android:text="체인지메이커 감사 쿠폰"
+                android:textAlignment="center"
+                android:textColor="@color/main_black"
+                android:textSize="30sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/coupon_image" />
+
+            <TextView
+                android:id="@+id/coupon_explain"
+                style="@style/NanumSquareRoundBBlack16sp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:textAlignment="center"
+                android:lineSpacingExtra="5sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView23" />
+
+            <TextView
+                android:id="@+id/textView31"
+                style="@style/IMHyeminRegular12Black"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="본 쿠폰은 우리 크루의 크루 캠페인에서 사용 가능합니다."
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/coupon_explain"
+                tools:text="해당 캠페인 외의 적용은 불가합니다." />
+
+            <TextView
+                android:id="@+id/btn"
+                style="@style/NanumBarunpenBold20spWhite"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="46dp"
+                android:background="@drawable/radius_25"
+                android:backgroundTint="@color/theme_174dfe"
+                android:gravity="center"
+                android:text="@string/check_coupons"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView31" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/imageView19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/aos_icon_funding_join_pop"
+            app:layout_constraintBottom_toTopOf="@+id/dialog_container"
+            app:layout_constraintEnd_toEndOf="@+id/dialog_container"
+            app:layout_constraintStart_toStartOf="@+id/dialog_container"
+            app:layout_constraintTop_toBottomOf="@+id/dialog_container"
+            app:layout_constraintVertical_bias=".911" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

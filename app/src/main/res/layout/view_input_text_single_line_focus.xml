@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="content"
+            type="String" />
+
+        <variable
+            name="hint"
+            type="String" />
+
+        <variable
+            name="maxLength"
+            type="Integer" />
+
+        <variable
+            name="deleteImage"
+            type="android.graphics.drawable.Drawable" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="73dp">
+
+        <EditText
+            android:id="@+id/content_view"
+            style="@style/BodyBold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="20dp"
+            android:layout_marginStart="17dp"
+            android:layout_marginEnd="12dp"
+            android:background="@color/transparent"
+            android:hint="@{hint}"
+            android:inputType="text"
+            android:lines="1"
+            android:maxLength="@{maxLength}"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="7dp"
+            android:text="@{content}"
+            android:textColorHint="@color/sub2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/input_field_delete"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/text_length"
+            style="@style/IMHyeminRegular12Black"
+            min="@{5}"
+            setTextChangedListener="@{contentView}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="0자"
+            android:textColor="@color/calm_red"
+            android:textSize="9sp"
+            app:layout_constraintStart_toStartOf="@+id/content_view"
+            app:layout_constraintTop_toBottomOf="@+id/content_view"
+            tools:text="0자" />
+
+        <ImageView
+            android:id="@+id/input_field_delete"
+            clearTextOnClick="@{contentView}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="29dp"
+            android:layout_marginEnd="29dp"
+            android:src="@{deleteImage ?? @drawable/ic_15_input_field_delete}"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="25dp"
+            android:background="@color/gray_border"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

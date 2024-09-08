@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="kr.co.bigwalk.app.sign_in.SelfCertificationViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:background="@color/white"
+            app:buttonGravity="center_vertical"
+            app:contentInsetStartWithNavigation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:titleTextAppearance="@style/AppTheme.Toolbar.Title"
+            app:titleTextColor="@color/main_black" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/phone_number_container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/phone_number"
+                style="@style/IMHyeminRegular12Black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="19dp"
+                android:layout_marginTop="14dp"
+                android:text="휴대폰 번호"
+                android:textColor="@color/sub2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/input_phone_number"
+                style="@style/NanumSquareRoundBBlack16sp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="2dp"
+                android:background="@null"
+                android:hint="(-)없이 숫자만 입력"
+                android:inputType="number"
+                android:lines="1"
+                android:maxLength="11"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="7dp"
+                android:text="@={vm.phoneNumber}"
+                android:textColorHint="@color/sub2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/phone_number"
+                app:layout_constraintWidth_percent=".432" />
+
+            <ImageView
+                android:id="@+id/btn_phone_number_clear"
+                clearTextOnClick="@{inputPhoneNumber}"
+                setVisibleToFocus="@{inputPhoneNumber}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_15_input_field_delete"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@+id/input_phone_number"
+                app:layout_constraintStart_toEndOf="@+id/input_phone_number"
+                app:layout_constraintTop_toTopOf="@+id/input_phone_number" />
+
+            <TextView
+                android:id="@+id/btn_send_verification_code"
+                style="@style/IMHyeminBold15White"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:background="@{vm.phoneNumber.length() >= 10 ? @drawable/bg_self_certification : @drawable/bg_self_certification_disable}"
+                android:clickable="@{vm.phoneNumber.length() >= 10}"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="8dp"
+                android:text="인증번호 발송"
+                android:textColor="@{vm.phoneNumber.length() >= 10 ? @color/cyanish_mint : @color/sub2}"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="11dp"
+                android:background="@color/gray_border"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/input_phone_number" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/IMHyeminBold15White"
+            goneIf="@{vm.isSamePhonePattern()}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="19dp"
+            android:layout_marginTop="10dp"
+            android:text="휴대폰 번호를 다시 확인해주세요."
+            android:textColor="@color/calm_red"
+            android:textSize="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/phone_number_container" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/certification_code_container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="34dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/phone_number_container">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/certification_code"
+                style="@style/IMHyeminRegular12Black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="19dp"
+                android:layout_marginTop="14dp"
+                android:text="인증번호"
+                android:textColor="@color/sub2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/input_certification_code"
+                style="@style/NanumSquareRoundBBlack16sp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="2dp"
+                android:background="@null"
+                android:focusableInTouchMode="false"
+                android:hint="인증번호 입력"
+                android:inputType="number"
+                android:lines="1"
+                android:maxLength="6"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="7dp"
+                android:text="@={vm.certificationCode}"
+                android:textColorHint="@color/sub2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/certification_code"
+                app:layout_constraintWidth_percent=".432" />
+
+            <ImageView
+                android:id="@+id/btn_certification_clear"
+                clearTextOnClick="@{inputCertificationCode}"
+                setVisibleToFocus="@{inputCertificationCode}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_15_input_field_delete"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@+id/input_certification_code"
+                app:layout_constraintStart_toEndOf="@+id/input_certification_code"
+                app:layout_constraintTop_toTopOf="@+id/input_certification_code" />
+
+            <TextView
+                android:id="@+id/timer"
+                style="@style/IMHyeminBold15White"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:textColor="@color/sub2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btn_verification"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="02:59" />
+
+            <TextView
+                android:id="@+id/btn_verification"
+                style="@style/IMHyeminBold15White"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:background="@{vm.certificationCode.length() > 5 ? @drawable/bg_self_certification : @drawable/bg_self_certification_disable}"
+                android:clickable="@{vm.certificationCode.length() > 5}"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="8dp"
+                android:text="인증하기"
+                android:textColor="@{vm.certificationCode.length() > 5 ? @color/cyanish_mint : @color/sub2}"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="11dp"
+                android:background="@color/gray_border"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/input_certification_code" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/IMHyeminBold15White"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="19dp"
+            android:layout_marginTop="10dp"
+            android:text="휴대폰 인증은 1일 5회로 제한됩니다"
+            android:textColor="@color/sub2"
+            android:textSize="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/certification_code_container" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

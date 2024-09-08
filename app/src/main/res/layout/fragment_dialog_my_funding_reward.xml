@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="kr.co.bigwalk.app.crowd_funding.myfunding.MyFundingRewardViewModel" />
+
+        <variable
+            name="context"
+            type="kr.co.bigwalk.app.crowd_funding.myfunding.MyFundingRewardDialogFragment" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/outside"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/dialog_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/radius_25"
+            android:paddingHorizontal="36dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="@color/colorPrimary">
+
+            <TextView
+                android:id="@+id/textView23"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="70dp"
+                android:fontFamily="@font/nanum_barunpen_b"
+                android:letterSpacing="-0.01"
+                android:text="@{context.getString(vm.fundingResultType.title)}"
+                android:textAlignment="center"
+                android:textColor="@color/main_black"
+                android:textSize="30sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="축하합니다!" />
+
+            <TextView
+                android:id="@+id/textView24"
+                style="@style/NanumSquareRoundBBlack16sp"
+                android:layout_width="0dp"
+                android:lineSpacingExtra="5sp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@{context.getString(vm.fundingResultType.content)}"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView23"
+                tools:text="해당 크루 캠페인에 사용된
+펀딩 걸음은 보상 걸음과 합산 되어
+펀딩 성공 걸음이 되며,
+일반 캠페인 전환 후 해당 캠페인에
+최초 기부 시 자동으로 적용됩니다." />
+
+            <TextView
+                android:id="@+id/textView31"
+                style="@style/IMHyeminRegular12Black"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:lineSpacingExtra="4sp"
+                android:text="@{vm.fundingResultType.isSuccess ? @string/dialog_funding_result_description1 : @string/dialog_funding_result_description2(vm.donatedStep)}"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView24"
+                tools:text="해당 캠페인 외의 적용은 불가합니다." />
+
+            <TextView
+                android:id="@+id/textView32"
+                style="@style/NanumBarunpenBold20spWhite"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="43dp"
+                android:text="@{vm.fundingResultType.isSuccess ? @string/dialog_funding_result_step1 : @string/dialog_funding_result_step2}"
+                android:textAlignment="center"
+                android:textColor="@{vm.fundingResultType.isSuccess ? @color/blue : @color/main_black}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView31"
+                tools:text="펀딩 성공 걸음" />
+
+            <TextView
+                android:id="@+id/textView34"
+                style="@style/NanumSquareRoundEb56spBlue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@{vm.fundingResultType.rewardStep}"
+                android:textAlignment="center"
+                android:textColor="@{vm.fundingResultType.isSuccess ? @color/blue : @color/main_black}"
+                app:layout_constraintEnd_toStartOf="@+id/textView33"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView32"
+                tools:text="222,312" />
+
+            <TextView
+                android:id="@+id/textView33"
+                style="@style/NanumSquareRoundEb24spBlack"
+                goneIf="@{vm.fundingResultType.isSuccess}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginBottom="10dp"
+                android:text="@{`/ ` + vm.fundingResultType.myFundingStep}"
+                android:textAlignment="center"
+                android:textColor="@color/gray_border"
+                app:layout_constraintBottom_toBottomOf="@+id/textView34"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textView34"
+                tools:text="/ 20,000" />
+
+            <TextView
+                style="@style/IMHyeminBold15White"
+                visibleIf="@{vm.fundingResultType.isSuccess}"
+                android:layout_width="0dp"
+                android:layout_marginHorizontal="36dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/blue"
+                android:textSize="12sp"
+                android:text="@{@string/dialog_reward_step(vm.rewardFundingInfo.fundingStepsToString, vm.rewardFundingInfo.rewardStepsToString)}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView34" />
+
+            <TextView
+                android:id="@+id/btn"
+                style="@style/NanumBarunpenBold20spWhite"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="42dp"
+                android:layout_marginBottom="46dp"
+                android:background="@drawable/radius_25"
+                android:backgroundTint="@{context.resources.getColorStateList(vm.fundingResultType.btnColor)}"
+                android:gravity="center"
+                android:text="@{context.getString(vm.fundingResultType.btnMsg)}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView33"
+                app:layout_goneMarginBottom="46dp"
+                tools:backgroundTint="@color/colorPrimary" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/imageView19"
+            loadFullImage="@{vm.fundingResultType.icon}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/dialog_container"
+            app:layout_constraintEnd_toEndOf="@+id/dialog_container"
+            app:layout_constraintStart_toStartOf="@+id/dialog_container"
+            app:layout_constraintTop_toBottomOf="@+id/dialog_container"
+            app:layout_constraintVertical_bias=".911"
+            tools:src="@drawable/aos_icon_funding_reward_pop" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

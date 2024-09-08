@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RadioButton xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/category_button"
+    style="@style/NanumSquareR14White"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="4dp"
+    android:background="@drawable/selector_radio_category"
+    android:button="@null"
+    android:minWidth="57dp"
+    android:minHeight="28dp"
+    android:textAlignment="center"
+    android:textColor="@color/white"
+    app:rippleColor="@color/transparent" />

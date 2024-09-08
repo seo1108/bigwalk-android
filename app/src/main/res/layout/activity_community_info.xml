@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="context"
+            type="kr.co.bigwalk.app.community.CommunityInfoActivity" />
+
+        <variable
+            name="viewModel"
+            type="kr.co.bigwalk.app.community.CommunityInfoViewModel" />
+
+        <variable
+            name="status"
+            type="kr.co.bigwalk.app.community.info.RankChangeStatus" />
+
+        <variable
+            name="tabPosition"
+            type="Integer" />
+
+        <import type="kr.co.bigwalk.app.R" />
+        <import type="android.view.View" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/toolbar"
+            android:layout_width="0dp"
+            android:layout_height="90dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:src="@drawable/aos_icon_20_arrow"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/toolbar_title_container"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent=".5">
+
+                <TextView
+                    android:id="@+id/toolbar_title"
+                    style="@style/NanumSquareB20MainFont"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="26dp"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:text="@{viewModel.communityInfo.getMaxLengthName()}"
+                    android:textSize="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="그룹명최대10자이다" />
+
+                <TextView
+                    android:id="@+id/toolbar_content"
+                    style="@style/NanumSquareL14dpMainFont"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="22dp"
+                    android:text="@string/show_group_introduce"
+                    app:layout_constraintEnd_toStartOf="@+id/info_button"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/toolbar_title"
+                    tools:text="그룹 소개 보기" />
+
+                <ImageView
+                    android:id="@+id/info_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
+                    android:src="@{viewModel.isIntroduceVisible() ? @drawable/ic_group_info_up_btn : @drawable/ic_group_info_down_btn}"
+                    app:layout_constraintBottom_toBottomOf="@+id/toolbar_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/toolbar_content"
+                    app:layout_constraintTop_toTopOf="@+id/toolbar_content" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <ImageView
+                android:id="@+id/donation_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="22dp"
+                android:src="@drawable/ic_group_donation_btn"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/info_edit_button"
+                visibleIf="@{viewModel.communityInfo.owner}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="14dp"
+                android:src="@drawable/ic_group_info_edit"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/donation_button"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/introduce"
+            android:layout_width="0dp"
+            android:layout_height="121dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+            <androidx.constraintlayout.widget.Group
+                visibleIf="@{!viewModel.isIntroduceVisible()}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="rank_total_group, rank_my_group, rank_gap_prev_step, rank_my_group_change_img" />
+
+            <TextView
+                android:id="@+id/rank_total_group"
+                style="@style/NanumSquareL14MainFont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.groupRankTextItem.groupCount}"
+                app:layout_constraintBottom_toTopOf="@+id/rank_my_group"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="전체 그룹 114개 중" />
+
+            <TextView
+                android:id="@+id/rank_my_group"
+                style="@style/NanumSquareRoundBBlack16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="@{viewModel.groupRankTextItem.level}"
+                app:layout_constraintBottom_toTopOf="@+id/rank_gap_prev_step"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rank_total_group"
+                tools:text="우리 그룹 랭킹 : 100위" />
+
+            <ImageView
+                android:id="@+id/rank_my_group_change_img"
+                loadGroupRankChangeImage="@{viewModel.groupRankTextItem.rankChange ?? status.NONE}"
+                visibleIf="@{viewModel.communityInfo.rank != null &amp;&amp; viewModel.isSetGoals()}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:src="@drawable/aos_icon_ranking_up"
+                app:layout_constraintBottom_toBottomOf="@+id/rank_my_group"
+                app:layout_constraintEnd_toStartOf="@+id/rank_my_group"
+                app:layout_constraintTop_toTopOf="@+id/rank_my_group" />
+
+            <TextView
+                android:id="@+id/rank_gap_prev_step"
+                style="@style/NanumSquareL14MainFont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="9dp"
+                android:text="@{viewModel.groupRankTextItem.nextGapPoint}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rank_my_group"
+                tools:text="99위와 차이 : 1만 걸음" />
+
+            <TextView
+                android:id="@+id/introduce_text"
+                style="@style/NanumSquareRoundR16spBlack"
+                visibleIf="@{viewModel.isIntroduceVisible()}"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="38dp"
+                android:layout_marginVertical="17dp"
+                android:autoLink="web"
+                android:lineSpacingExtra="7sp"
+                android:linksClickable="true"
+                android:maxLines="4"
+                android:text="@{viewModel.communityInfo.description}"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="우리는 토요일, 일요일 주말마다 가족끼리 탄천 공원에서 함께 걸어요. 이 걸음을 100일 동안 모아서 우리 가족만의 선한 영향력으로 기부할거에요 :)아루으리아루르디르이나이랴두라1" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/top_tab"
+            android:layout_width="0dp"
+            android:layout_height="41dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="36dp"
+            android:maxWidth="44dp"
+            app:layout_constraintEnd_toStartOf="@+id/member_count"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/introduce"
+            app:tabIndicatorColor="@color/dark_sky_blue"
+            app:tabMinWidth="44dp"
+            app:tabMode="scrollable"
+            app:tabPadding="0dp"
+            app:tabRippleColor="@color/transparent"
+            app:tabSelectedTextColor="@color/black"
+            app:tabTextAppearance="@style/NanumSquareB15spSub2" />
+
+        <View
+            android:id="@+id/circle_notification"
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:layout_marginBottom="13dp"
+            android:background="@drawable/circle_notification"
+            android:visibility="@{viewModel.communityInfo.isShowRequestAlarm() ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@+id/member_count"
+            app:layout_constraintStart_toEndOf="@+id/member_count" />
+
+        <TextView
+            android:id="@+id/member_count"
+            style="NanumSquareB15spSub2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="40dp"
+            android:text="@{@string/group_member_count(viewModel.communityInfo.count)}"
+            app:layout_constraintBottom_toBottomOf="@+id/top_tab"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/top_tab"
+            tools:text="멤버(10명)" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/community_info_pager"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/top_tab" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/bottom_btn_container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <TextView
+                android:id="@+id/crew_campaign_btn"
+                style="@style/NanumBarunpenBold20spWhite"
+                android:layout_width="222dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="50dp"
+                android:background="@drawable/radius_12_bg_gradient"
+                android:gravity="center"
+                android:text="@string/crew_campaign"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/community_making_influence_btn"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="spread_inside" />
+
+            <ImageView
+                android:id="@+id/community_making_influence_btn"
+                style="@style/NanumSquareB18spWhite"
+                invisibleIf="@{tabPosition == 0 &amp;&amp; viewModel.ownerVisible &amp;&amp; !viewModel.isSetGoals()}"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="4dp"
+                android:background="@drawable/radius_25"
+                android:backgroundTint="@color/theme_174dfe"
+                android:drawableStart="@drawable/ic_group_share"
+                android:gravity="center"
+                android:padding="18dp"
+                android:src="@drawable/ic_group_share"
+                app:layout_constraintBottom_toBottomOf="@+id/crew_campaign_btn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/crew_campaign_btn"
+                app:layout_constraintTop_toTopOf="@+id/crew_campaign_btn" />
+
+            <ImageView
+                android:id="@+id/goal_set_btn"
+                style="@style/NanumSquareB18spWhite"
+                visibleIf="@{tabPosition == 0 &amp;&amp; viewModel.ownerVisible &amp;&amp; !viewModel.isSetGoals()}"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/radius_25"
+                android:backgroundTint="@{viewModel.step == 0 ? @color/gray_border : @color/theme_174dfe}"
+                android:cropToPadding="true"
+                android:gravity="center"
+                android:padding="18dp"
+                app:layout_constraintBottom_toBottomOf="@+id/community_making_influence_btn"
+                app:layout_constraintEnd_toEndOf="@+id/community_making_influence_btn"
+                app:layout_constraintStart_toStartOf="@+id/community_making_influence_btn"
+                tools:background="@drawable/radius_25_unselect_category" />
+
+            <ImageView
+                android:id="@+id/goal_set_btn2"
+                visibleIf="@{tabPosition == 0 &amp;&amp; viewModel.ownerVisible &amp;&amp; !viewModel.isSetGoals()}"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/radius_25"
+                android:backgroundTint="@color/transparent"
+                android:gravity="center"
+                android:padding="18dp"
+                android:src="@drawable/ic_group_goal"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/community_making_influence_btn"
+                app:layout_constraintEnd_toEndOf="@+id/community_making_influence_btn"
+                app:layout_constraintStart_toStartOf="@+id/community_making_influence_btn" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/tooltip_crew_campaign"
+            style="@style/IMHyeminBold15White"
+            visibleIf="@{viewModel.tooltipVisible}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/aos_icon_crew_tooltipbox_crewcampaign"
+            android:gravity="center"
+            android:paddingBottom="8dp"
+            android:text="우리 크루의 캠페인을 만들 수 있어요"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_btn_container"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tooltip_crew_edit"
+            style="@style/IMHyeminBold15White"
+            visibleIf="@{viewModel.communityInfo.owner &amp;&amp; viewModel.tooltipVisible}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="65dp"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/aos_icon_crew_tooltipbox_edit"
+            android:gravity="center"
+            android:lines="2"
+            android:paddingTop="8dp"
+            android:text="오픈채팅방 URL 입력과\n크루 정보를 수정 할 수 있어요!"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent=".728" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

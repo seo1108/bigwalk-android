@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="kr.co.bigwalk.app.report.ReportViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/report_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ico_24_exit"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:padding="16dp"
+            android:contentDescription="@string/back_image"
+            android:onClick="@{() -> viewModel.finishActivity()}"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/report_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="@string/report"
+            style="@style/NanumSquareEb16spBlack"/>
+
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:id="@+id/report_monthly_menu"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/report_back"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/report_tab"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            android:layout_marginStart="16dp"-->
+<!--            android:onClick="@{() -> viewModel.showMonthlyBottomSheet()}">-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/report_month"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                style="@style/NanumSquareR16MainFont"-->
+<!--                android:text="@{viewModel.selectedMonth.monthTitle}"/>-->
+
+<!--            <ImageView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:src="@drawable/ico_24_arrow_down"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/report_month"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                android:contentDescription="@string/drop_down" />-->
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:id="@+id/report_weekly_menu"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/report_back"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/report_tab"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/report_monthly_menu"-->
+<!--            android:onClick="@{() -> viewModel.showWeeklyBottomSheet()}">-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/report_week"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                style="@style/NanumSquareR16MainFont"-->
+<!--                android:text="@{viewModel.selectedWeek.weekTitle}"/>-->
+
+<!--            <ImageView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:src="@drawable/ico_24_arrow_down"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/report_week"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                android:contentDescription="@string/drop_down" />-->
+
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/report_tab"
+            style="@style/tabTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/report_back"
+            app:tabMode="scrollable"
+            app:tabTextAppearance="@style/tabTextAppearence">
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/walk_report" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/donation_report" />
+
+        </com.google.android.material.tabs.TabLayout>
+
+        <FrameLayout
+            android:id="@+id/report_list_frame"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@+id/report_tab"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

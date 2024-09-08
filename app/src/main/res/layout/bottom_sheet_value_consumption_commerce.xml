@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="kr.co.bigwalk.app.campaign.donation.DonationValueConsumptionCommerceViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        android:background="@drawable/bottom_sheet_background"
+        app:behavior_hideable="true"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/commerce_scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="600dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/white_two"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/top"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:paddingBottom="7dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+
+                    <View
+                        android:id="@+id/btn_dismiss"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginEnd="16dp"
+                        android:onClick="@{()->viewModel.dismiss()}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:onClick="@{()->viewModel.dismiss()}"
+                        android:src="@drawable/close"
+                        app:layout_constraintBottom_toBottomOf="@id/btn_dismiss"
+                        app:layout_constraintEnd_toEndOf="@id/btn_dismiss"
+                        app:layout_constraintStart_toStartOf="@+id/btn_dismiss"
+                        app:layout_constraintTop_toTopOf="@+id/btn_dismiss" />
+
+                    <ImageView
+                        android:id="@+id/imageView9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="46dp"
+                        android:layout_marginTop="12dp"
+                        android:src="@drawable/ui_illust_cloud"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:src="@drawable/ui_illust_cloud" />
+
+                    <TextView
+                        android:id="@+id/tv_title"
+                        style="@style/NanumSquareB20MainFont"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="14dp"
+                        android:lineSpacingExtra="8sp"
+                        android:text="@{viewModel.getTitle}"
+                        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/imageView9"
+                        tools:text="nickname 님의\n기후 행동으로\n탄소 0.24kg 감소시켰어요 :)" />
+
+                    <!--<TextView
+                        android:id="@+id/tv_reward"
+                        style="@style/NanumSquareB16ShamrockGreen"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="28dp"
+                        android:background="@drawable/radius_20_border_shamrock_green"
+                        android:lineSpacingExtra="8sp"
+                        android:onClick="@{()->viewModel.copyReward()}"
+                        android:text="@{viewModel.commerce.reward}"
+                        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_title"
+                        tools:text="1971BIGWALK" />-->
+
+                    <TextView
+                        android:id="@+id/tv_reward"
+                        style="@style/NanumSquareB16ShamrockGreen"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="28dp"
+                        android:background="@drawable/radius_20_border_shamrock_green"
+                        android:lineSpacingExtra="8sp"
+                        android:onClick="@{()->viewModel.copyReward()}"
+                        android:text="@{viewModel.commerce.reward}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_title"
+                        tools:text="1971BIGWALK" />
+
+                    <TextView
+                        android:id="@+id/textView20"
+                        style="@style/NanumSquareR10ShamrockGreen"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:lineSpacingExtra="6sp"
+                        android:text="@string/copy_reward"
+                        app:layout_constraintEnd_toEndOf="@+id/tv_reward"
+                        app:layout_constraintStart_toStartOf="@+id/tv_reward"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_reward" />
+
+                    <TextView
+                        android:id="@+id/textView21"
+                        style="@style/NanumSquareB10DarkSkyBlue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:lineSpacingExtra="6sp"
+                        android:text="@{viewModel.getCampaignName}"
+                        android:onClick="@{()->viewModel.moveCompanyWebsite()}"
+                        app:layout_constraintBottom_toBottomOf="@+id/imageView10"
+                        app:layout_constraintStart_toEndOf="@+id/imageView10"
+                        app:layout_constraintTop_toTopOf="@+id/imageView10"
+                        tools:text="빅워크" />
+
+                    <ImageView
+                        android:id="@+id/imageView10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="48dp"
+                        android:onClick="@{()->viewModel.moveCompanyWebsite()}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView20"
+                        app:srcCompat="@drawable/ui_icon_home_page" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/bottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/top">
+
+                    <TextView
+                        android:id="@+id/tv_title3"
+                        style="@style/NanumSquareR14MainFont"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="29dp"
+                        android:layout_marginEnd="24dp"
+                        android:lineSpacingExtra="8sp"
+                        android:text="@{viewModel.getDescription}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="1971 스테이지 다이버와 함께\n가치 소비에 참여해주세요!\n참여하실때마다 탄소 배출량 152를 절감하고\n판매수익금의 25%를 비영리 인권 운동 단체인\n로스킬데 재단에 기부합니다. 특별 코드를 입력하신 빅워커 분들께는\n35,000원 상당의\n여행용 시계 파우치를 선물로 드릴게요:)" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <ImageView
+                    android:id="@+id/imageView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="199dp"
+                    android:layout_marginStart="235dp"
+                    android:translationY="22dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/top"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.52"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:srcCompat="@drawable/ui_illust_green_earth" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+
+        <LinearLayout
+            android:id="@+id/value_consumption_button"
+            style="@style/NanumSquareB20White"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:background="@color/blue"
+            android:gravity="center"
+            android:onClick="@{() -> viewModel.movePurchaseWebsite()}"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <ImageView
+                android:id="@+id/img_value_consumption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/donation_donate_icon"
+                android:src="@drawable/ui_icon_valuable_btn" />
+
+            <TextView
+                android:id="@+id/donation_donate_label"
+                style="@style/NanumSquareB20White"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/spending_value_consumption" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

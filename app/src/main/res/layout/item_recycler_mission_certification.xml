@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="imageUri"
+            type="String" />
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iv_mc_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitCenter"
+            app:loadFullImage="@{imageUri}"/>
+
+        <TextView
+            android:id="@+id/share_campaign_name_label2"
+            style="@style/NanumSquareEb16spWhite"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="22dp"
+            android:layout_marginBottom="22dp"
+            android:layout_marginEnd="43dp"
+            android:lineSpacingExtra="4sp"
+            android:shadowColor="@color/certificated_text_shadow_color"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageView8"
+            tools:text="친환경 이동수단 이용하고\n탄소절감 미션에 도전해보세요!" />
+
+        <TextView
+            android:id="@+id/tv_certificated_date"
+            style="@style/NanumSquareR13White"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="22dp"
+            android:layout_marginBottom="8dp"
+            android:lineSpacingExtra="10sp"
+            android:shadowColor="@color/certificated_text_shadow_color"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="8"
+            app:layout_constraintBottom_toTopOf="@+id/share_campaign_name_label2"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="2021.06.02 10:52" />
+
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="9dp"
+            android:layout_marginBottom="7dp"
+            android:contentDescription="@string/logo"
+            android:src="@drawable/challenge_bigwalk_logo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

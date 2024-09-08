@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="kr.co.bigwalk.app.sign_in.edit_profile.EditProfileViewModel" />
+        <import type="android.view.View"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusableInTouchMode="true"
+        android:clickable="true"
+        android:focusable="true">
+        <ImageView
+            android:id="@+id/agreement_back_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:contentDescription="@string/agreement_back_image"
+            android:onClick="@{() -> viewModel.finishActivity()}"
+            android:src="@drawable/ico_24_back"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/edit_profile_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/privacy"
+            style="@style/NanumSquareRoundRBlackBold16sp24height"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <ImageView
+            android:id="@+id/edit_profile_image"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/img_character_01"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_profile_title"
+            android:layout_marginTop="80dp"
+            android:onClick="@{() -> viewModel.modifyProfileImage()}"
+            app:loadImage="@{viewModel.profilePath}"
+            android:contentDescription="@string/edit_profile_image" />
+
+        <ImageView
+            android:id="@+id/edit_profile_change_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ico_16_modify"
+            android:onClick="@{() -> viewModel.modifyProfileImage()}"
+            app:layout_constraintRight_toRightOf="@id/edit_profile_image"
+            app:layout_constraintBottom_toBottomOf="@+id/edit_profile_image"
+            android:paddingStart="16dp"
+            android:paddingEnd="0dp"
+            android:paddingTop="16dp"
+            android:contentDescription="@string/edit_profile_image" />
+
+
+        <EditText
+            android:id="@+id/edit_nickname_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/edit_profile_change_photo"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constrainedWidth="true"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginEnd="60dp"
+            android:padding="16dp"
+            android:text="@{viewModel.nickname}"
+            android:inputType="text"
+            android:maxLength="10"
+            android:hint="@string/please_input_nickname"
+            android:imeOptions="actionDone"
+            style="@style/NanumSquareRoundRWhite20sp28heightAlignCenterBold"
+            tools:ignore="Autofill,LabelFor"
+            app:editorActionListener="@{viewModel.editorActionListener}"
+            app:clearFocusAndDispatch="@{viewModel.focusChangeListener}"/>
+
+        <TextView
+            android:id="@+id/edit_profile_error"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/edit_nickname_text"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            style="@style/NanumSquareR12Red"
+            android:layout_marginTop="4dp"
+            android:paddingStart="60dp"
+            android:paddingEnd="60dp"
+            android:gravity="center"
+            android:text="@{viewModel.duplicatedMessage}"/>
+
+
+        <TextView
+            android:id="@+id/edit_profile_organization_member_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/are_you_a_corporate_member"
+            style="@style/NanumSquareRoundRGray12sp16height"
+            android:onClick="@{() -> viewModel.agreeWithOrganizationMember()}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/next_page"
+            android:textAlignment="center"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="16dp"/>
+
+        <ImageView
+            android:id="@+id/edit_profile_organization_member_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@{viewModel.corporateMember ? @drawable/ui_checkbox_on : @drawable/ui_checkbox_off}"
+            app:layout_constraintRight_toLeftOf="@+id/edit_profile_organization_member_title"
+            app:layout_constraintBottom_toTopOf="@+id/next_page"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="5dp"
+            android:onClick="@{() -> viewModel.agreeWithOrganizationMember()}"
+            android:contentDescription=""
+            />
+
+
+        <TextView
+            android:id="@+id/next_page"
+            style="@style/NanumSquareRoundRWhite20sp28heightAndBackground"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:background="@{viewModel.confirmNickname ? @color/blue : @color/opacity_50_percent_blue}"
+            android:textColor="@color/white"
+            android:gravity="center_vertical"
+            android:onClick="@{() -> viewModel.signUp(editNicknameText.getText().toString())}"
+            android:text="@string/next_page"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="parent"
+            app:layout_constraintRight_toLeftOf="parent" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

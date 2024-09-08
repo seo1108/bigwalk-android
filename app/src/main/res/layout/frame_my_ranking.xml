@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="kr.co.bigwalk.app.campaign.ranking.RankingPlusViewModel" />
+        <import type="android.view.View"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="369dp"
+        android:paddingTop="21dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/my_ranking_grade_report"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/my_ranking_grade_report_absolute"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:visibility="visible"
+                android:visibility="@{viewModel.areAtTheTop ? View.GONE : View.VISIBLE}">
+                <TextView
+                    android:id="@+id/my_ranking_number"
+                    style="@style/NanumSquareRoundEb24spWhite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/sub"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/my_ranking_place"
+                    tools:text="-"
+                    android:text="@{viewModel.myReport.rankNumber}"/>
+
+                <TextView
+                    android:id="@+id/my_ranking_place"
+                    style="@style/NanumSquareRoundL16spBlack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/sub"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginTop="3dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/my_ranking_number"
+                    app:layout_constraintStart_toEndOf="@+id/my_ranking_number"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:text="@string/ranking_plus_ranking_place" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/my_ranking_big_grade"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/my_ranking_number">
+
+                    <ImageView
+                        android:id="@+id/my_ranking_up"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/aos_icon_ranking_up"
+                        app:layout_constraintHorizontal_chainStyle="packed"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:visibility="@{viewModel.showUpDownIcon ? View.VISIBLE : View.INVISIBLE, default=gone}"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/aos_illust_ranking_bg"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"/>
+
+                    <ImageView
+                        android:id="@+id/my_ranking_grade_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="108dp"
+                        tools:src="@drawable/aos_icon_ranking_lv_15"
+                        loadGradeIcon="@{viewModel.gradeIcon}"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/my_ranking_tear"
+                    style="@style/NanumSquareRoundBBlack16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/my_ranking_big_grade"
+                    tools:text="걷다보니뒷동산"
+                    android:text="@{viewModel.myReport.rank.name}"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/my_ranking_grade_report_relative"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:visibility="gone"
+                android:visibility="@{viewModel.areAtTheTop ? View.VISIBLE : View.GONE}">
+
+                <ImageView
+                    android:id="@+id/my_ranking_up_down"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@{viewModel.isUpIcon ? @drawable/aos_icon_ranking_up : @drawable/aos_icon_ranking_down}"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/my_ranking_up_down_number"
+                    app:layout_constraintTop_toTopOf="@id/my_ranking_up_down_number"
+                    app:layout_constraintBottom_toBottomOf="@id/my_ranking_up_down_number"
+                    android:visibility="@{viewModel.showUpDownIcon ? View.VISIBLE : View.INVISIBLE}"/>
+
+                <TextView
+                    android:id="@+id/my_ranking_up_down_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/my_ranking_up_down"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="6dp"
+                    tools:text="57"
+                    android:text="@{viewModel.differenceValue}"
+                    style="@style/NanumSquareRoundEb24spBlack"
+                    android:visibility="@{viewModel.showUpDownIcon ? View.VISIBLE : View.INVISIBLE}"/>
+
+                <TextView
+                    android:id="@+id/my_ranking_number_relative"
+                    style="@style/NanumSquareRoundEb56spBlue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/my_ranking_up_down_number"
+                    app:layout_constraintEnd_toStartOf="@id/my_ranking_place_relative"
+                    android:layout_marginTop="5dp"
+                    tools:text="100"
+                    android:textSize="62sp"
+                    android:text="@{viewModel.myReport.rankNumber}"/>
+
+                <TextView
+                    android:id="@+id/my_ranking_place_relative"
+                    style="@style/NanumSquareRoundL16spBlack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/sub"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginBottom="14dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/my_ranking_number_relative"
+                    app:layout_constraintStart_toEndOf="@+id/my_ranking_number_relative"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:text="@string/ranking_plus_ranking_place" />
+
+                <ImageView
+                    android:id="@+id/my_ranking_small_grade_img"
+                    android:layout_width="30dp"
+                    android:layout_height="28dp"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/my_ranking_tear_relative"
+                    app:layout_constraintTop_toTopOf="@id/my_ranking_tear_relative"
+                    app:layout_constraintBottom_toBottomOf="@id/my_ranking_tear_relative"
+                    loadGradeIcon="@{viewModel.gradeIcon}"/>
+
+                <TextView
+                    android:id="@+id/my_ranking_tear_relative"
+                    style="@style/NanumSquareRoundBBlack16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/my_ranking_small_grade_img"
+                    app:layout_constraintTop_toBottomOf="@id/my_ranking_number_relative"
+                    android:layout_marginStart="8dp"
+                    tools:text="걷다보니뒷동산"
+                    android:text="@{viewModel.myReport.rank.name}"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/my_ranking_grade_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/my_ranking_grade_report"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/tear_progress_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{viewModel.isProgressing ? View.VISIBLE : View.GONE}"
+                app:constraint_referenced_ids="my_ranking_tear_progress_min,my_ranking_tear_progress_max,my_ranking_tear_progressbar" />
+
+            <ProgressBar
+                android:id="@+id/my_ranking_tear_progressbar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="214dp"
+                android:layout_height="10dp"
+                android:layout_marginTop="20dp"
+                android:progressDrawable="@drawable/progressbar_ranking_tear"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:progress="20"
+                android:progress="@{viewModel.myReport.progress}"/>
+
+            <TextView
+                android:id="@+id/my_ranking_tear_progress_min"
+                style="@style/NanumSquareB10spBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                app:layout_constraintTop_toBottomOf="@id/my_ranking_tear_progressbar"
+                app:layout_constraintStart_toStartOf="@+id/my_ranking_tear_progressbar"
+                tools:text="50,000"
+                android:text="@{viewModel.myReport.currentRankStepsText}"/>
+
+            <TextView
+                android:id="@+id/my_ranking_tear_progress_max"
+                style="@style/NanumSquareB10spBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                app:layout_constraintTop_toBottomOf="@id/my_ranking_tear_progressbar"
+                app:layout_constraintEnd_toEndOf="@+id/my_ranking_tear_progressbar"
+                tools:text="100,000"
+                android:text="@{viewModel.myReport.nextRankStepsText}" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                style="@style/NanumSquareL10spBlack"
+                android:layout_marginTop="16dp"
+                tools:visibility="gone"
+                android:visibility="@{viewModel.isProgressing ? View.GONE : View.VISIBLE}"
+                android:text="@string/my_ranking_report_top_grade_description"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Button
+            android:id="@+id/my_ranking_go_to_donate"
+            style="@style/NanumSquareB18spWhite"
+            android:layout_width="280dp"
+            android:layout_height="54dp"
+            android:layout_marginStart="41dp"
+            android:layout_marginBottom="54dp"
+            android:layout_marginEnd="41dp"
+            android:background="@drawable/selector_radius_12_blue"
+            android:onClick="@{() -> viewModel.moveToCampaign()}"
+            android:stateListAnimator="@null"
+            android:text="@string/my_mission_go_to_donate"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/my_ranking_rank_guide_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="22dp"
+            android:layout_marginBottom="22dp"
+            android:src="@drawable/aos_icon_ranking_rank_guide"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:onClick="@{() -> viewModel.moveToGradeInfo()}"/>
+
+        <TextView
+            android:id="@+id/my_ranking_rank_guide_text"
+            style="@style/NanumSquareR14Sub2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:text="등급안내"
+            app:layout_constraintBottom_toBottomOf="@+id/my_ranking_rank_guide_icon"
+            app:layout_constraintEnd_toStartOf="@+id/my_ranking_rank_guide_icon"
+            app:layout_constraintTop_toTopOf="@+id/my_ranking_rank_guide_icon"
+            android:onClick="@{() -> viewModel.moveToGradeInfo()}" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="viewModel"
+            type="kr.co.bigwalk.app.campaign.detail.CampaignDetailViewModel" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/campaign_detail_donating_step_button_background"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:contentDescription="@string/campaign_thumbnail_image"
+                            app:layout_constraintDimensionRatio="1:1"
+                            android:src="@drawable/img_default_312"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:loadFullImageUrl="@{viewModel.campaign.detailThumbnailImagePath}" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ico_24_back_white"
+                            android:padding="16dp"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:contentDescription="@string/back_image"
+                            android:onClick="@{() -> viewModel.finishActivity()}"/>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <include
+                    android:id="@+id/scroll_container"
+                    layout="@layout/content_campaign_detail"
+                    bind:viewModel="@{viewModel}" />
+            </FrameLayout>
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+        <View
+            android:id="@+id/campaign_detail_donating_sms_background_icon"
+            android:layout_width="0dp"
+            android:layout_height="64dp"
+            android:visibility="@{viewModel.donationSMSVisible ? View.VISIBLE : View.GONE}"
+            android:background="@color/water_melon"
+            android:alpha="@{viewModel.donationButtonAlpha}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/campaign_detail_donating_step_button_background"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintHorizontal_weight="50"
+            android:onClick="@{()->viewModel.SMSDonation()}"
+            />
+
+        <View
+            android:id="@+id/campaign_detail_donating_step_button_background"
+            android:layout_width="0dp"
+            android:layout_height="64dp"
+            android:background="@{viewModel.donationButtonBackground.intValue()}"
+            android:alpha="@{viewModel.donationButtonAlpha}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/campaign_detail_donating_sms_background_icon"
+            app:layout_constraintHorizontal_weight="50"
+            android:onClick="@{() -> viewModel.onClickedDonationButton()}"
+            />
+
+        <ImageView
+            android:id="@+id/campaign_detail_donating_sms_button_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ico_24_donation_sms_white"
+            android:visibility="@{viewModel.donationSMSVisible  ? View.VISIBLE : View.GONE}"
+            app:layout_constraintRight_toLeftOf="@+id/campaign_detail_share_button_text"
+            app:layout_constraintLeft_toLeftOf="@+id/campaign_detail_donating_sms_background_icon"
+            app:layout_constraintTop_toTopOf="@+id/campaign_detail_donating_sms_background_icon"
+            app:layout_constraintBottom_toBottomOf="@+id/campaign_detail_donating_sms_background_icon"
+            android:contentDescription="@string/campaign_detail_share_button_icon"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            android:layout_marginEnd="8dp"/>
+
+        <TextView
+            android:id="@+id/campaign_detail_share_button_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewModel.donationSMSVisible  ? View.VISIBLE : View.GONE}"
+            style="@style/NanumSquareB20White"
+            android:text="@string/donate_sms_button"
+            app:layout_constraintLeft_toRightOf="@+id/campaign_detail_donating_sms_button_icon"
+            app:layout_constraintTop_toTopOf="@+id/campaign_detail_donating_sms_background_icon"
+            app:layout_constraintBottom_toBottomOf="@id/campaign_detail_donating_sms_background_icon"
+            app:layout_constraintRight_toRightOf="@id/campaign_detail_donating_sms_background_icon"
+            />
+
+        <ImageView
+            android:id="@+id/campaign_detail_donating_step_button_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@{viewModel.donationButtonImage}"
+            app:layout_constraintRight_toLeftOf="@+id/campaign_detail_donating_step_button_text"
+            app:layout_constraintLeft_toLeftOf="@+id/campaign_detail_donating_step_button_background"
+            app:layout_constraintTop_toTopOf="@+id/campaign_detail_donating_step_button_background"
+            app:layout_constraintBottom_toBottomOf="@+id/campaign_detail_donating_step_button_background"
+            android:contentDescription="@string/campaign_detail_donating_step_button_icon"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            android:layout_marginEnd="8dp"/>
+
+        <TextView
+            android:id="@+id/campaign_detail_donating_step_button_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/NanumSquareB20White"
+            android:text="@{viewModel.donationButtonText}"
+            app:layout_constraintLeft_toRightOf="@+id/campaign_detail_donating_step_button_icon"
+            app:layout_constraintTop_toTopOf="@+id/campaign_detail_donating_step_button_background"
+            app:layout_constraintBottom_toBottomOf="@id/campaign_detail_donating_step_button_background"
+            app:layout_constraintRight_toRightOf="@id/campaign_detail_donating_step_button_background"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

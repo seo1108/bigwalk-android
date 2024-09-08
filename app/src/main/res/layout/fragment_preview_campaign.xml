@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="kr.co.bigwalk.app.community.funding.SupportersCampaignPreviewViewModel" />
+
+        <import type="kr.co.bigwalk.app.data.community.GroupMemberRole" />
+
+    </data>
+
+
+<!--    <androidx.coordinatorlayout.widget.CoordinatorLayout-->
+<!--        android:id="@+id/info_bottom_sheet"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/top_tab">-->
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/bottom_sheet_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                tools:context=".community.funding.preview.PreviewCampaignFragment">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="25dp">
+
+                    <ImageView
+                        android:id="@+id/main_image"
+                        clipToOutline="@{true}"
+                        loadFullImageUrl="@{vm.crewCampaign.mainImage}"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/radius_25"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:src="@drawable/aos_group_logoplaceholder_1" />
+
+                    <TextView
+                        android:id="@+id/campaign_category"
+                        style="@style/NanumSquareR14White"
+                        android:layout_width="wrap_content"
+                        android:layout_height="28dp"
+                        android:layout_marginStart="15dp"
+                        android:background="@drawable/radius_25"
+                        android:backgroundTint="@color/blue"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="15dp"
+                        android:text="@{vm.crewCampaign.categoryName}"
+                        app:layout_constraintStart_toEndOf="@+id/main_image"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/campaign_type"
+                        style="@style/NanumSquareR14White"
+                        android:layout_width="wrap_content"
+                        android:layout_height="28dp"
+                        android:layout_marginStart="4dp"
+                        android:background="@drawable/radius_25"
+                        android:backgroundTint="@color/emerald_green"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="8dp"
+                        android:text="@string/donated_steps"
+                        app:layout_constraintStart_toEndOf="@+id/campaign_category"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/title"
+                        style="@style/Title2_Bold"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="@{vm.crewCampaign.title}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/campaign_category"
+                        app:layout_constraintTop_toBottomOf="@+id/campaign_category"
+                        tools:text="캠페인명은최대13자이다요" />
+
+                    <TextView
+                        android:id="@+id/sub_title"
+                        style="@style/BodyBold"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="@{vm.crewCampaign.subTitle}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/campaign_category"
+                        app:layout_constraintTop_toBottomOf="@+id/title"
+                        tools:text="인권 운동과 함께하는 덴마크 시계" />
+
+                    <TextView
+                        android:id="@+id/content"
+                        style="@style/BodyLight"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="@{vm.crewCampaign.summary}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/campaign_category"
+                        app:layout_constraintTop_toBottomOf="@+id/sub_title"
+                        tools:text="6월 19일 저녁 7시, 덴마크 시계 브랜드 스코브 안데르센과 북유럽 최대 음악 축제인 로스킬데 페스티벌의 스페셜 콜라보 에디션이 출시됩니다. 세계적인 뮤지션 롤링 스톤즈가 선물한 실제 무대 ‘오렌지 스테이지’가 삽입되어 특별함을 더하는 ‘1971 스테이지 다이버’는, 판매 수익금의 25%를 비영리 인권 운동 단체인 로스킬데 재단에 기부합니다. 200자 완" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <include
+                    android:id="@+id/content1"
+                    layout="@layout/view_crew_campaign_info"
+                    visibleIf="@{vm.crewCampaign.contentPreviews.size() > 0}"
+                    bind:response="@{vm.crewCampaign.contentPreviews[0]}" />
+
+                <include
+                    android:id="@+id/content2"
+                    layout="@layout/view_crew_campaign_info"
+                    visibleIf="@{vm.crewCampaign.contentPreviews.size() > 1}"
+                    bind:response="@{vm.crewCampaign.contentPreviews[1]}" />
+
+                <include
+                    android:id="@+id/content3"
+                    layout="@layout/view_crew_campaign_info"
+                    visibleIf="@{vm.crewCampaign.contentPreviews.size() > 2}"
+                    bind:response="@{vm.crewCampaign.contentPreviews[2]}" />
+
+                <TextView
+                    android:id="@+id/delete_campaign"
+                    style="@style/NanumsquareL10MainFont"
+                    visibleIf="@{vm.myRole == GroupMemberRole.OWNER}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp"
+                    android:autoLink="web"
+                    android:paddingHorizontal="17dp"
+                    android:paddingVertical="10dp"
+                    android:text="@string/delete_crew_campaign" />
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+<!--    </androidx.coordinatorlayout.widget.CoordinatorLayout>-->
+
+</layout>

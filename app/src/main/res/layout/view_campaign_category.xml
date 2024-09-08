@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imageView20"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="0.77:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent=".879"
+            app:srcCompat="@drawable/aos_icon_crew_category_board" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/category_list"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView20"
+            app:layout_constraintEnd_toEndOf="@+id/imageView20"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="@+id/imageView20"
+            app:layout_constraintTop_toTopOf="@+id/imageView20">
+
+            <RadioButton
+                android:id="@+id/category_button"
+                style="@style/NanumSquareR14White"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/selector_radio_category1"
+                android:button="@null"
+                android:minWidth="57dp"
+                android:minHeight="28dp"
+                android:tag="4"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toTopOf="@+id/category_button3"
+                app:layout_constraintDimensionRatio="1:0.88"
+                app:layout_constraintEnd_toStartOf="@+id/category_button2"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:layout_constraintWidth_percent=".3922"
+                app:rippleColor="@color/transparent" />
+
+            <RadioButton
+                android:id="@+id/category_button2"
+                style="@style/NanumSquareR14White"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="2dp"
+                android:background="@drawable/selector_radio_category2"
+                android:button="@null"
+                android:minWidth="57dp"
+                android:minHeight="28dp"
+                android:tag="9"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/category_button"
+                app:layout_constraintDimensionRatio="1:0.88"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/category_button"
+                app:layout_constraintTop_toTopOf="@+id/category_button"
+                app:layout_constraintVertical_bias="0.0"
+                app:layout_constraintWidth_percent=".3922"
+                app:rippleColor="@color/transparent" />
+
+            <RadioButton
+                android:id="@+id/category_button3"
+                style="@style/NanumSquareR14White"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="1dp"
+                android:background="@drawable/selector_radio_category3"
+                android:button="@null"
+                android:minWidth="57dp"
+                android:minHeight="28dp"
+                android:tag="2"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toTopOf="@+id/category_button5"
+                app:layout_constraintDimensionRatio="1:0.88"
+                app:layout_constraintEnd_toStartOf="@+id/category_button4"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/category_button"
+                app:layout_constraintWidth_percent=".3922"
+                app:rippleColor="@color/transparent" />
+
+            <RadioButton
+                android:id="@+id/category_button4"
+                style="@style/NanumSquareR14White"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="2dp"
+                android:background="@drawable/selector_radio_category4"
+                android:button="@null"
+                android:minWidth="57dp"
+                android:minHeight="28dp"
+                android:tag="10"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/category_button3"
+                app:layout_constraintDimensionRatio="1:0.88"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/category_button3"
+                app:layout_constraintTop_toTopOf="@+id/category_button3"
+                app:layout_constraintWidth_percent=".3922"
+                app:rippleColor="@color/transparent" />
+
+            <RadioButton
+                android:id="@+id/category_button5"
+                style="@style/NanumSquareR14White"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="1dp"
+                android:background="@drawable/selector_radio_category5"
+                android:button="@null"
+                android:minWidth="57dp"
+                android:minHeight="28dp"
+                android:tag="8"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1:0.88"
+                app:layout_constraintEnd_toStartOf="@+id/category_button6"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/category_button3"
+                app:layout_constraintWidth_percent=".3922"
+                app:rippleColor="@color/transparent" />
+
+            <RadioButton
+                android:id="@+id/category_button6"
+                style="@style/NanumSquareR14White"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="2dp"
+                android:background="@drawable/selector_radio_category6"
+                android:button="@null"
+                android:minWidth="57dp"
+                android:minHeight="28dp"
+                android:tag="7"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/category_button5"
+                app:layout_constraintDimensionRatio="1:0.88"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/category_button5"
+                app:layout_constraintTop_toTopOf="@+id/category_button5"
+                app:layout_constraintWidth_percent=".3922"
+                app:rippleColor="@color/transparent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

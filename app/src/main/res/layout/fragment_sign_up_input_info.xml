@@ -1,0 +1,526 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="kr.co.bigwalk.app.sign_up.SignUpViewModel" />
+
+        <import type="kr.co.bigwalk.app.data.user.Gender" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/profile_image_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/edit_profile_image"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:contentDescription="@string/edit_profile_image"
+                        android:src="@drawable/img_character_01"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:loadImage="@{vm.profilePath}" />
+
+                    <ImageView
+                        android:id="@+id/edit_profile_change_photo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/edit_profile_image"
+                        android:paddingStart="16dp"
+                        android:paddingTop="16dp"
+                        android:paddingEnd="0dp"
+                        android:src="@drawable/ico_16_modify"
+                        app:layout_constraintBottom_toBottomOf="@+id/edit_profile_image"
+                        app:layout_constraintRight_toRightOf="@id/edit_profile_image" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/nickname_container"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/profile_image_container">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/nickname"
+                        style="@style/IMHyeminRegular12Black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="29dp"
+                        android:layout_marginTop="14dp"
+                        android:text="@string/nickname"
+                        android:textColor="@color/sub2"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/input_nickname"
+                        style="@style/NanumSquareRoundBBlack16sp"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="17dp"
+                        android:layout_marginTop="2dp"
+                        android:background="@null"
+                        android:hint="닉네임(2~10자)"
+                        android:inputType="text"
+                        android:lines="1"
+                        android:maxLength="11"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="7dp"
+                        android:text="@{vm.nicknameType.text}"
+                        android:textColorHint="@color/sub2"
+                        app:layout_constraintEnd_toEndOf="@+id/btn_nickname_clear"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/nickname" />
+
+                    <ImageView
+                        android:id="@+id/btn_nickname_clear"
+                        clearTextOnClick="@{inputNickname}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="29dp"
+                        android:src="@drawable/ic_15_input_field_delete"
+                        android:visibility="invisible"
+                        app:layout_constraintBottom_toBottomOf="@+id/input_nickname"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/input_nickname"
+                        tools:visibility="visible" />
+
+                    <View
+                        android:id="@+id/divider"
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_marginHorizontal="25dp"
+                        android:layout_marginTop="11dp"
+                        android:background="@color/gray_border"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/input_nickname" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/nickname_error_msg"
+                        style="@style/IMHyeminBold15White"
+                        visibleIf="@{vm.nicknameType.duplicatedMessage.length() > 0}"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="29dp"
+                        android:paddingVertical="10dp"
+                        android:text="@{vm.nicknameType.duplicatedMessage}"
+                        android:textColor="@{vm.nicknameType.isAvailable ? @color/pacific_blue : @color/calm_red}"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/divider"
+                        tools:text="중복되는 닉네임이 존재합니다." />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/phone_number_container"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/nickname_container">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/phone_number"
+                        style="@style/IMHyeminRegular12Black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="29dp"
+                        android:layout_marginTop="14dp"
+                        android:text="@string/phone_number"
+                        android:textColor="@color/sub2"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/input_phone_number"
+                        style="@style/NanumSquareRoundBBlack16sp"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="17dp"
+                        android:layout_marginTop="2dp"
+                        android:background="@null"
+                        android:focusable="false"
+                        android:hint="휴대폰 번호 입력"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxLength="11"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="7dp"
+                        android:text="@={vm.phoneNumber}"
+                        android:textColorHint="@color/sub2"
+                        app:layout_constraintEnd_toStartOf="@+id/btn_phone_number_auth"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/phone_number" />
+
+                    <ImageView
+                        android:id="@+id/btn_phone_number_auth"
+                        visibleIf="@{vm.phoneNumber.length() > 0}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="29dp"
+                        android:src="@drawable/aos_icon_phone_o_kmark"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:visibility="visible" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_marginHorizontal="25dp"
+                        android:layout_marginTop="11dp"
+                        android:background="@color/gray_border"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/input_phone_number" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/email_container"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/phone_number_container">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/email"
+                        style="@style/IMHyeminRegular12Black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="29dp"
+                        android:layout_marginTop="14dp"
+                        android:text="@string/email"
+                        android:textColor="@color/sub2"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/input_email"
+                        style="@style/NanumSquareRoundBBlack16sp"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="17dp"
+                        android:layout_marginTop="2dp"
+                        android:background="@null"
+                        android:hint="이메일 주소 입력"
+                        android:inputType="textEmailAddress"
+                        android:lines="1"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="21dp"
+                        android:paddingVertical="7dp"
+                        android:text="@{vm.userEmailType.text}"
+                        android:textColorHint="@color/sub2"
+                        app:layout_constraintEnd_toEndOf="@+id/btn_email_clear"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/email" />
+
+                    <ImageView
+                        android:id="@+id/btn_email_clear"
+                        clearTextOnClick="@{inputEmail}"
+                        setVisibleToFocus="@{inputEmail}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="29dp"
+                        android:src="@drawable/ic_15_input_field_delete"
+                        android:visibility="invisible"
+                        app:layout_constraintBottom_toBottomOf="@+id/input_email"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/input_email"
+                        tools:visibility="visible" />
+
+                    <View
+                        android:id="@+id/divider2"
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_marginHorizontal="25dp"
+                        android:layout_marginTop="11dp"
+                        android:background="@color/gray_border"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/input_email" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/IMHyeminBold15White"
+                        goneIf="@{vm.userEmailType.isAvailable}"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="29dp"
+                        android:paddingVertical="10dp"
+                        android:text="@string/invalid_format"
+                        android:textColor="@color/calm_red"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/divider2"
+                        tools:text="중복되는 닉네임이 존재합니다." />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/birth_container"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/email_container"
+                    app:layout_constraintWidth_percent=".595">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/birth"
+                        style="@style/IMHyeminRegular12Black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="29dp"
+                        android:layout_marginTop="14dp"
+                        android:text="@string/birth"
+                        android:textColor="@color/sub2"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/input_birth"
+                        style="@style/NanumSquareRoundBBlack16sp"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="17dp"
+                        android:layout_marginTop="2dp"
+                        android:background="@null"
+                        android:hint="생년월일 8자리 입력"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxLength="8"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="7dp"
+                        android:text="@{vm.userBirthType.text}"
+                        android:textColorHint="@color/sub2"
+                        app:layout_constraintEnd_toEndOf="@+id/btn_birth_clear"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/birth" />
+
+                    <ImageView
+                        android:id="@+id/btn_birth_clear"
+                        clearTextOnClick="@{inputBirth}"
+                        setVisibleToFocus="@{inputBirth}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="2dp"
+                        android:src="@drawable/ic_15_input_field_delete"
+                        android:visibility="invisible"
+                        app:layout_constraintBottom_toBottomOf="@+id/input_birth"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/input_birth"
+                        tools:visibility="visible" />
+
+                    <View
+                        android:id="@+id/divider3"
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginTop="11dp"
+                        android:background="@color/gray_border"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/input_birth" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/IMHyeminBold15White"
+                        invisibleIf="@{vm.userBirthType.isAvailable || vm.userBirthType.text.length() == 0}"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="29dp"
+                        android:paddingVertical="10dp"
+                        android:text="@string/invalid_format"
+                        android:textColor="@color/calm_red"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/divider3"
+                        tools:text="중복되는 닉네임이 존재합니다." />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/gender_container"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/birth_container"
+                    app:layout_constraintTop_toTopOf="@+id/birth_container">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/gender"
+                        style="@style/IMHyeminRegular12Black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="14dp"
+                        android:text="@string/gender"
+                        android:textColor="@color/sub2"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <RadioGroup
+                        android:id="@+id/gender_radio_group"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="25dp"
+                        android:checkedButton="@{vm.userGender == Gender.MAN ? @id/btn_male : vm.userGender == Gender.WOMAN ? @id/btn_female : -1}"
+                        android:orientation="horizontal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/gender"
+                        app:layout_constraintTop_toBottomOf="@+id/gender">
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/btn_male"
+                            style="@style/IMHyeminBold15White"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="7dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/selector_gender_male"
+                            android:button="@null"
+                            android:paddingVertical="11.5dp"
+                            android:paddingStart="17dp"
+                            android:paddingEnd="15dp"
+                            android:text="@string/male"
+                            android:textAlignment="center"
+                            android:textSize="12dp" />
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/btn_female"
+                            style="@style/IMHyeminBold15White"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="2dp"
+                            android:layout_marginTop="7dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/selector_gender_female"
+                            android:button="@null"
+                            android:paddingVertical="11.5dp"
+                            android:paddingStart="15dp"
+                            android:paddingEnd="17dp"
+                            android:text="@string/female"
+                            android:textAlignment="center"
+                            android:textSize="12dp" />
+
+
+                    </RadioGroup>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/edit_profile_organization_member_title"
+                    style="@style/CaptionLight"
+                    goneIf="@{vm.organization.organization.name.length() > 0}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:paddingHorizontal="29dp"
+                    android:paddingVertical="15dp"
+                    android:text="@string/are_you_a_corporate_member"
+                    android:textAlignment="center"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/birth_container"
+                    tools:visibility="gone" />
+
+                <include
+                    android:id="@+id/input_corporate_group"
+                    layout="@layout/view_profile_corporate_member"
+                    visibleIf="@{vm.organization.organization.name.length() > 0}"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/edit_profile_organization_member_title"
+                    tools:department="@{vm.organization.department.name}"
+                    tools:employEmail="@{vm.organization.organizationEmail}"
+                    tools:employName="@{vm.organization.organization.name}"
+                    tools:employNumber="@{vm.organization.organizationEmployeeNumber}"
+                    tools:organizationRequirement="@{vm.organizationRequirement}"
+                    tools:depth1="@{vm.organization.depth1.name}"
+                    tools:depth2="@{vm.organization.depth2.name}"
+                    tools:depth3="@{vm.organization.depth3.name}"
+                    tools:depth4="@{vm.organization.depth4.name}"
+                    tools:depth1Title="@{vm.depth1Title}"
+                    tools:depth2Title="@{vm.depth2Title}"
+                    tools:depth3Title="@{vm.depth3Title}"
+                    tools:depth4Title="@{vm.depth4Title}"
+                    tools:depth1Hint="@{vm.depth1Hint}"
+                    tools:depth2Hint="@{vm.depth2Hint}"
+                    tools:depth3Hint="@{vm.depth3Hint}"
+                    tools:depth4Hint="@{vm.depth4Hint}"
+                    tools:searchContent="@{vm.organization.searchContent}"
+                    tools:visitDay="@{vm.organization.visitDay}"
+                    tools:certNo="@{vm.organization.certNo}"
+                    tools:familyRelations="@{vm.organization.familyRelations}"
+                    tools:age="@{vm.organization.age}"
+                    tools:nickname="@{vm.organization.nickname}"
+                    tools:identification="@{vm.organization.identification}"
+                    tools:address="@{vm.organization.address}"
+                    tools:attendanceNo="@{vm.organization.attendanceNo}"
+                    tools:studentId="@{vm.organization.studentId}"
+                    tools:number="@{vm.organization.number}"
+                    tools:input="@{vm.organization.input}"
+                    tools:organizationEmployeeName="@{vm.organization.organizationEmployeeName}"
+                    tools:instagramAccount="@{vm.organization.instagramAccount}"
+                    />
+
+                <TextView
+                    android:id="@+id/change_general_member"
+                    style="@style/CaptionLight"
+                    visibleIf="@{vm.organization.organization.name.length() > 0}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="29dp"
+                    android:paddingVertical="15dp"
+                    android:text="@string/convert_to_general_member"
+                    android:textAlignment="center"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/input_corporate_group" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

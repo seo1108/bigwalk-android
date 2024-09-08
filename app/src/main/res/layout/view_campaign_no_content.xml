@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="54dp"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/coment_box"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/aos_icon_crew_tooltipbox_empty" />
+
+            <TextView
+                android:id="@+id/textView31"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/im_hyemin_bold"
+                android:gravity="center"
+                android:letterSpacing="-0.04"
+                android:lineHeight="24sp"
+                android:paddingHorizontal="21dp"
+                android:text="@string/campaign_content_user_recommendation_explain1"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toTopOf="@+id/textView32"
+                app:layout_constraintEnd_toEndOf="@+id/coment_box"
+                app:layout_constraintStart_toStartOf="@+id/coment_box"
+                app:layout_constraintTop_toTopOf="@+id/coment_box"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <TextView
+                android:id="@+id/textView32"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:fontFamily="@font/im_hyemin_bold"
+                android:gravity="center"
+                android:letterSpacing="-0.04"
+                android:lineHeight="20sp"
+                android:paddingHorizontal="21dp"
+                android:text="@string/campaign_content_user_recommendation_explain2"
+                android:textColor="@color/background_grey"
+                android:textSize="13sp"
+                app:layout_constraintBottom_toTopOf="@+id/apply_btn"
+                app:layout_constraintEnd_toEndOf="@+id/coment_box"
+                app:layout_constraintStart_toStartOf="@+id/coment_box"
+                app:layout_constraintTop_toBottomOf="@+id/textView31" />
+
+            <TextView
+                android:id="@+id/apply_btn"
+                style="@style/NanumBarunpenBold20spWhite"
+                android:layout_width="230dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:background="@drawable/radius_25"
+                android:backgroundTint="@color/cyanish_mint"
+                android:gravity="center"
+                android:paddingTop="17dp"
+                android:paddingBottom="18dp"
+                android:text="콘텐츠 응모하러 가기"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/coment_box"
+                app:layout_constraintStart_toStartOf="@+id/coment_box"
+                app:layout_constraintTop_toBottomOf="@+id/textView32" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/imageView24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="-26dp"
+            app:srcCompat="@drawable/aos_illust_crew_bw_profile_a" />
+
+        <TextView
+            android:id="@+id/save_button"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="61dp"
+            android:layout_marginBottom="50dp"
+            android:background="@drawable/radius_25"
+            android:backgroundTint="#174dfe"
+            android:fontFamily="@font/nanum_barunpen_b"
+            android:gravity="center"
+            android:letterSpacing="-0.01"
+            android:text="@string/save"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+</layout>
