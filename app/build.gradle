@@ -1,18 +1,36 @@
-apply plugin: 'com.android.application'
+/*apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.google.gms.google-services'
-apply plugin: 'com.google.firebase.crashlytics'
-buildscript {
+apply plugin: 'com.google.firebase.crashlytics'*/
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
+}
+/*buildscript {
     repositories {
         google()
         mavenCentral()
         jcenter()
         maven { url "https://jitpack.io" }
     }
-}
+}*/
 android {
+    namespace="kr.co.bigwalk.app"
+    
+    //buildToolsVersion "33.0.2"
+    buildToolsVersion "34.0.0"
+
+
+    buildFeatures {
+        buildConfig true
+    }
+
     signingConfigs {
         release {
             storeFile file('bigwalk_android_key')
@@ -21,6 +39,7 @@ android {
             keyPassword 'xoddl0425!!'
         }
     }
+
     compileSdkVersion 34
     defaultConfig {
         applicationId "kr.co.bigwalk.app"
@@ -29,9 +48,11 @@ android {
         versionCode 193
         versionName "1.21.5"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     buildTypes {
         release {
+            shrinkResources false
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
@@ -42,8 +63,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility 11
-        targetCompatibility 11
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
     }
     kotlinOptions {
         jvmTarget = "1.8"
@@ -86,6 +107,12 @@ android {
         // but continue the build even when errors are found:
         abortOnError false
     }
+
+    aaptOptions {
+        cruncherEnabled false
+        useNewCruncher false
+        ignoreAssetsPattern '!.svn:!.git'
+    }
 }
 
 /*repositories {
@@ -95,7 +122,7 @@ android {
 }*/
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.aar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.core:core-ktx:1.1.0'
@@ -146,7 +173,8 @@ dependencies {
     //for image
     implementation 'com.github.bumptech.glide:glide:4.12.0'
     kapt 'com.github.bumptech.glide:compiler:4.12.0'
-    implementation 'id.zelory:compressor:2.1.0'
+    //implementation 'id.zelory:compressor:2.1.0'
+    //implementation 'com.github.zetbaitsu:Compressor:v2.1.0'
     implementation 'androidx.exifinterface:exifinterface:1.0.0'
     implementation 'me.relex:circleindicator:2.1.4'
     implementation 'com.github.mmin18:realtimeblurview:1.2.1'
@@ -194,8 +222,10 @@ dependencies {
     implementation "androidx.camera:camera-view:1.0.0-alpha14"
 
     // Coroutines
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1'
-    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1'
+    //implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1'
+    //testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0'
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0'
 
     implementation 'io.github.ParkSangGwon:tedimagepicker:1.2.2'
     //implementation 'com.github.chintan369:MultiImagePicker:1.0.11'

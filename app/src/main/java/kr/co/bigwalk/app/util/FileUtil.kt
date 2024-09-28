@@ -177,3 +177,5 @@ fun saveBitmapToGallery(bitmap: Bitmap) {
         "bigwalk screenshot image"
     )
 }
+
+
