@@ -38,10 +38,10 @@ class SaveWalkTest {
         val walk = Walk()
         walk.startTime = startTime
         walk.endTime = endTime
-        walk.step = 5000
+        walk.steps = 5000
         val id = walkDao?.insert(walk)
         val savedWalk = walkDao?.findById(id!!)
-        assertThat(savedWalk?.step, equalTo(walk.step))
+        assertThat(savedWalk?.steps, equalTo(walk.steps))
         assertThat(walkDao?.findAll()?.size, equalTo(1))
     }
 
