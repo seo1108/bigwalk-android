@@ -6,6 +6,7 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Build
+import android.util.Log
 import androidx.core.app.NotificationCompat
 import kr.co.bigwalk.app.BigwalkApplication
 import kr.co.bigwalk.app.BuildConfig
@@ -52,7 +53,7 @@ object StepManager {
 
         //일자 넘어갈때 오늘 걸음 수 제거 (걸음 데이터는 시간으로만 저장)
         syncDailyWalk()
-
+        Log.d("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT", "6 " + PreferenceManager.getDailyStep() + " " + currentStep)
         PreferenceManager.saveDailyStep(PreferenceManager.getDailyStep() + currentStep)
         PreferenceManager.saveDonableStep(PreferenceManager.getDonableStep() + currentStep)
         stepCallback?.onStepChanged(PreferenceManager.getDailyStep(), PreferenceManager.getDonableStep())
@@ -148,8 +149,10 @@ object StepManager {
 
 
                 val prevSavedDailyStep = PreferenceManager.getDailyStep()
-                PreferenceManager.saveDailyStep(currentWalk.dailySteps)
-                PreferenceManager.saveDonableStep(currentWalk.donableSteps)
+                //PreferenceManager.saveDailyStep(currentWalk.dailySteps)
+                //PreferenceManager.saveDonableStep(currentWalk.donableSteps)
+                PreferenceManager.saveDailyStep(PreferenceManager.getDailyStep())
+                PreferenceManager.saveDonableStep(PreferenceManager.getDonableStep())
                 onSuccess.invoke()
                 WalkRepository.initializeWalkTable(walks)
 

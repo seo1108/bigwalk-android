@@ -3,6 +3,7 @@ package kr.co.bigwalk.app.walk
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.databinding.BaseObservable
 import androidx.databinding.ObservableField
 import androidx.fragment.app.FragmentManager
@@ -104,6 +105,7 @@ class WalkViewModel(
     }
 
     fun notifyStepChanged() {
+        Log.d("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT", "" + PreferenceManager.getDailyStep())
         this.todayStep.set(intValueToCommaString(PreferenceManager.getDailyStep()))
         this.donableStep.set(intValueToCommaString(PreferenceManager.getDonableStep()))
         this.kcalText.set("${PreferenceManager.getKcalorie()}")
