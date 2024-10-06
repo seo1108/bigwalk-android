@@ -77,8 +77,10 @@
     <string name="please_input_join_number">출석번호를 입력해주세요</string>
     <string name="please_input_student_id">학번을 입력해주세요</string>
     <string name="please_input_search_value">검색 항목을 입력해주세요</string>
-    <string name="please_input_visit_date">방문일자를 입력해주세요</string>
-    <string name="please_input_number">번호를 입력해주세요</string>
+    <!--<string name="please_input_visit_date">방문일자를 입력해주세요</string>-->
+    <string name="please_input_visit_date">생년월일을 입력해주세요</string>
+   <!-- <string name="please_input_number">번호를 입력해주세요</string>-->
+    <string name="please_input_number">전화번호를 입력해주세요</string>
     <string name="please_input_employee_auth_num">인증번호를 입력해주세요</string>
 
 

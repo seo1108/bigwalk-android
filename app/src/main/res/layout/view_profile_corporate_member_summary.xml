@@ -521,7 +521,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="29dp"
                 android:layout_marginTop="14dp"
-                android:text="방문일자"
+                android:text="생년월일"
                 android:textColor="@color/sub2"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -769,7 +769,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="29dp"
                 android:layout_marginTop="14dp"
-                android:text="번호"
+                android:text="전화번호"
                 android:textColor="@color/sub2"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
