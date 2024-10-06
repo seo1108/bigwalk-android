@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -36,6 +37,8 @@ import kr.co.bigwalk.app.sign_in.SignInActivity
 import kr.co.bigwalk.app.util.BlackUser
 import kr.co.bigwalk.app.util.DebugLog
 import kr.co.bigwalk.app.util.DeepLinkStorage
+import kr.co.bigwalk.app.util.isPermissionGranted
+import kr.co.bigwalk.app.util.requestPermission
 import kr.co.bigwalk.app.util.showToast
 import kr.co.bigwalk.app.walk.WalkActivity
 import java.security.InvalidKeyException
@@ -54,6 +57,8 @@ class SplashActivity : AppCompatActivity() {
         
         firebaseAnalytics = FirebaseAnalytics.getInstance(this)
         firebaseAnalytics.setCurrentScreen(this, "splash_view", null)
+
+        addPermission()
 
         showSplashImage()
 
@@ -495,5 +500,37 @@ class SplashActivity : AppCompatActivity() {
 
         val keyHash = Utility.getKeyHash(this)
         Log.d("KeyHash : ", "[ $keyHash ]")
+    }
+
+    private fun addPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            val permissionsToRequest = mutableListOf<String>()
+
+            if (!isPermissionGranted(this, Manifest.permission.FOREGROUND_SERVICE_HEALTH)) {
+                permissionsToRequest.add(Manifest.permission.FOREGROUND_SERVICE_HEALTH)
+            }
+
+            if (!isPermissionGranted(this, Manifest.permission.ACTIVITY_RECOGNITION)) {
+                permissionsToRequest.add(Manifest.permission.ACTIVITY_RECOGNITION)
+            }
+
+            if (permissionsToRequest.isNotEmpty()) {
+                ActivityCompat.requestPermissions(
+                    this,
+                    permissionsToRequest.toTypedArray(),
+                    1001
+                )
+            }
+
+            Log.d("PermissionCheck", "Permissions to request: ${permissionsToRequest.joinToString()}")
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            if (!isPermissionGranted(this, Manifest.permission.ACTIVITY_RECOGNITION)) {
+                ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(Manifest.permission.ACTIVITY_RECOGNITION),
+                    1001
+                )
+            }
+        }
     }
 }

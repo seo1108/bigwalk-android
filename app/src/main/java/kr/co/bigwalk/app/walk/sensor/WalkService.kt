@@ -4,6 +4,7 @@ import android.Manifest
 import android.app.*
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.hardware.SensorManager
 import android.os.Build
 import android.os.Bundle
@@ -11,6 +12,7 @@ import android.os.IBinder
 import android.os.Parcelable
 import android.os.ResultReceiver
 import android.util.Log
+import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import androidx.work.*
@@ -30,12 +32,15 @@ import java.util.concurrent.TimeUnit
 
 class WalkService : Service(), StepMaxCallback, StepCallback {
 
+    private var isStartedAsForeground = false
+
     companion object {
         const val ARG_SYNC_DAILY_STEP = "SYNC_DAILY_STEP"
         const val ARG_SYNC_DONABLE_STEP = "SYNC_DONABLE_STEP"
         const val ARG_DAILY_STEP_TO_FG = "DAILY_STEP_TO_FG"
         const val ARG_SAVED_DAY_TO_FG = "SAVED_DAY_TO_FG"
         const val ARG_RECEIVER = "RECEIVER"
+        private const val PERMISSION_REQUEST_CODE = 1001
 
         fun startService(context: Context, intent: Intent) {
             DebugLog.d("WalkService Start!!")
@@ -64,13 +69,21 @@ class WalkService : Service(), StepMaxCallback, StepCallback {
         super.onCreate()
         Log.d("WalkService", "on create")
         createNotificationChannel()
-        sendWalkingNotification(PreferenceManager.getDailyStep(), PreferenceManager.getDonableStep())
+        //sendWalkingNotification(PreferenceManager.getDailyStep(), PreferenceManager.getDonableStep())
         WalkSensor.stepMaxCallback = this
         WalkSensor.stepCallback = this
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         Log.d("WalkService", "start command. $isRegisteredStepSensor")
+
+        if (checkAndRequestPermissions()) {
+            if (!isStartedAsForeground) {
+                startForegroundService()
+                isStartedAsForeground = true
+            }
+        }
+
         if (!isRegisteredStepSensor) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 if (!isPermissionGranted(this, Manifest.permission.ACTIVITY_RECOGNITION)) {
@@ -96,6 +109,22 @@ class WalkService : Service(), StepMaxCallback, StepCallback {
         sendWalkingNotification(PreferenceManager.getDailyStep(), PreferenceManager.getDonableStep())
 
         return START_STICKY
+    }
+
+    private fun checkAndRequestPermissions(): Boolean {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.FOREGROUND_SERVICE_HEALTH) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this as Activity, arrayOf(Manifest.permission.FOREGROUND_SERVICE_HEALTH), PERMISSION_REQUEST_CODE)
+                return false
+            }
+        }
+        return true
+    }
+
+    private fun startForegroundService() {
+        val dailyStep = PreferenceManager.getDailyStep()
+        val donableStep = PreferenceManager.getDonableStep()
+        sendWalkingNotification(dailyStep, donableStep)
     }
 
     private fun syncFGToBG(intent: Intent, bgDonableStep: Int): Pair<Int, Int> {
@@ -198,17 +227,24 @@ class WalkService : Service(), StepMaxCallback, StepCallback {
     }
 
     private fun sendWalkingNotification(dailyStep: Int, donableStep: Int) {
-        val notificationIntent = Intent(this, SplashActivity::class.java)
-        val channelData = FCMChannels.WALK.channelData
-        val pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
-        val notification = NotificationCompat.Builder(this, channelData.id)
-            .setContentTitle("기부 가능한 걸음 ${donableStep.valueToCommaString()}")
-            .setContentText("오늘의 걸음 ${dailyStep.valueToCommaString()}")
-            .setSmallIcon(R.mipmap.bw_mono)
-            .setContentIntent(pendingIntent)
-            .setShowWhen(false)
-            .build()
-        startForeground(1, notification)
+        try {
+            val notificationIntent = Intent(this, SplashActivity::class.java)
+            val channelData = FCMChannels.WALK.channelData
+            val pendingIntent = PendingIntent.getActivity(
+                this,
+                0,
+                notificationIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            )
+            val notification = NotificationCompat.Builder(this, channelData.id)
+                .setContentTitle("기부 가능한 걸음 ${donableStep.valueToCommaString()}")
+                .setContentText("오늘의 걸음 ${dailyStep.valueToCommaString()}")
+                .setSmallIcon(R.mipmap.bw_mono)
+                .setContentIntent(pendingIntent)
+                .setShowWhen(false)
+                .build()
+            startForeground(1, notification)
+        } catch (e: Exception) {}
     }
 
     override fun onStepChanged(dailyStep: Int, donableStep: Int) {

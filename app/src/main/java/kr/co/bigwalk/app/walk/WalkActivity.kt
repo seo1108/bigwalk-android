@@ -82,6 +82,33 @@ class WalkActivity : SignalBaseActivity(), WalkNavigator, StepCallback {
     }
 
     private fun checkPermission() {
+        val permissions = mutableListOf<String>()
+
+        /*// POST_NOTIFICATIONS 권한 체크 (Android 13+)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_DENIED) {
+                permissions.add(Manifest.permission.POST_NOTIFICATIONS)
+            }
+        }
+
+        // ACTIVITY_RECOGNITION 권한 체크 (Android 10+)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACTIVITY_RECOGNITION) == PackageManager.PERMISSION_DENIED) {
+                permissions.add(Manifest.permission.ACTIVITY_RECOGNITION)
+            }
+        }
+
+        // FOREGROUND_SERVICE_HEALTH 권한 체크 (Android 14+)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.FOREGROUND_SERVICE_HEALTH) == PackageManager.PERMISSION_DENIED) {
+                permissions.add(Manifest.permission.FOREGROUND_SERVICE_HEALTH)
+            }
+        }
+
+        if (permissions.isNotEmpty()) {
+            ActivityCompat.requestPermissions(this, permissions.toTypedArray(), 999)
+        }*/
+
         var postNotification =
             ContextCompat.checkSelfPermission(this@WalkActivity, Manifest.permission.POST_NOTIFICATIONS)
 
@@ -194,6 +221,11 @@ class WalkActivity : SignalBaseActivity(), WalkNavigator, StepCallback {
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            Log.d("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT", "REQUEST PERMISSION" + " " + isPermissionGranted(this, Manifest.permission.FOREGROUND_SERVICE_HEALTH))
+            if (isPermissionGranted(this, Manifest.permission.FOREGROUND_SERVICE_HEALTH)) {
+                requestPermission(this, Manifest.permission.FOREGROUND_SERVICE_HEALTH)
+            }
+
             if (isPermissionGranted(this, Manifest.permission.ACTIVITY_RECOGNITION)) {
                 requestPermission(this, Manifest.permission.ACTIVITY_RECOGNITION)
             } else
