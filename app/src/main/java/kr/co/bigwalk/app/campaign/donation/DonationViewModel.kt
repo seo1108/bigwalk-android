@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
+import android.util.Log
 import android.widget.FrameLayout
 import android.widget.SeekBar
 import androidx.appcompat.app.AlertDialog
@@ -387,7 +388,7 @@ open class DonationViewModel(private val activity: Activity, private val donatio
             userId + "",
             "A",
             Build.MODEL + " [Android" + Build.VERSION.RELEASE + "] [" + BuildConfig.VERSION_NAME+ "]",
-            "donate request : donate step [$step], donableStep [ " + PreferenceManager.getDonableStep() + "], from [DonationViewModel: private fun donate]"
+            "donate request : donate step [$step], donableStep [" + PreferenceManager.getDonableStep() + "], from [DonationViewModel: private fun donate]"
         )
 
         with(RemoteApiManager) {

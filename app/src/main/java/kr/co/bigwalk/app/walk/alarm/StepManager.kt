@@ -139,20 +139,33 @@ object StepManager {
             userId + "",
             "A",
             Build.MODEL + " [Android" + Build.VERSION.RELEASE + "] [" + BuildConfig.VERSION_NAME+ "]",
-            "uploadWalkData : dailyStep [" + PreferenceManager.getDailyStep() + "], donableStep [" + PreferenceManager.getDonableStep() + "], uploadData " + filterWalks + ""
+            "uploadWalkData : dailyStep [" + PreferenceManager.getDailyStep() + "], donableStep [" + PreferenceManager.getDonableStep() + "], uploadData " + filteredWalks + ""
         )
+
+        // 걸음수가 줄어드는 케이스가 있어, 서버로 전송하는 걸음수를 로컬에 저장된 dailyStep을 보내도록 처리
+        Log.d("걸음 업로드", "pre " + filteredWalks.toString() + " " + filteredWalks[filteredWalks.size - 1].steps + " " + PreferenceManager.getDailyStep())
+        if (filteredWalks[filteredWalks.size - 1].steps < PreferenceManager.getDailyStep()) {
+            filteredWalks[filteredWalks.size - 1].steps = PreferenceManager.getDailyStep()
+        }
+
+        Log.d("걸음 업로드", "after " + filteredWalks.toString() + " " + PreferenceManager.getDailyStep())
 
         WalkRepository.uploadWalkData(filteredWalks, object : WalkDataSource.UploadWalkDataCallback {
             override fun onSuccess(currentWalk: CurrentWalk) {
                 DebugLog.d("걸음 업로드 성공 원본 $walks")
                 DebugLog.d("걸음 업로드 성공 $filteredWalks")
+                DebugLog.d("걸음 업로드 성공 응답 $currentWalk")
 
+                Log.d("걸음 업로드", filteredWalks.toString())
+                Log.d("걸음 업로드 성공 응답",  currentWalk.toString())
+                Log.d("걸음 업로드", "" + PreferenceManager.getDailyStep() + " " + PreferenceManager.getDonableStep())
 
                 val prevSavedDailyStep = PreferenceManager.getDailyStep()
-                //PreferenceManager.saveDailyStep(currentWalk.dailySteps)
+                PreferenceManager.saveDailyStep(currentWalk.dailySteps)
+                PreferenceManager.saveDonableStep(currentWalk.donableSteps)
+                //PreferenceManager.saveDailyStep(PreferenceManager.getDailyStep())
+                //PreferenceManager.saveDonableStep(PreferenceManager.getDonableStep())
                 //PreferenceManager.saveDonableStep(currentWalk.donableSteps)
-                PreferenceManager.saveDailyStep(PreferenceManager.getDailyStep())
-                PreferenceManager.saveDonableStep(PreferenceManager.getDonableStep())
                 onSuccess.invoke()
                 WalkRepository.initializeWalkTable(walks)
 

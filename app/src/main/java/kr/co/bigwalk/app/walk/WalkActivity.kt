@@ -50,6 +50,7 @@ class WalkActivity : SignalBaseActivity(), WalkNavigator, StepCallback {
     lateinit var organizationViewModel: OrganizationViewModel
     private lateinit var walkFragment1: WalkFragment1
     private lateinit var broadcastReceiver: BroadcastReceiver
+    private var isNoticeRequest = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -199,7 +200,7 @@ class WalkActivity : SignalBaseActivity(), WalkNavigator, StepCallback {
         })
 
         // Notice
-        viewModel.requestNotice(supportFragmentManager)
+        //viewModel.requestNotice(supportFragmentManager)
 
     }
 
@@ -234,6 +235,11 @@ class WalkActivity : SignalBaseActivity(), WalkNavigator, StepCallback {
             startWalkServiceAndRegisterStepSensor()
 
         RealtimeNotification.getInstance().sync()
+
+        if (!isNoticeRequest) {
+            isNoticeRequest = true
+            viewModel.requestNotice(supportFragmentManager)
+        }
     }
 
     private fun startWalkServiceAndRegisterStepSensor() {
