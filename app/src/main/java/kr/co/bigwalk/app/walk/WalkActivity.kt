@@ -222,7 +222,7 @@ class WalkActivity : SignalBaseActivity(), WalkNavigator, StepCallback {
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            Log.d("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT", "REQUEST PERMISSION" + " " + isPermissionGranted(this, Manifest.permission.FOREGROUND_SERVICE_HEALTH))
+            //Log.d("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT", "REQUEST PERMISSION" + " " + isPermissionGranted(this, Manifest.permission.FOREGROUND_SERVICE_HEALTH))
             /*if (!isPermissionGranted(this, Manifest.permission.FOREGROUND_SERVICE_HEALTH)) {
                 requestPermission(this, Manifest.permission.FOREGROUND_SERVICE_HEALTH)
             }*/
