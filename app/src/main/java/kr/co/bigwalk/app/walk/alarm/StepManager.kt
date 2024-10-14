@@ -143,10 +143,11 @@ object StepManager {
         )
 
         // 걸음수가 줄어드는 케이스가 있어, 서버로 전송하는 걸음수를 로컬에 저장된 dailyStep을 보내도록 처리
-        Log.d("걸음 업로드", "pre " + filteredWalks.toString() + " " + filteredWalks[filteredWalks.size - 1].steps + " " + PreferenceManager.getDailyStep())
-        if (filteredWalks[filteredWalks.size - 1].steps < PreferenceManager.getDailyStep()) {
-            filteredWalks[filteredWalks.size - 1].steps = PreferenceManager.getDailyStep()
-        }
+        try {
+            if (filteredWalks.isNotEmpty() && filteredWalks[filteredWalks.size - 1].steps < PreferenceManager.getDailyStep()) {
+                filteredWalks[filteredWalks.size - 1].steps = PreferenceManager.getDailyStep()
+            }
+        } catch (_: Exception) { }
 
         Log.d("걸음 업로드", "after " + filteredWalks.toString() + " " + PreferenceManager.getDailyStep())
 

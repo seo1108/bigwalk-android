@@ -10,6 +10,7 @@ import android.graphics.Color
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import android.os.Parcelable
 import android.provider.Settings
 import android.util.Log
@@ -236,10 +237,16 @@ class WalkActivity : SignalBaseActivity(), WalkNavigator, StepCallback {
 
         RealtimeNotification.getInstance().sync()
 
-        if (!isNoticeRequest) {
-            isNoticeRequest = true
-            viewModel.requestNotice(supportFragmentManager)
-        }
+        Handler().postDelayed(
+            Runnable {
+                if (!isNoticeRequest) {
+                    isNoticeRequest = true
+                    viewModel.requestNotice(supportFragmentManager)
+                }
+            },
+            1000
+        )
+
     }
 
     private fun startWalkServiceAndRegisterStepSensor() {
