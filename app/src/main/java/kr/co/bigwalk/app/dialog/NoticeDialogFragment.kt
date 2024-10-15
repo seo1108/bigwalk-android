@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.FragmentManager
 import kr.co.bigwalk.app.data.PreferenceManager
 import kr.co.bigwalk.app.databinding.DialogNoticeBinding
 
@@ -45,5 +46,11 @@ class NoticeDialogFragment(val noticeId: Long, val title: String, val content: S
         binding.btnClose.setOnClickListener {
             dismiss()
         }
+    }
+
+    fun showAllowingStateLoss(manager: FragmentManager, tag: String?) {
+        val ft = manager.beginTransaction()
+        ft.add(this, tag)
+        ft.commitAllowingStateLoss()
     }
 }

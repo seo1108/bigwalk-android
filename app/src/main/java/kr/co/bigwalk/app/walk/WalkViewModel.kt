@@ -3,10 +3,14 @@ package kr.co.bigwalk.app.walk
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import androidx.databinding.BaseObservable
+import androidx.databinding.Bindable
 import androidx.databinding.ObservableField
 import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import kr.co.bigwalk.app.R
 import kr.co.bigwalk.app.all.AllActivity
 import kr.co.bigwalk.app.campaign.CampaignActivity
@@ -54,6 +58,9 @@ class WalkViewModel(
         ObservableField(PreferenceManager.getDonableStep().toString())
     val kcalText: ObservableField<String> =
         ObservableField("${PreferenceManager.getKcalorie()}")
+
+    private var pendingNoticeResponse: NoticeResponse? = null
+
 
     val donationRank: ObservableField<String> = ObservableField("-")
     val totalDonationStep: ObservableField<String> = ObservableField("0")
@@ -160,7 +167,13 @@ class WalkViewModel(
         UserRepository.getNotice(object : UserDataSource.NoticeCallback {
             override fun onSuccess(noticeResponse: NoticeResponse) {
                 if (!PreferenceManager.isNotShowingNotice(noticeResponse.id))
-                    NoticeDialogFragment(noticeResponse.id, noticeResponse.title, noticeResponse.content).show(supportFragmentManager, "NoticeDialog")
+                    Handler().postDelayed(
+                        Runnable {
+                            //NoticeDialogFragment(noticeResponse.id, noticeResponse.title, noticeResponse.content).show(supportFragmentManager, "NoticeDialog")
+                            NoticeDialogFragment(noticeResponse.id, noticeResponse.title, noticeResponse.content).showAllowingStateLoss(supportFragmentManager, "NoticeDialog")
+                        },
+                        1000
+                    )
             }
 
             override fun onFailed(reason: String) {
@@ -168,6 +181,35 @@ class WalkViewModel(
             }
         })
     }
+
+    /*fun requestNotice() {
+        UserRepository.getNotice(object : UserDataSource.NoticeCallback {
+            override fun onSuccess(noticeResponse: NoticeResponse) {
+                if (!PreferenceManager.isNotShowingNotice(noticeResponse.id)) {
+                    pendingNoticeResponse = noticeResponse
+                    notifyPropertyChanged(BR.hasPendingNotice)
+                }
+            }
+            override fun onFailed(reason: String) {
+                DebugLog.w("failed notice get")
+            }
+        })
+    }
+
+
+    @Bindable
+    fun getHasPendingNotice(): Boolean {
+        return pendingNoticeResponse != null
+    }
+
+    fun showPendingNoticeIfAny(fragmentManager: FragmentManager) {
+        pendingNoticeResponse?.let { notice ->
+            NoticeDialogFragment(notice.id, notice.title, notice.content)
+                .showAllowingStateLoss(fragmentManager, "NoticeDialog")
+            pendingNoticeResponse = null
+            notifyPropertyChanged(BR.hasPendingNotice)
+        }
+    }*/
 
     fun requestMissionStatus() {
         MissionRepository.getMissionsStatus(object : MissionDataSource.MissionsStatusCallback {
