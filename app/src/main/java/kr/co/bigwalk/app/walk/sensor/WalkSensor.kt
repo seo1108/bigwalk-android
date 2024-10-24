@@ -50,7 +50,9 @@ object WalkSensor : SensorEventListener {
         if (event?.sensor?.type == Sensor.TYPE_STEP_COUNTER) {
             DebugLog.d("센서 변화 감지 onSensorChanged TYPE_STEP_COUNTER ${event.values?.get(0)!!.toInt()} ${PreferenceManager.getDailyStep()} ${PreferenceManager.getDonableStep()} ${PreferenceManager.getRecentStep()} ${System.currentTimeMillis()}")
             currentStepCount = event.values?.get(0)!!.toInt()
-
+            try {
+                PreferenceManager.saveSensorStep(event.values?.get(0)!!.toInt())
+            } catch (_: Exception) {}
             // 기기 재부팅등의 이유로 누적 걸음수가 0이면 recentStep도 0으로 세팅
             if (currentStepCount == 0) {
                 PreferenceManager.saveRecentStep(0)
@@ -62,6 +64,9 @@ object WalkSensor : SensorEventListener {
             event.values?.clone()?.let {
                 val step = AccelerometerStepCalculator.getInstance()
                     .calculateStep(event.values.clone())
+                try {
+                    PreferenceManager.saveSensorStep(step)
+                } catch (_: Exception) {}
                 if (step > 0) {
                     currentStepCount += step
                 }

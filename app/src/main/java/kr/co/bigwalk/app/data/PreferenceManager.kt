@@ -45,6 +45,7 @@ object PreferenceManager {
     private enum class Key {
         LAST_ALERT_DATE,// 마지막으로 업데이트 알러트 띄워준 날짜
         ACCESS_TOKEN,
+        SENSOR_STEP, // 실제 센서 걸음수 데이터
         DAILY_STEP,// 하루 단위로 갱신되는 걸음 수를 저장
         TIMELY_STEP,// 한시간 단위로 갱신되는 걸음 수를 저장
         RECENT_STEP,// 센서로 들어오는 raw한 걸음 수를 저장
@@ -159,6 +160,16 @@ object PreferenceManager {
 
     fun getAccessToken(): String? {
         return preference.getString(Key.ACCESS_TOKEN.name, null)
+    }
+
+    fun saveSensorStep(step: Int) {
+        val editor: SharedPreferences.Editor = preference.edit()
+        editor.putInt(Key.SENSOR_STEP.name, step)
+        editor.apply()
+    }
+
+    fun getSensorStep(): Int {
+        return preference.getInt(Key.SENSOR_STEP.name, 0)
     }
 
     fun saveRecentStep(step: Int) {

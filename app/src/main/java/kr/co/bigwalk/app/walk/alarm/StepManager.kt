@@ -132,6 +132,13 @@ object StepManager {
         DebugLog.d("걸음 업로드 성공 가공중 5 $filteredWalks")
 
 
+        // 걸음수가 줄어드는 케이스가 있어, 서버로 전송하는 걸음수를 로컬에 저장된 dailyStep을 보내도록 처리
+        try {
+            if (filteredWalks.isNotEmpty() && filteredWalks[filteredWalks.size - 1].steps < PreferenceManager.getDailyStep()) {
+                filteredWalks[filteredWalks.size - 1].steps = PreferenceManager.getDailyStep()
+            }
+        } catch (_: Exception) { }
+
         val name = PreferenceManager.getName()
         val userId = PreferenceManager.getUserId().toString()
         val logRequest = UserWalkLogRequest(
@@ -139,15 +146,8 @@ object StepManager {
             userId + "",
             "A",
             Build.MODEL + " [Android" + Build.VERSION.RELEASE + "] [" + BuildConfig.VERSION_NAME+ "]",
-            "uploadWalkData : dailyStep [" + PreferenceManager.getDailyStep() + "], donableStep [" + PreferenceManager.getDonableStep() + "], uploadData " + filteredWalks + ""
+            "uploadWalkData : sensorStep [" + PreferenceManager.getSensorStep() + "] dailyStep [" + PreferenceManager.getDailyStep() + "], donableStep [" + PreferenceManager.getDonableStep() + "], uploadData " + filteredWalks + ""
         )
-
-        // 걸음수가 줄어드는 케이스가 있어, 서버로 전송하는 걸음수를 로컬에 저장된 dailyStep을 보내도록 처리
-        try {
-            if (filteredWalks.isNotEmpty() && filteredWalks[filteredWalks.size - 1].steps < PreferenceManager.getDailyStep()) {
-                filteredWalks[filteredWalks.size - 1].steps = PreferenceManager.getDailyStep()
-            }
-        } catch (_: Exception) { }
 
         Log.d("걸음 업로드", "after " + filteredWalks.toString() + " " + PreferenceManager.getDailyStep())
 
