@@ -72,7 +72,7 @@
     <string name="please_input_employee_id">아이디를 입력해주세요</string>
     <string name="please_input_name">이름을 입력해주세요</string>
     <string name="please_input_insta_account">인스타그램 계정을 입력해주세요</string>
-    <string name="please_input_input_value">입력정보를 입력해주세요</string>
+    <string name="please_input_input_value">추천인 이름을 입력해주세요</string>
     <string name="please_input_address">주소를 입력해주세요</string>
     <string name="please_input_join_number">출석번호를 입력해주세요</string>
     <string name="please_input_student_id">학번을 입력해주세요</string>

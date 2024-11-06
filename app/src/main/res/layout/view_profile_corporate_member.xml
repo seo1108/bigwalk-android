@@ -1150,7 +1150,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="29dp"
                 android:layout_marginTop="14dp"
-                android:text="입력값"
+                android:text="추천인 이름"
                 android:textColor="@color/sub2"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
