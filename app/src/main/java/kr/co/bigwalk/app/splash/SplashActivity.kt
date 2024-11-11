@@ -101,7 +101,7 @@ class SplashActivity : AppCompatActivity() {
 
     private fun remoteConfigInit() {
         // 기본 캐쉬 만료시간은 12시간.
-        remoteConfig.fetch(0)
+        remoteConfig.fetch(3600)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     remoteConfig.activate()
@@ -112,14 +112,14 @@ class SplashActivity : AppCompatActivity() {
                         }
                     }, 500) // 0.5초후
                 } else {
-                    showToast("앱 최신 버전을 가져오지 못했습니다. 인터넷 환경 확인 후 다시 실행해주세요.")
-                    /*if (!PreferenceManager.getAccessToken().isNullOrBlank()){
+                    //showToast("앱 최신 버전을 가져오지 못했습니다. 인터넷 환경 확인 후 다시 실행해주세요.")
+                    if (!PreferenceManager.getAccessToken().isNullOrBlank()){
                         getUserProfile()
                     } else {
                         FirebaseCrashlytics.getInstance().log("checkVersion()-accessToken-2: ${PreferenceManager.getAccessToken() ?: "empty"}")
                         FirebaseCrashlytics.getInstance().recordException(InvalidKeyException())
                         moveToSignInActivity()
-                    }*/
+                    }
                 }
             }
     }
