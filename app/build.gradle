@@ -24,7 +24,7 @@ android {
     namespace="kr.co.bigwalk.app"
 
     //buildToolsVersion "33.0.2"
-    buildToolsVersion "34.0.0"
+    //buildToolsVersion "34.0.0"
 
 
     buildFeatures {
@@ -68,8 +68,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility 1.8
-        targetCompatibility 1.8
+        sourceCompatibility 11
+        targetCompatibility 11
     }
     kotlinOptions {
         jvmTarget = "1.8"
